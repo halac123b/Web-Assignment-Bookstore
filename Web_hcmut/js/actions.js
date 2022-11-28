@@ -5,6 +5,7 @@ $(document).ready(function () {
 
   loadProductsBySelectedCategory();
   loadOthersState();
+  setProductRating();
 
   //cat() is a funtion fetching category record from database whenever page is load
   function cat() {
@@ -87,6 +88,18 @@ $(document).ready(function () {
   //     },
   //   });
   // }
+
+  function setProductRating() {
+    document.querySelectorAll(".product-rating").forEach((item) => {
+      console.log(item);
+      const rating = item.getAttribute("data-rating");
+      item.querySelectorAll("i").forEach((icon, index) => {
+        if (index + 1 <= rating) {
+          icon.classList.add("active");
+        }
+      });
+    });
+  }
 
   function loadProductsBySelectedCategory() {
     const path = location.pathname.slice(1);

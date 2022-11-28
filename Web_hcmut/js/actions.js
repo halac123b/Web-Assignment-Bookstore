@@ -3,8 +3,8 @@ $(document).ready(function () {
   cathome();
   brand();
 
-  producthome();
   loadProductsBySelectedCategory();
+  loadOthersState();
 
   //cat() is a funtion fetching category record from database whenever page is load
   function cat() {
@@ -17,6 +17,14 @@ $(document).ready(function () {
       },
     });
   }
+
+  function loadOthersState() {
+    const cartLength = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart")).length
+      : 0;
+    $(".badge.qty").html(cartLength);
+  }
+
   function cathome() {
     const path = location.pathname.slice(1);
     const query = new URLSearchParams(location.search);
@@ -69,16 +77,16 @@ $(document).ready(function () {
       },
     });
   }
-  function producthome() {
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { getProducthome: 1 },
-      success: function (data) {
-        $("#get_product_home").html(data);
-      },
-    });
-  }
+  // function producthome() {
+  //   $.ajax({
+  //     url: "homeaction.php",
+  //     method: "POST",
+  //     data: { getProducthome: 1 },
+  //     success: function (data) {
+  //       $("#get_product_home").html(data);
+  //     },
+  //   });
+  // }
 
   function loadProductsBySelectedCategory() {
     const path = location.pathname.slice(1);
@@ -137,6 +145,69 @@ $(document).ready(function () {
   // 	})
 
   // })
+
+  /*
+  
+  delegate when click addtocart*/
+
+  function addToCart(id, title, price, image, qty = 1) {
+    let cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+    const cartItem = { id, title, price, image: `/product_images/${image}` };
+    if (cart.find((item) => item.id === id)) {
+      cart = cart.map((item) =>
+        item.id == id
+          ? {
+              ...item,
+              quantity: item.quantity + qty,
+            }
+          : item
+      );
+    } else {
+      cartItem.quantity = qty;
+      cart.push(cartItem);
+    }
+    $(".badge.qty").html(cart.length);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  $("body").delegate(".add-to-cart", "click", (e) => {
+    console.log(e.target);
+    const id = e.target.getAttribute("data-id");
+    const title = e.target.getAttribute("data-title");
+    const price = e.target.getAttribute("data-price");
+    const image = e.target.getAttribute("data-image");
+    addToCart(id, title, price, image);
+  });
+
+  /**
+   * load cart to dom
+   */
+
+  $("body").delegate(".dropdown", "click", () => {
+    const cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+
+    const html = cart
+      .map(
+        (item) => `
+      <div class="product-widget">
+        <div class="product-img">
+          <img src="${item.image}" alt="">
+        </div>
+        <div class="product-body">
+          <h3 class="product-name"><a href="#">${item.title}</a></h3>
+          <h4 class="product-price"><span class="qty">${item.quantity}</span>${item.price}</h4>
+        </div>
+			</div>
+      `
+      )
+      .join("\r\n");
+
+    $("#cart_product").html(html);
+  });
 
   /*	when page is load successfully then there is a list of brands when user click on brand we will get brand id and 
 		according to brand id we will show products
@@ -244,52 +315,52 @@ $(document).ready(function () {
 
   //Get User Information before checkout end here
 
-  //Add Product into Cart
-  $("body").delegate("#product", "click", function (event) {
-    var pid = $(this).attr("pid");
+  // //Add Product into Cart
+  // $("body").delegate("#product", "click", function (event) {
+  //   var pid = $(this).attr("pid");
 
-    event.preventDefault();
-    $(".overlay").show();
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { addToCart: 1, proId: pid },
-      success: function (data) {
-        count_item();
-        getCartItem();
-        $("#product_msg").html(data);
-        $(".overlay").hide();
-      },
-    });
-  });
-  //Add Product into Cart End Here
+  //   event.preventDefault();
+  //   $(".overlay").show();
+  //   $.ajax({
+  //     url: "action.php",
+  //     method: "POST",
+  //     data: { addToCart: 1, proId: pid },
+  //     success: function (data) {
+  //       count_item();
+  //       getCartItem();
+  //       $("#product_msg").html(data);
+  //       $(".overlay").hide();
+  //     },
+  //   });
+  // });
+  // //Add Product into Cart End Here
   //Count user cart items funtion
-  count_item();
-  function count_item() {
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { count_item: 1 },
-      success: function (data) {
-        $(".badge").html(data);
-      },
-    });
-  }
+  // count_item();
+  // function count_item() {
+  //   $.ajax({
+  //     url: "action.php",
+  //     method: "POST",
+  //     data: { count_item: 1 },
+  //     success: function (data) {
+  //       $(".badge").html(data);
+  //     },
+  //   });
+  // }
   //Count user cart items funtion end
 
   //Fetch Cart item from Database to dropdown menu
-  getCartItem();
-  function getCartItem() {
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { Common: 1, getCartItem: 1 },
-      success: function (data) {
-        $("#cart_product").html(data);
-        net_total();
-      },
-    });
-  }
+  // getCartItem();
+  // function getCartItem() {
+  //   $.ajax({
+  //     url: "action.php",
+  //     method: "POST",
+  //     data: { Common: 1, getCartItem: 1 },
+  //     success: function (data) {
+  //       $("#cart_product").html(data);
+  //       net_total();
+  //     },
+  //   });
+  // }
 
   //Fetch Cart item from Database to dropdown menu
 

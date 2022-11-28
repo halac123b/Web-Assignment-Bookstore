@@ -18,12 +18,21 @@ $(document).ready(function () {
     });
   }
   function cathome() {
+    const path = location.pathname.slice(1);
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+
     $.ajax({
       url: "homeaction.php",
       method: "POST",
       data: { categoryhome: 1 },
       success: function (data) {
         $("#get_category_home").html(data);
+        if (path === "store.php" && catId) {
+          $("#cat-" + catId).addClass("active");
+        } else if (path === "index.php" || path === "") {
+          $("#home").addClass("active");
+        }
       },
     });
   }

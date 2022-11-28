@@ -15,7 +15,7 @@ if (isset($_POST["categoryhome"])) {
 				<div id='responsive-nav'>
 					<!-- NAV -->
 					<ul class='main-nav nav navbar-nav'>
-                    <li><a href='index.php'>Home</a></li>
+                    <li id='home'><a href='index.php'>Home</a></li>
 	";
 	if (mysqli_num_rows($run_query) > 0) {
 		while ($row = mysqli_fetch_array($run_query)) {

@@ -1,32 +1,14 @@
 $(document).ready(function () {
-  cat();
-  cathome();
-  brand();
+  loadMainNavbar();
 
   loadProductsBySelectedCategory();
+  loadPagePanigation();
+
+  loadSidebarBrands();
   loadOthersState();
-  setProductRating();
 
-  //cat() is a funtion fetching category record from database whenever page is load
-  function cat() {
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { category: 1 },
-      success: function (data) {
-        $("#get_category").html(data);
-      },
-    });
-  }
-
-  function loadOthersState() {
-    const cartLength = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart")).length
-      : 0;
-    $(".badge.qty").html(cartLength);
-  }
-
-  function cathome() {
+  //define functions
+  function loadMainNavbar() {
     const path = location.pathname.slice(1);
     const query = new URLSearchParams(location.search);
     const catId = query.get("cat");
@@ -45,10 +27,21 @@ $(document).ready(function () {
       },
     });
   }
-  //brand() is a funtion fetching brand record from database whenever page is load
-  function brand() {
+
+  function loadSidebarCategories() {
     $.ajax({
       url: "action.php",
+      method: "POST",
+      data: { category: 1 },
+      success: function (data) {
+        $("#get_category").html(data);
+      },
+    });
+  }
+
+  function loadSidebarBrands() {
+    $.ajax({
+      url: "homeaction.php",
       method: "POST",
       data: { brand: 1 },
       success: function (data) {
@@ -56,28 +49,82 @@ $(document).ready(function () {
       },
     });
   }
-  //product() is a funtion fetching product record from database whenever page is load
-  function product() {
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { getProduct: 1 },
-      success: function (data) {
-        $("#get_product").html(data);
-      },
-    });
+
+  function loadOthersState() {
+    const cartLength = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart")).length
+      : 0;
+    $(".badge.qty").html(cartLength);
   }
-  gethomeproduts();
-  function gethomeproduts() {
+
+  function loadProductsBySelectedCategory() {
+    const path = location.pathname.slice(1);
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+    const sort_opt = document
+      .getElementById("sort-select")
+      .getAttribute("value");
+
+    if (path === "store.php" && catId) {
+      $.ajax({
+        url: "homeaction.php",
+        method: "POST",
+        data: {
+          get_seleted_Category: 1,
+          cat_id: catId,
+          pageNo: 1,
+          sort_opt: sort_opt,
+        },
+        success: function (data) {
+          $("#get_product").html(data);
+          if ($("body").width() < 480) {
+            $("body").scrollTop(683);
+          }
+        },
+      });
+    }
+  }
+
+  function loadPagePanigation() {
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+
     $.ajax({
       url: "homeaction.php",
       method: "POST",
-      data: { gethomeProduct: 1 },
+      data: { page: 1, catId: catId },
       success: function (data) {
-        $("#get_home_product").html(data);
+        $("#pageno").html(data);
+        document
+          .getElementById("pageno")
+          .firstElementChild.classList.add("active");
       },
     });
   }
+
+  // //product() is a funtion fetching product record from database whenever page is load
+  // function product() {
+  //   $.ajax({
+  //     url: "action.php",
+  //     method: "POST",
+  //     data: { getProduct: 1 },
+  //     success: function (data) {
+  //       $("#get_product").html(data);
+  //     },
+  //   });
+  // }
+
+  // gethomeproduts();
+  // function gethomeproduts() {
+  //   $.ajax({
+  //     url: "homeaction.php",
+  //     method: "POST",
+  //     data: { gethomeProduct: 1 },
+  //     success: function (data) {
+  //       $("#get_home_product").html(data);
+  //     },
+  //   });
+  // }
   // function producthome() {
   //   $.ajax({
   //     url: "homeaction.php",
@@ -89,79 +136,32 @@ $(document).ready(function () {
   //   });
   // }
 
-  function setProductRating() {
-    document.querySelectorAll(".product-rating").forEach((item) => {
-      console.log(item);
-      const rating = item.getAttribute("data-rating");
-      item.querySelectorAll("i").forEach((icon, index) => {
-        if (index + 1 <= rating) {
-          icon.classList.add("active");
-        }
-      });
-    });
-  }
+  /* Handle envent */
+  // $("body").delegate(".category", "click", function (event) {
+  //   $("#get_product").html("<h3>Loading...</h3>");
+  //   event.preventDefault();
+  //   var cid = $(this).attr("cid");
 
-  function loadProductsBySelectedCategory() {
-    const path = location.pathname.slice(1);
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-    if (path === "store.php" && catId) {
-      $.ajax({
-        url: "homeaction.php",
-        method: "POST",
-        data: { get_seleted_Category: 1, cat_id: catId, pageNo: 1 },
-        success: function (data) {
-          $("#get_product").html(data);
-          if ($("body").width() < 480) {
-            $("body").scrollTop(683);
-          }
-        },
-      });
-    }
-  }
+  //   $.ajax({
+  //     url: "action.php",
+  //     method: "POST",
+  //     data: { get_seleted_Category: 1, cat_id: cid },
+  //     success: function (data) {
+  //       $("#get_product").html(data);
+  //       if ($("body").width() < 480) {
+  //         $("body").scrollTop(683);
+  //       }
+  //     },
+  //   });
+  // });
 
-  /*	when page is load successfully then there is a list of categories when user click on category we will get category id and 
-		according to id we will show products
-	*/
-  $("body").delegate(".category", "click", function (event) {
-    $("#get_product").html("<h3>Loading...</h3>");
-    event.preventDefault();
-    var cid = $(this).attr("cid");
-
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { get_seleted_Category: 1, cat_id: cid },
-      success: function (data) {
-        $("#get_product").html(data);
-        if ($("body").width() < 480) {
-          $("body").scrollTop(683);
-        }
-      },
-    });
+  $("body").delegate(".add-to-cart", "click", (e) => {
+    const id = e.target.getAttribute("data-id");
+    const title = e.target.getAttribute("data-title");
+    const price = e.target.getAttribute("data-price");
+    const image = e.target.getAttribute("data-image");
+    addToCart(id, title, price, image);
   });
-  // $("body").delegate(".categoryhome","click",function(event){
-  // 	$("#get_product").html("<h3>Loading...</h3>");
-  // 	event.preventDefault();
-  // 	var cid = $(this).attr('cid');
-
-  // 		$.ajax({
-  // 		url		:	"homeaction.php",
-  // 		method	:	"POST",
-  // 		data	:	{get_seleted_Category:1,cat_id:cid},
-  // 		success	:	function(data){
-  // 			$("#get_product").html(data);
-  // 			if($("body").width() < 480){
-  // 				$("body").scrollTop(683);
-  // 			}
-  // 		}
-  // 	})
-
-  // })
-
-  /*
-  
-  delegate when click addtocart*/
 
   function addToCart(id, title, price, image, qty = 1) {
     let cart = localStorage.getItem("cart")
@@ -185,25 +185,12 @@ $(document).ready(function () {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  $("body").delegate(".add-to-cart", "click", (e) => {
-    console.log(e.target);
-    const id = e.target.getAttribute("data-id");
-    const title = e.target.getAttribute("data-title");
-    const price = e.target.getAttribute("data-price");
-    const image = e.target.getAttribute("data-image");
-    addToCart(id, title, price, image);
-  });
-
-  /**
-   * load cart to dom
-   */
-
   $("body").delegate(".dropdown", "click", () => {
     const cart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : [];
 
-    const html = cart
+    let html = cart
       .map(
         (item) => `
       <div class="product-widget">
@@ -218,22 +205,54 @@ $(document).ready(function () {
       `
       )
       .join("\r\n");
-
+    if (cart.length === 0) {
+      html = "<div>There is no product in your cart. Shop now</div>";
+    }
     $("#cart_product").html(html);
   });
 
-  /*	when page is load successfully then there is a list of brands when user click on brand we will get brand id and 
-		according to brand id we will show products
-	*/
-  $("body").delegate(".selectBrand", "click", function (event) {
-    event.preventDefault();
-    $("#get_product").html("<h3>Loading...</h3>");
-    var bid = $(this).attr("bid");
+  $("body").delegate("#page", "click", function (e) {
+    e.preventDefault();
+    const pn = $(this).attr("data-page");
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+    const sort_opt = document
+      .getElementById("sort-select")
+      .getAttribute("value");
+
+    document.querySelectorAll("#page").forEach((item) => {
+      item.classList.remove("active");
+    });
+    e.target.classList.add("active");
 
     $.ajax({
-      url: "action.php",
+      url: "homeaction.php",
       method: "POST",
-      data: { selectBrand: 1, brand_id: bid },
+      data: { get_seleted_Category: 1, cat_id: catId, pageNo: pn, sort_opt },
+      success: function (data) {
+        $("#get_product").html(data);
+      },
+    });
+  });
+
+  $("body").delegate(".selectBrand", "click", function (event) {
+    event.preventDefault();
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+    var bid = $(this).attr("bid");
+    document.querySelectorAll(".selectBrand").forEach((item) => {
+      item.classList.remove("active");
+    });
+    event.target.classList.add("active");
+    const sort_opt = document
+      .getElementById("sort-select")
+      .getAttribute("value");
+    $("#pageno").html(null);
+
+    $.ajax({
+      url: "homeaction.php",
+      method: "POST",
+      data: { get_seleted_brand: 1, brandId: bid, cat_id: catId, sort_opt },
       success: function (data) {
         $("#get_product").html(data);
         if ($("body").width() < 480) {
@@ -242,6 +261,74 @@ $(document).ready(function () {
       },
     });
   });
+
+  $("body").delegate("#clear-filter", "click", function () {
+    location.reload();
+  });
+
+  $("body").delegate("#sort-select", "change", function (e) {
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+    const sortOption = e.target.value;
+    document.querySelector("#sort-select").setAttribute("value", sortOption);
+    const brandId = document
+      .querySelector(".selectBrand.active")
+      ?.getAttribute("bid");
+
+    const data = brandId
+      ? {
+          get_seleted_brand: 1,
+          brandId: brandId,
+          cat_id: catId,
+          sort_opt: sortOption,
+          pageNo: 1,
+        }
+      : {
+          get_seleted_Category: 1,
+          cat_id: catId,
+          sort_opt: sortOption,
+          pageNo: 1,
+        };
+
+    $("#page.active").removeClass("active");
+    document.querySelectorAll("#page")[0].classList.add("active");
+
+    $.ajax({
+      url: "homeaction.php",
+      method: "POST",
+      data: data,
+      success: function (data) {
+        $("#get_product").html(data);
+        if ($("body").width() < 480) {
+          $("body").scrollTop(683);
+        }
+      },
+    });
+  });
+
+  // $("body").delegate(".categoryhome","click",function(event){
+  // 	$("#get_product").html("<h3>Loading...</h3>");
+  // 	event.preventDefault();
+  // 	var cid = $(this).attr('cid');
+
+  // 		$.ajax({
+  // 		url		:	"homeaction.php",
+  // 		method	:	"POST",
+  // 		data	:	{get_seleted_Category:1,cat_id:cid},
+  // 		success	:	function(data){
+  // 			$("#get_product").html(data);
+  // 			if($("body").width() < 480){
+  // 				$("body").scrollTop(683);
+  // 			}
+  // 		}
+  // 	})
+
+  // })
+
+  /*	when page is load successfully then there is a list of brands when user click on brand we will get brand id and 
+		according to brand id we will show products
+	*/
+
   /*
 		At the top of page there is a search box with search button when user put name of product then we will take the user 
 		given string and with the help of sql query we will match user given string to our database keywords column then matched product 
@@ -484,42 +571,4 @@ $(document).ready(function () {
   //remove product from cart
 
   //handle panigation
-  loadPagePanigation();
-  function loadPagePanigation() {
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { page: 1, catId: catId },
-      success: function (data) {
-        $("#pageno").html(data);
-        document
-          .getElementById("pageno")
-          .firstElementChild.classList.add("active");
-      },
-    });
-  }
-
-  $("body").delegate("#page", "click", function (e) {
-    e.preventDefault();
-    const pn = $(this).attr("data-page");
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-
-    document.querySelectorAll("#page").forEach((item) => {
-      item.classList.remove("active");
-    });
-    e.target.classList.add("active");
-
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { get_seleted_Category: 1, cat_id: catId, pageNo: pn },
-      success: function (data) {
-        $("#get_product").html(data);
-      },
-    });
-  });
 });

@@ -1076,7 +1076,6 @@ textarea.input {
 .product .product-body .product-rating > i {
   position: relative;
   width: 14px;
-  margin-right: -4px;
   background: #fff;
   color: #e4e7ed;
   z-index: 10;
@@ -1495,6 +1494,7 @@ textarea.input {
 .store-pagination li:hover {
   background-color: #e4e7ed;
   color: #d10024;
+  cursor: pointer;
 }
 
 .store-pagination li.active {
@@ -1503,10 +1503,6 @@ textarea.input {
   color: #fff;
   font-weight: 500;
   cursor: default;
-}
-
-.store-pagination li a {
-  display: block;
 }
 
 .store-qty {

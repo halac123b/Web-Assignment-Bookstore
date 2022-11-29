@@ -40,18 +40,19 @@ if (isset($_POST["categoryhome"])) {
 
 
 if (isset($_POST["page"])) {
-	$sql = "SELECT * FROM products";
+	$cat_id = $_POST['catId'];
+	$sql = "SELECT * FROM products WHERE product_cat=$cat_id";
 	$run_query = mysqli_query($con, $sql);
 	$count = mysqli_num_rows($run_query);
-	$pageno = ceil($count / 2);
+	$pageno = ceil($count / 9);
 	for ($i = 1; $i <= $pageno; $i++) {
 		echo "
-			<li><a href='#product-row' page='$i' id='page'>$i</a></li>
-            
-            
+			<li data-page='$i' id='page'>$i</li>
 		";
 	}
 }
+
+
 if (isset($_POST["getProducthome"])) {
 	$limit = 3;
 	if (isset($_POST["setPage"])) {
@@ -157,12 +158,20 @@ if (isset($_POST["gethomeProduct"])) {
 }
 
 if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"])) {
+	$page = $_POST['pageNo'];
+	$limit = 9;
+	$start = ($page * $limit) - $limit;
+
 	if (isset($_POST["get_seleted_Category"])) {
 		$id = $_POST["cat_id"];
-		$sql = "SELECT * FROM products,categories WHERE product_cat =$id";
+		$sql = "SELECT * FROM products,categories 
+		WHERE product_cat =$id AND cat_id=product_cat
+		LIMIT $start,$limit";
 	} else {
 		$keyword = $_POST["keyword"];
-		$sql = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_keywords LIKE '%$keyword%'";
+		$sql = "SELECT * FROM products,categories 
+		WHERE product_cat=cat_id AND product_keywords LIKE '%$keyword%' 
+		LIMIT $start,$limit";
 	}
 
 	$run_query = mysqli_query($con, $sql);
@@ -174,38 +183,45 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"])) {
 		$pro_price = $row['product_price'];
 		$pro_image = $row['product_image'];
 		$cat_name = $row["cat_title"];
+		$rating = 4;
+
 		echo "
-					
-                        
-                        <div class='col-md-4 col-xs-6'>
-								<a href='product.php?p=$pro_id'><div class='product'>
-									<div class='product-img'>
-										<img  src='product_images/$pro_image' style='max-height: 170px;' alt=''>
-									</div></a>
-									<div class='product-body'>
-										<p class='product-category'>$cat_name</p>
-										<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
-										<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
-										<div class='product-rating'>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-										</div>
-									</div>
-									<div class='add-to-cart'>
-										<button 
-											id='product' 
-											class='add-to-cart-btn'
-											data-id='$pro_id' 
-											data-title='$pro_title' 
-											data-price='$pro_price' 
-											data-image='$pro_image' 
-											><i class='fa fa-shopping-cart'></i> add to cart</button>
-									</div>
-								</div>
+			<div class='col-md-4 col-xs-6'>
+					<a href='product.php?p=$pro_id'><div class='product'>
+						<div class='product-img'>
+							<img  src='product_images/$pro_image' style='max-height: 170px;' alt=''>
+						</div></a>
+						<div class='product-body'>
+							<p class='product-category'>$cat_name</p>
+							<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+							<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
+							<div class='product-rating'>
+							";
+
+		for ($i = 1; $i <= 5; $i++) {
+			if ($i <= $rating) {
+				echo "<i class='fa fa-star active'></i>";
+			} else {
+				echo "<i class='fa fa-star'></i>";
+			}
+		}
+
+		echo "
 							</div>
+						</div>
+						<div class='add-to-cart'>
+							<button 
+								id='product' 
+								class='add-to-cart-btn'
+								data-id='$pro_id' 
+								data-title='$pro_title' 
+								data-price='$pro_price' 
+								data-image='$pro_image' 
+								><i class='fa fa-shopping-cart'></i> add to cart
+							</button>
+						</div>
+					</div>
+			</div>
 			";
 	}
 }

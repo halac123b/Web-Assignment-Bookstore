@@ -151,50 +151,50 @@
 											$pro_price = $row['product_price'];
 											$pro_image = $row['product_image'];
 											$cat_name = $row["cat_title"];
-											$rating = 3.5;
+											$rating = 4.2;
 
 
 											echo "
-								<div class='product'>
-									<a href='product.php?p=$pro_id'><div class='product-img'>
-										<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
-									</div></a>
-									<div class='product-body'>
-										<p class='product-category'>$cat_name</p>
-										<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
-										<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
-										<div class='product-rating' data-rating='$rating'>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
+												<div class='product'>
+													<a href='product.php?p=$pro_id'><div class='product-img'>
+														<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
+													</div></a>
+													<div class='product-body'>
+														<p class='product-category'>$cat_name</p>
+														<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+														<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
+														<div class='product-rating' data-rating='$rating'>
+														";
+
+											for ($i = 1; $i <= 5; $i++) {
+												if ($i < $rating) {
+													echo "<i class='fa fa-star active'></i>";
+												} else {
+													echo "<i class='fa fa-star'></i>";
+												}
+											}
+
+											echo "
+												</div>
+											</div>
+											<div class='add-to-cart'>
+												<button 
+												class='add-to-cart-btn block2-btn-towishlist'
+												id='product' 
+												data-id='$pro_id' 
+												data-title='$pro_title' 
+												data-price='$pro_price' 
+												data-image='$pro_image' 
+												><i class='fa fa-shopping-cart'></i> add to cart</button>
+											</div>
 										</div>
-									</div>
-									<div class='add-to-cart'>
-										<button 
-										class='add-to-cart-btn block2-btn-towishlist'
-										id='product' 
-										data-id='$pro_id' 
-										data-title='$pro_title' 
-										data-price='$pro_price' 
-										data-image='$pro_image' 
-										><i class='fa fa-shopping-cart'></i> add to cart</button>
-									</div>
-								</div>
 									";
 										};
 									}
 
 									mysqli_close($con);
 									?>
-									<!-- product -->
 
-
-									<!-- /product -->
-
-
-									<!-- /product -->
 								</div>
 								<div id="slick-nav-1" class="products-slick-nav"></div>
 							</div>
@@ -304,31 +304,37 @@
 											$pro_image = $row['product_image'];
 
 											$cat_name = $row["cat_title"];
+											$rating = 2.5;
 
 											echo "
-				
-                        
-                                
-								<div class='product'>
-									<a href='product.php?p=$pro_id'><div class='product-img'>
-										<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
-									</div></a>
-									<div class='product-body'>
-										<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
-										<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
-										<div class='product-rating'>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-										</div>
-									</div>
-									<div class='add-to-cart'>
-										<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> add to cart</button>
-									</div>
-								</div>
-									";
+												<div class='product'>
+													<a href='product.php?p=$pro_id'>
+														<div class='product-img'>
+															<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
+														</div>
+													</a>
+													<div class='product-body'>
+														<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+														<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
+														<div class='product-rating' data-rating='$rating'>
+														";
+
+											for ($i = 1; $i <= 5; $i++) {
+												if ($i <= $rating) {
+													echo "<i class='fa fa-star active'></i>";
+												} else {
+													echo "<i class='fa fa-star'></i>";
+												}
+											}
+
+											echo "
+														</div>
+													</div>
+													<div class='add-to-cart'>
+														<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> add to cart</button>
+													</div>
+												</div>
+												";
 										};
 									}
 

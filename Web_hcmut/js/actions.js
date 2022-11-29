@@ -109,7 +109,7 @@ $(document).ready(function () {
       $.ajax({
         url: "homeaction.php",
         method: "POST",
-        data: { get_seleted_Category: 1, cat_id: catId },
+        data: { get_seleted_Category: 1, cat_id: catId, pageNo: 1 },
         success: function (data) {
           $("#get_product").html(data);
           if ($("body").width() < 480) {
@@ -483,23 +483,40 @@ $(document).ready(function () {
 
   //remove product from cart
 
-  page();
-  function page() {
+  //handle panigation
+  loadPagePanigation();
+  function loadPagePanigation() {
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+
     $.ajax({
-      url: "action.php",
+      url: "homeaction.php",
       method: "POST",
-      data: { page: 1 },
+      data: { page: 1, catId: catId },
       success: function (data) {
         $("#pageno").html(data);
+        document
+          .getElementById("pageno")
+          .firstElementChild.classList.add("active");
       },
     });
   }
-  $("body").delegate("#page", "click", function () {
-    var pn = $(this).attr("page");
+
+  $("body").delegate("#page", "click", function (e) {
+    e.preventDefault();
+    const pn = $(this).attr("data-page");
+    const query = new URLSearchParams(location.search);
+    const catId = query.get("cat");
+
+    document.querySelectorAll("#page").forEach((item) => {
+      item.classList.remove("active");
+    });
+    e.target.classList.add("active");
+
     $.ajax({
-      url: "action.php",
+      url: "homeaction.php",
       method: "POST",
-      data: { getProduct: 1, setPage: 1, pageNumber: pn },
+      data: { get_seleted_Category: 1, cat_id: catId, pageNo: pn },
       success: function (data) {
         $("#get_product").html(data);
       },

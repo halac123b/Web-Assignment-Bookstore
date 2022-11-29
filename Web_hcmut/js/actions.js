@@ -1,198 +1,203 @@
 $(document).ready(function () {
-  loadMainNavbar();
+    loadMainNavbar();
 
-  loadProductsBySelectedCategory();
-  loadPagePanigation();
+    loadProductsBySelectedCategory();
+    loadPagePanigation();
 
-  loadSidebarBrands();
-  loadOthersState();
+    loadSidebarBrands();
+    loadOthersState();
 
-  //define functions
-  function loadMainNavbar() {
-    const path = location.pathname.slice(1);
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
+    //define functions
+    function loadMainNavbar() {
+        const path = location.pathname.slice(1);
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
 
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { categoryhome: 1 },
-      success: function (data) {
-        $("#get_category_home").html(data);
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: { categoryhome: 1 },
+            success: function (data) {
+                $("#get_category_home").html(data);
+                if (path === "store.php" && catId) {
+                    $("#cat-" + catId).addClass("active");
+                } else if (path === "index.php" || path === "") {
+                    $("#home").addClass("active");
+                }
+            },
+        });
+    }
+
+    function loadSidebarCategories() {
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: { category: 1 },
+            success: function (data) {
+                $("#get_category").html(data);
+            },
+        });
+    }
+
+    function loadSidebarBrands() {
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: { brand: 1 },
+            success: function (data) {
+                $("#get_brand").html(data);
+            },
+        });
+    }
+
+    function loadOthersState() {
+        const cartLength = localStorage.getItem("cart")
+            ? JSON.parse(localStorage.getItem("cart")).length
+            : 0;
+        $(".badge.qty").html(cartLength);
+    }
+
+    function loadProductsBySelectedCategory() {
+        const path = location.pathname.slice(1);
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
+        const sort_opt = document
+            .getElementById("sort-select")
+            .getAttribute("value");
+
         if (path === "store.php" && catId) {
-          $("#cat-" + catId).addClass("active");
-        } else if (path === "index.php" || path === "") {
-          $("#home").addClass("active");
+            $.ajax({
+                url: "homeaction.php",
+                method: "POST",
+                data: {
+                    get_seleted_Category: 1,
+                    cat_id: catId,
+                    pageNo: 1,
+                    sort_opt: sort_opt,
+                },
+                success: function (data) {
+                    $("#get_product").html(data);
+                    if ($("body").width() < 480) {
+                        $("body").scrollTop(683);
+                    }
+                },
+            });
         }
-      },
-    });
-  }
-
-  function loadSidebarCategories() {
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { category: 1 },
-      success: function (data) {
-        $("#get_category").html(data);
-      },
-    });
-  }
-
-  function loadSidebarBrands() {
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { brand: 1 },
-      success: function (data) {
-        $("#get_brand").html(data);
-      },
-    });
-  }
-
-  function loadOthersState() {
-    const cartLength = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart")).length
-      : 0;
-    $(".badge.qty").html(cartLength);
-  }
-
-  function loadProductsBySelectedCategory() {
-    const path = location.pathname.slice(1);
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-    const sort_opt = document
-      .getElementById("sort-select")
-      .getAttribute("value");
-
-    if (path === "store.php" && catId) {
-      $.ajax({
-        url: "homeaction.php",
-        method: "POST",
-        data: {
-          get_seleted_Category: 1,
-          cat_id: catId,
-          pageNo: 1,
-          sort_opt: sort_opt,
-        },
-        success: function (data) {
-          $("#get_product").html(data);
-          if ($("body").width() < 480) {
-            $("body").scrollTop(683);
-          }
-        },
-      });
     }
-  }
 
-  function loadPagePanigation() {
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
+    function loadPagePanigation() {
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
 
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { page: 1, catId: catId },
-      success: function (data) {
-        $("#pageno").html(data);
-        document
-          .getElementById("pageno")
-          .firstElementChild.classList.add("active");
-      },
-    });
-  }
-
-  // //product() is a funtion fetching product record from database whenever page is load
-  // function product() {
-  //   $.ajax({
-  //     url: "action.php",
-  //     method: "POST",
-  //     data: { getProduct: 1 },
-  //     success: function (data) {
-  //       $("#get_product").html(data);
-  //     },
-  //   });
-  // }
-
-  // gethomeproduts();
-  // function gethomeproduts() {
-  //   $.ajax({
-  //     url: "homeaction.php",
-  //     method: "POST",
-  //     data: { gethomeProduct: 1 },
-  //     success: function (data) {
-  //       $("#get_home_product").html(data);
-  //     },
-  //   });
-  // }
-  // function producthome() {
-  //   $.ajax({
-  //     url: "homeaction.php",
-  //     method: "POST",
-  //     data: { getProducthome: 1 },
-  //     success: function (data) {
-  //       $("#get_product_home").html(data);
-  //     },
-  //   });
-  // }
-
-  /* Handle envent */
-  // $("body").delegate(".category", "click", function (event) {
-  //   $("#get_product").html("<h3>Loading...</h3>");
-  //   event.preventDefault();
-  //   var cid = $(this).attr("cid");
-
-  //   $.ajax({
-  //     url: "action.php",
-  //     method: "POST",
-  //     data: { get_seleted_Category: 1, cat_id: cid },
-  //     success: function (data) {
-  //       $("#get_product").html(data);
-  //       if ($("body").width() < 480) {
-  //         $("body").scrollTop(683);
-  //       }
-  //     },
-  //   });
-  // });
-
-  $("body").delegate(".add-to-cart", "click", (e) => {
-    const id = e.target.getAttribute("data-id");
-    const title = e.target.getAttribute("data-title");
-    const price = e.target.getAttribute("data-price");
-    const image = e.target.getAttribute("data-image");
-    addToCart(id, title, price, image);
-  });
-
-  function addToCart(id, title, price, image, qty = 1) {
-    let cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
-    const cartItem = { id, title, price, image: `/product_images/${image}` };
-    if (cart.find((item) => item.id === id)) {
-      cart = cart.map((item) =>
-        item.id == id
-          ? {
-              ...item,
-              quantity: item.quantity + qty,
-            }
-          : item
-      );
-    } else {
-      cartItem.quantity = qty;
-      cart.push(cartItem);
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: { page: 1, catId: catId },
+            success: function (data) {
+                $("#pageno").html(data);
+                document
+                    .getElementById("pageno")
+                    .firstElementChild.classList.add("active");
+            },
+        });
     }
-    $(".badge.qty").html(cart.length);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
 
-  $("body").delegate(".dropdown", "click", () => {
-    const cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
+    // //product() is a funtion fetching product record from database whenever page is load
+    // function product() {
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { getProduct: 1 },
+    //     success: function (data) {
+    //       $("#get_product").html(data);
+    //     },
+    //   });
+    // }
 
-    let html = cart
-      .map(
-        (item) => `
+    // gethomeproduts();
+    // function gethomeproduts() {
+    //   $.ajax({
+    //     url: "homeaction.php",
+    //     method: "POST",
+    //     data: { gethomeProduct: 1 },
+    //     success: function (data) {
+    //       $("#get_home_product").html(data);
+    //     },
+    //   });
+    // }
+    // function producthome() {
+    //   $.ajax({
+    //     url: "homeaction.php",
+    //     method: "POST",
+    //     data: { getProducthome: 1 },
+    //     success: function (data) {
+    //       $("#get_product_home").html(data);
+    //     },
+    //   });
+    // }
+
+    /* Handle envent */
+    // $("body").delegate(".category", "click", function (event) {
+    //   $("#get_product").html("<h3>Loading...</h3>");
+    //   event.preventDefault();
+    //   var cid = $(this).attr("cid");
+
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { get_seleted_Category: 1, cat_id: cid },
+    //     success: function (data) {
+    //       $("#get_product").html(data);
+    //       if ($("body").width() < 480) {
+    //         $("body").scrollTop(683);
+    //       }
+    //     },
+    //   });
+    // });
+
+    $("body").delegate(".add-to-cart", "click", (e) => {
+        const id = e.target.getAttribute("data-id");
+        const title = e.target.getAttribute("data-title");
+        const price = e.target.getAttribute("data-price");
+        const image = e.target.getAttribute("data-image");
+        addToCart(id, title, price, image);
+    });
+
+    function addToCart(id, title, price, image, qty = 1) {
+        let cart = localStorage.getItem("cart")
+            ? JSON.parse(localStorage.getItem("cart"))
+            : [];
+        const cartItem = {
+            id,
+            title,
+            price,
+            image: `/product_images/${image}`,
+        };
+        if (cart.find((item) => item.id === id)) {
+            cart = cart.map((item) =>
+                item.id == id
+                    ? {
+                          ...item,
+                          quantity: item.quantity + qty,
+                      }
+                    : item
+            );
+        } else {
+            cartItem.quantity = qty;
+            cart.push(cartItem);
+        }
+        $(".badge.qty").html(cart.length);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    $("body").delegate(".dropdown", "click", () => {
+        const cart = localStorage.getItem("cart")
+            ? JSON.parse(localStorage.getItem("cart"))
+            : [];
+
+        let html = cart
+            .map(
+                (item) => `
       <div class="product-widget">
         <div class="product-img">
           <img src="${item.image}" alt="">
@@ -203,372 +208,375 @@ $(document).ready(function () {
         </div>
 			</div>
       `
-      )
-      .join("\r\n");
-    if (cart.length === 0) {
-      html = "<div>There is no product in your cart. Shop now</div>";
-    }
-    $("#cart_product").html(html);
-  });
-
-  $("body").delegate("#page", "click", function (e) {
-    e.preventDefault();
-    const pn = $(this).attr("data-page");
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-    const sort_opt = document
-      .getElementById("sort-select")
-      .getAttribute("value");
-
-    document.querySelectorAll("#page").forEach((item) => {
-      item.classList.remove("active");
-    });
-    e.target.classList.add("active");
-
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { get_seleted_Category: 1, cat_id: catId, pageNo: pn, sort_opt },
-      success: function (data) {
-        $("#get_product").html(data);
-      },
-    });
-  });
-
-  $("body").delegate(".selectBrand", "click", function (event) {
-    event.preventDefault();
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-    var bid = $(this).attr("bid");
-    document.querySelectorAll(".selectBrand").forEach((item) => {
-      item.classList.remove("active");
-    });
-    event.target.classList.add("active");
-    const sort_opt = document
-      .getElementById("sort-select")
-      .getAttribute("value");
-    $("#pageno").html(null);
-
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: { get_seleted_brand: 1, brandId: bid, cat_id: catId, sort_opt },
-      success: function (data) {
-        $("#get_product").html(data);
-        if ($("body").width() < 480) {
-          $("body").scrollTop(683);
+            )
+            .join("\r\n");
+        if (cart.length === 0) {
+            html = "<div>There is no product in your cart. Shop now</div>";
         }
-      },
+        $("#cart_product").html(html);
     });
-  });
 
-  $("body").delegate("#clear-filter", "click", function () {
-    location.reload();
-  });
+    $("body").delegate("#page", "click", function (e) {
+        e.preventDefault();
+        const pn = $(this).attr("data-page");
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
+        const sort_opt = document
+            .getElementById("sort-select")
+            .getAttribute("value");
 
-  $("body").delegate("#sort-select", "change", function (e) {
-    const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
-    const sortOption = e.target.value;
-    document.querySelector("#sort-select").setAttribute("value", sortOption);
-    const brandId = document
-      .querySelector(".selectBrand.active")
-      ?.getAttribute("bid");
+        document.querySelectorAll("#page").forEach((item) => {
+            item.classList.remove("active");
+        });
+        e.target.classList.add("active");
 
-    const data = brandId
-      ? {
-          get_seleted_brand: 1,
-          brandId: brandId,
-          cat_id: catId,
-          sort_opt: sortOption,
-          pageNo: 1,
-        }
-      : {
-          get_seleted_Category: 1,
-          cat_id: catId,
-          sort_opt: sortOption,
-          pageNo: 1,
-        };
-
-    $("#page.active").removeClass("active");
-    document.querySelectorAll("#page")[0].classList.add("active");
-
-    $.ajax({
-      url: "homeaction.php",
-      method: "POST",
-      data: data,
-      success: function (data) {
-        $("#get_product").html(data);
-        if ($("body").width() < 480) {
-          $("body").scrollTop(683);
-        }
-      },
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: {
+                get_seleted_Category: 1,
+                cat_id: catId,
+                pageNo: pn,
+                sort_opt,
+            },
+            success: function (data) {
+                $("#get_product").html(data);
+            },
+        });
     });
-  });
 
-  // $("body").delegate(".categoryhome","click",function(event){
-  // 	$("#get_product").html("<h3>Loading...</h3>");
-  // 	event.preventDefault();
-  // 	var cid = $(this).attr('cid');
+    $("body").delegate(".selectBrand", "click", function (event) {
+        event.preventDefault();
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
+        var bid = $(this).attr("bid");
+        document.querySelectorAll(".selectBrand").forEach((item) => {
+            item.classList.remove("active");
+        });
+        event.target.classList.add("active");
+        const sort_opt = document
+            .getElementById("sort-select")
+            .getAttribute("value");
+        $("#pageno").html(null);
 
-  // 		$.ajax({
-  // 		url		:	"homeaction.php",
-  // 		method	:	"POST",
-  // 		data	:	{get_seleted_Category:1,cat_id:cid},
-  // 		success	:	function(data){
-  // 			$("#get_product").html(data);
-  // 			if($("body").width() < 480){
-  // 				$("body").scrollTop(683);
-  // 			}
-  // 		}
-  // 	})
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: {
+                get_seleted_brand: 1,
+                brandId: bid,
+                cat_id: catId,
+                sort_opt,
+            },
+            success: function (data) {
+                $("#get_product").html(data);
+                if ($("body").width() < 480) {
+                    $("body").scrollTop(683);
+                }
+            },
+        });
+    });
 
-  // })
+    $("body").delegate("#clear-filter", "click", function () {
+        location.reload();
+    });
 
-  /*	when page is load successfully then there is a list of brands when user click on brand we will get brand id and 
+    $("body").delegate("#sort-select", "change", function (e) {
+        const query = new URLSearchParams(location.search);
+        const catId = query.get("cat");
+        const sortOption = e.target.value;
+        document
+            .querySelector("#sort-select")
+            .setAttribute("value", sortOption);
+        const brandId = document
+            .querySelector(".selectBrand.active")
+            ?.getAttribute("bid");
+
+        const data = brandId
+            ? {
+                  get_seleted_brand: 1,
+                  brandId: brandId,
+                  cat_id: catId,
+                  sort_opt: sortOption,
+                  pageNo: 1,
+              }
+            : {
+                  get_seleted_Category: 1,
+                  cat_id: catId,
+                  sort_opt: sortOption,
+                  pageNo: 1,
+              };
+
+        $("#page.active").removeClass("active");
+        document.querySelectorAll("#page")[0].classList.add("active");
+
+        $.ajax({
+            url: "homeaction.php",
+            method: "POST",
+            data: data,
+            success: function (data) {
+                $("#get_product").html(data);
+                if ($("body").width() < 480) {
+                    $("body").scrollTop(683);
+                }
+            },
+        });
+    });
+
+    // $("body").delegate(".categoryhome","click",function(event){
+    // 	$("#get_product").html("<h3>Loading...</h3>");
+    // 	event.preventDefault();
+    // 	var cid = $(this).attr('cid');
+
+    // 		$.ajax({
+    // 		url		:	"homeaction.php",
+    // 		method	:	"POST",
+    // 		data	:	{get_seleted_Category:1,cat_id:cid},
+    // 		success	:	function(data){
+    // 			$("#get_product").html(data);
+    // 			if($("body").width() < 480){
+    // 				$("body").scrollTop(683);
+    // 			}
+    // 		}
+    // 	})
+
+    // })
+
+    /*	when page is load successfully then there is a list of brands when user click on brand we will get brand id and 
 		according to brand id we will show products
 	*/
 
-  /*
+    /*
 		At the top of page there is a search box with search button when user put name of product then we will take the user 
 		given string and with the help of sql query we will match user given string to our database keywords column then matched product 
 		we will show 
 	*/
-  $("#search_btn").click(function () {
-    $("#get_product").html("<h3>Loading...</h3>");
-    var keyword = $("#search").val();
-    if (keyword != "") {
-      $.ajax({
-        url: "action.php",
-        method: "POST",
-        data: { search: 1, keyword: keyword },
-        success: function (data) {
-          $("#get_product").html(data);
-          if ($("body").width() < 480) {
-            $("body").scrollTop(683);
-          }
-        },
-      });
-    }
-  });
-  //end
+    $("#search_btn").click(function (e) {
+        e.preventDefault();
+        // $("#get_product").html("<h3>Loading...</h3>");
+        var keyword = $("#search").val();
+        if (keyword != "") {
+            window.location.href = "store.php?keyword=" + keyword;
+        }
+    });
+    //end
 
-  /*
+    /*
 		Here #login is login form id and this form is available in index.php page
 		from here input data is sent to login.php page
 		if you get login_success string from login.php page means user is logged in successfully and window.location is 
 		used to redirect user from home page to profile.php page
 	*/
-  $("#login").on("submit", function (event) {
-    event.preventDefault();
-    $(".overlay").show();
-    $.ajax({
-      url: "login.php",
-      method: "POST",
-      data: $("#login").serialize(),
-      success: function (data) {
-        if (data == "login_success") {
-          window.location.href = "index.php";
-        } else if (data == "cart_login") {
-          window.location.href = "cart.php";
-        } else {
-          $("#e_msg").html(data);
-          $(".overlay").hide();
-        }
-      },
+    $("#login").on("submit", function (event) {
+        event.preventDefault();
+        $(".overlay").show();
+        $.ajax({
+            url: "login.php",
+            method: "POST",
+            data: $("#login").serialize(),
+            success: function (data) {
+                if (data == "login_success") {
+                    window.location.href = "index.php";
+                } else if (data == "cart_login") {
+                    window.location.href = "cart.php";
+                } else {
+                    $("#e_msg").html(data);
+                    $(".overlay").hide();
+                }
+            },
+        });
     });
-  });
-  //end
+    //end
 
-  //Get User Information before checkout
-  $("#signup_form").on("submit", function (event) {
-    event.preventDefault();
-    $(".overlay").show();
-    $.ajax({
-      url: "register.php",
-      method: "POST",
-      data: $("#signup_form").serialize(),
-      success: function (data) {
-        $(".overlay").hide();
-        if (data == "register_success") {
-          window.location.href = "cart.php";
-        } else {
-          $("#signup_msg").html(data);
-        }
-      },
+    //Get User Information before checkout
+    $("#signup_form").on("submit", function (event) {
+        event.preventDefault();
+        $(".overlay").show();
+        $.ajax({
+            url: "register.php",
+            method: "POST",
+            data: $("#signup_form").serialize(),
+            success: function (data) {
+                $(".overlay").hide();
+                if (data == "register_success") {
+                    window.location.href = "cart.php";
+                } else {
+                    $("#signup_msg").html(data);
+                }
+            },
+        });
     });
-  });
 
-  $("#offer_form").on("submit", function (event) {
-    event.preventDefault();
-    $(".overlay").show();
-    $.ajax({
-      url: "offersmail.php",
-      method: "POST",
-      data: $("#offer_form").serialize(),
-      success: function (data) {
-        $(".overlay").hide();
-        $("#offer_msg").html(data);
-      },
+    $("#offer_form").on("submit", function (event) {
+        event.preventDefault();
+        $(".overlay").show();
+        $.ajax({
+            url: "offersmail.php",
+            method: "POST",
+            data: $("#offer_form").serialize(),
+            success: function (data) {
+                $(".overlay").hide();
+                $("#offer_msg").html(data);
+            },
+        });
     });
-  });
 
-  //Get User Information before checkout end here
+    //Get User Information before checkout end here
 
-  // //Add Product into Cart
-  // $("body").delegate("#product", "click", function (event) {
-  //   var pid = $(this).attr("pid");
+    // //Add Product into Cart
+    // $("body").delegate("#product", "click", function (event) {
+    //   var pid = $(this).attr("pid");
 
-  //   event.preventDefault();
-  //   $(".overlay").show();
-  //   $.ajax({
-  //     url: "action.php",
-  //     method: "POST",
-  //     data: { addToCart: 1, proId: pid },
-  //     success: function (data) {
-  //       count_item();
-  //       getCartItem();
-  //       $("#product_msg").html(data);
-  //       $(".overlay").hide();
-  //     },
-  //   });
-  // });
-  // //Add Product into Cart End Here
-  //Count user cart items funtion
-  // count_item();
-  // function count_item() {
-  //   $.ajax({
-  //     url: "action.php",
-  //     method: "POST",
-  //     data: { count_item: 1 },
-  //     success: function (data) {
-  //       $(".badge").html(data);
-  //     },
-  //   });
-  // }
-  //Count user cart items funtion end
+    //   event.preventDefault();
+    //   $(".overlay").show();
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { addToCart: 1, proId: pid },
+    //     success: function (data) {
+    //       count_item();
+    //       getCartItem();
+    //       $("#product_msg").html(data);
+    //       $(".overlay").hide();
+    //     },
+    //   });
+    // });
+    // //Add Product into Cart End Here
+    //Count user cart items funtion
+    // count_item();
+    // function count_item() {
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { count_item: 1 },
+    //     success: function (data) {
+    //       $(".badge").html(data);
+    //     },
+    //   });
+    // }
+    //Count user cart items funtion end
 
-  //Fetch Cart item from Database to dropdown menu
-  // getCartItem();
-  // function getCartItem() {
-  //   $.ajax({
-  //     url: "action.php",
-  //     method: "POST",
-  //     data: { Common: 1, getCartItem: 1 },
-  //     success: function (data) {
-  //       $("#cart_product").html(data);
-  //       net_total();
-  //     },
-  //   });
-  // }
+    //Fetch Cart item from Database to dropdown menu
+    // getCartItem();
+    // function getCartItem() {
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { Common: 1, getCartItem: 1 },
+    //     success: function (data) {
+    //       $("#cart_product").html(data);
+    //       net_total();
+    //     },
+    //   });
+    // }
 
-  //Fetch Cart item from Database to dropdown menu
+    //Fetch Cart item from Database to dropdown menu
 
-  /*
+    /*
 		Whenever user change qty we will immediate update their total amount by using keyup funtion
 		but whenever user put something(such as ?''"",.()''etc) other than number then we will make qty=1
 		if user put qty 0 or less than 0 then we will again make it 1 qty=1
 		('.total').each() this is loop funtion repeat for class .total and in every repetation we will perform sum operation of class .total value 
 		and then show the result into class .net_total
 	*/
-  $("body").delegate(".qty", "keyup", function (event) {
-    event.preventDefault();
-    var row = $(this).parent().parent();
-    var price = row.find(".price").val();
-    var qty = row.find(".qty").val();
-    if (isNaN(qty)) {
-      qty = 1;
-    }
-    if (qty < 1) {
-      qty = 1;
-    }
-    var total = price * qty;
-    row.find(".total").val(total);
-    var net_total = 0;
-    $(".total").each(function () {
-      net_total += $(this).val() - 0;
+    $("body").delegate(".qty", "keyup", function (event) {
+        event.preventDefault();
+        var row = $(this).parent().parent();
+        var price = row.find(".price").val();
+        var qty = row.find(".qty").val();
+        if (isNaN(qty)) {
+            qty = 1;
+        }
+        if (qty < 1) {
+            qty = 1;
+        }
+        var total = price * qty;
+        row.find(".total").val(total);
+        var net_total = 0;
+        $(".total").each(function () {
+            net_total += $(this).val() - 0;
+        });
+        $(".net_total").html("Total : $ " + net_total);
     });
-    $(".net_total").html("Total : $ " + net_total);
-  });
-  //Change Quantity end here
+    //Change Quantity end here
 
-  /*
+    /*
 		whenever user click on .remove class we will take product id of that row 
 		and send it to action.php to perform product removal operation
 	*/
 
-  $("body").delegate(".remove", "click", function (event) {
-    var remove = $(this).parent().parent().parent();
-    var remove_id = remove.find(".remove").attr("remove_id");
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { removeItemFromCart: 1, rid: remove_id },
-      success: function (data) {
-        $("#cart_msg").html(data);
-        checkOutDetails();
-      },
+    $("body").delegate(".remove", "click", function (event) {
+        var remove = $(this).parent().parent().parent();
+        var remove_id = remove.find(".remove").attr("remove_id");
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: { removeItemFromCart: 1, rid: remove_id },
+            success: function (data) {
+                $("#cart_msg").html(data);
+                checkOutDetails();
+            },
+        });
     });
-  });
 
-  /*
+    /*
 		whenever user click on .update class we will take product id of that row 
 		and send it to action.php to perform product qty updation operation
 	*/
-  $("body").delegate(".update", "click", function (event) {
-    var update = $(this).parent().parent().parent();
-    var update_id = update.find(".update").attr("update_id");
-    var qty = update.find(".qty").val();
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { updateCartItem: 1, update_id: update_id, qty: qty },
-      success: function (data) {
-        $("#cart_msg").html(data);
-        checkOutDetails();
-      },
+    $("body").delegate(".update", "click", function (event) {
+        var update = $(this).parent().parent().parent();
+        var update_id = update.find(".update").attr("update_id");
+        var qty = update.find(".qty").val();
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: { updateCartItem: 1, update_id: update_id, qty: qty },
+            success: function (data) {
+                $("#cart_msg").html(data);
+                checkOutDetails();
+            },
+        });
     });
-  });
-  checkOutDetails();
-  net_total();
-  /*
+    checkOutDetails();
+    net_total();
+    /*
 		checkOutDetails() function work for two purposes
 		First it will enable php isset($_POST["Common"]) in action.php page and inside that
 		there is two isset funtion which is isset($_POST["getCartItem"]) and another one is isset($_POST["checkOutDetials"])
 		getCartItem is used to show the cart item into dropdown menu 
 		checkOutDetails is used to show cart item into Cart.php page
 	*/
-  function checkOutDetails() {
-    $(".overlay").show();
-    $.ajax({
-      url: "action.php",
-      method: "POST",
-      data: { Common: 1, checkOutDetails: 1 },
-      success: function (data) {
-        $(".overlay").hide();
-        $("#cart_checkout").html(data);
-        net_total();
-      },
-    });
-  }
-  /*
+    function checkOutDetails() {
+        $(".overlay").show();
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: { Common: 1, checkOutDetails: 1 },
+            success: function (data) {
+                $(".overlay").hide();
+                $("#cart_checkout").html(data);
+                net_total();
+            },
+        });
+    }
+    /*
 		net_total function is used to calcuate total amount of cart item
 	*/
-  function net_total() {
-    var net_total = 0;
-    $(".qty").each(function () {
-      var row = $(this).parent().parent();
-      var price = row.find(".price").val();
-      var total = price * $(this).val() - 0;
-      row.find(".total").val(total);
-    });
-    $(".total").each(function () {
-      net_total += $(this).val() - 0;
-    });
-    $(".net_total").html("Total : $ " + net_total);
-  }
+    function net_total() {
+        var net_total = 0;
+        $(".qty").each(function () {
+            var row = $(this).parent().parent();
+            var price = row.find(".price").val();
+            var total = price * $(this).val() - 0;
+            row.find(".total").val(total);
+        });
+        $(".total").each(function () {
+            net_total += $(this).val() - 0;
+        });
+        $(".net_total").html("Total : $ " + net_total);
+    }
 
-  //remove product from cart
+    //remove product from cart
 
-  //handle panigation
+    //handle panigation
 });

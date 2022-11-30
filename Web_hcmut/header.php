@@ -45,105 +45,105 @@ session_start();
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
     <style>
-    #navigation {
-        background: #ffffff;
-        /* fallback for old browsers */
+        #navigation {
+            background: #ffffff;
+            /* fallback for old browsers */
 
 
 
-    }
+        }
 
-    #header {
-        background: #ffffff;
-        /* fallback for old browsers */
-        background-image: linear-gradient(-134deg, #f5e6cb 80%, #fcf5e8 50%);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #header {
+            background: #ffffff;
+            /* fallback for old browsers */
+            background-image: linear-gradient(-134deg, #f5e6cb 80%, #fcf5e8 50%);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    }
+        }
 
-    .p3 {
-        font-family: 'Brush Script MT', cursive;
-        font-size: 35px;
-    }
+        .p3 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 35px;
+        }
 
-    .badge {
-        background-color: #6394F8;
-        border-radius: 10px;
-        color: white;
-        display: inline-block;
-        font-size: 12px;
-        line-height: 1;
-        padding: 3px 7px;
-        text-align: center;
-        vertical-align: middle;
-        white-space: nowrap;
-    }
-
-
-    #top-header {
+        .badge {
+            background-color: #6394F8;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 1;
+            padding: 3px 7px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
 
 
-        background: #ffffff;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #190A05, #870000);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #190A05, #870000);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #top-header {
 
 
-    }
-
-    #footer {
-        background: #7474BF;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #348AC7, #7474BF);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: #ffffff;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #190A05, #870000);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #190A05, #870000);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-        color: #1E1F29;
-    }
+        }
 
-    #bottom-footer {
-        background: #7474BF;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #348AC7, #7474BF);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #footer {
+            background: #7474BF;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #348AC7, #7474BF);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-    }
+            color: #1E1F29;
+        }
 
-    .footer-links li a {
-        color: #1E1F29;
-    }
+        #bottom-footer {
+            background: #7474BF;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #348AC7, #7474BF);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    .mainn-raised {
 
-        margin: -7px 0px 0px;
-        border-radius: 6px;
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        }
 
-    }
+        .footer-links li a {
+            color: #1E1F29;
+        }
 
-    .glyphicon {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+        .mainn-raised {
 
-    .glyphicon-chevron-left:before {
-        content: "\f053"
-    }
+            margin: -7px 0px 0px;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 
-    .glyphicon-chevron-right:before {
-        content: "\f054"
-    }
+        }
+
+        .glyphicon {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .glyphicon-chevron-left:before {
+            content: "\f053"
+        }
+
+        .glyphicon-chevron-right:before {
+            content: "\f054"
+        }
     </style>
 
 </head>
@@ -192,13 +192,13 @@ session_start();
                                 <ul class="header-links pull-right">
                                     <li><a href="#"><i class="fa fa-inr"></i>VND</a></li>
                                     <li><?php
-							include "db.php";
-							if (isset($_SESSION["uid"])) {
-								$sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
-								$query = mysqli_query($con, $sql);
-								$row = mysqli_fetch_array($query);
+                                        include "db.php";
+                                        if (isset($_SESSION["uid"])) {
+                                            $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
+                                            $query = mysqli_query($con, $sql);
+                                            $row = mysqli_fetch_array($query);
 
-								echo '
+                                            echo '
                                <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row["first_name"] . '</a>
                                   <div class="dropdownn-content">
@@ -207,8 +207,8 @@ session_start();
                                     
                                   </div>
                                 </div>';
-							} else {
-								echo '
+                                        } else {
+                                            echo '
                                 <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
 								  <div class="dropdownn-content">
@@ -218,8 +218,8 @@ session_start();
                                     
                                   </div>
                                 </div>';
-							}
-							?>
+                                        }
+                                        ?>
 
                                     </li>
                                 </ul>
@@ -296,9 +296,9 @@ session_start();
                 </div>
                 <div class="modal-body">
                     <?php
-					include "login_form.php";
+                    include "login_form.php";
 
-					?>
+                    ?>
 
                 </div>
 
@@ -317,9 +317,9 @@ session_start();
                 </div>
                 <div class="modal-body">
                     <?php
-					include "register_form.php";
+                    include "register_form.php";
 
-					?>
+                    ?>
 
                 </div>
 

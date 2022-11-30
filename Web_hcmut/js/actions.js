@@ -63,7 +63,7 @@ $(document).ready(function () {
     const catId = query.get("cat");
     const sort_opt = document
       .getElementById("sort-select")
-      .getAttribute("value");
+      ?.getAttribute("value");
 
     if (path === "store.php" && catId) {
       $.ajax({

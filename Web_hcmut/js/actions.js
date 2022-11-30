@@ -85,16 +85,24 @@ $(document).ready(function () {
     }
   }
 
-  function loadPagePanigation() {
+  function loadPagePanigation(brandId) {
     const path = location.pathname.slice(1);
     const query = new URLSearchParams(location.search);
     const catId = query.get("cat");
+    const keyword = query.get("keyword");
     if (path !== "store.php") return;
+    const postData = {
+      page: 1,
+      brandId,
+    };
+
+    if (keyword) postData.keyword = keyword;
+    if (catId) postData.cat_id = catId;
 
     $.ajax({
       url: "homeaction.php",
       method: "POST",
-      data: { page: 1, catId: catId },
+      data: postData,
       success: function (data) {
         $("#pageno").html(data);
         document
@@ -155,6 +163,14 @@ $(document).ready(function () {
   //     },
   //   });
   // });
+
+  $("#search_btn").click(function (e) {
+    e.preventDefault();
+    const keyword = $("#search").val();
+    if (keyword != "") {
+      window.location.href = "store.php?keyword=" + keyword;
+    }
+  });
 
   $("body").delegate(".add-to-cart", "click", (e) => {
     const id = e.target.getAttribute("data-id");
@@ -221,25 +237,28 @@ $(document).ready(function () {
     e.preventDefault();
     const pn = $(this).attr("data-page");
     const query = new URLSearchParams(location.search);
-    const catId = query.get("cat");
+    const cat_id = query.get("cat");
+    const keyword = query.get("keyword");
     const sort_opt = document
       .getElementById("sort-select")
       ?.getAttribute("value");
+    const brandId = document
+      .querySelector(".selectBrand.active")
+      ?.getAttribute("bid");
 
     document.querySelectorAll("#page").forEach((item) => {
       item.classList.remove("active");
     });
     e.target.classList.add("active");
 
+    const postData = { pageNo: pn, sort_opt, cat_id, keyword, brandId };
+    if (cat_id) postData.get_seleted_Category = 1;
+    else if (keyword) postData.search = 1;
+
     $.ajax({
       url: "homeaction.php",
       method: "POST",
-      data: {
-        get_seleted_Category: 1,
-        cat_id: catId,
-        pageNo: pn,
-        sort_opt,
-      },
+      data: postData,
       success: function (data) {
         $("#get_product").html(data);
       },
@@ -250,25 +269,35 @@ $(document).ready(function () {
     event.preventDefault();
     const query = new URLSearchParams(location.search);
     const catId = query.get("cat");
-    var bid = $(this).attr("bid");
+    const keyword = query.get("keyword");
+    var brandId = $(this).attr("bid");
+    loadPagePanigation(brandId);
+
     document.querySelectorAll(".selectBrand").forEach((item) => {
       item.classList.remove("active");
     });
     event.target.classList.add("active");
+
     const sort_opt = document
       .getElementById("sort-select")
       ?.getAttribute("value");
-    $("#pageno").html(null);
+
+    const postData = {
+      get_seleted_brand: 1,
+      brandId,
+      keyword,
+      cat_id: catId,
+      pageNo: 1,
+      sort_opt,
+    };
+
+    if (catId) postData.get_seleted_Category = 1;
+    if (keyword) postData.search = 1;
 
     $.ajax({
       url: "homeaction.php",
       method: "POST",
-      data: {
-        get_seleted_brand: 1,
-        brandId: bid,
-        cat_id: catId,
-        sort_opt,
-      },
+      data: postData,
       success: function (data) {
         $("#get_product").html(data);
         if ($("body").width() < 480) {
@@ -285,26 +314,23 @@ $(document).ready(function () {
   $("body").delegate("#sort-select", "change", function (e) {
     const query = new URLSearchParams(location.search);
     const catId = query.get("cat");
+    const keyword = query.get("keyword");
     const sortOption = e.target.value;
     document.querySelector("#sort-select").setAttribute("value", sortOption);
     const brandId = document
       .querySelector(".selectBrand.active")
       ?.getAttribute("bid");
 
-    const data = brandId
-      ? {
-          get_seleted_brand: 1,
-          brandId: brandId,
-          cat_id: catId,
-          sort_opt: sortOption,
-          pageNo: 1,
-        }
-      : {
-          get_seleted_Category: 1,
-          cat_id: catId,
-          sort_opt: sortOption,
-          pageNo: 1,
-        };
+    const postData = {
+      cat_id: catId,
+      sort_opt: sortOption,
+      pageNo: 1,
+      brandId: brandId,
+      keyword,
+    };
+    if (catId) postData.get_seleted_Category = 1;
+    if (keyword) postData.search = 1;
+    if (brandId) postData.get_seleted_brand = 1;
 
     $("#page.active").removeClass("active");
     document.querySelectorAll("#page")[0].classList.add("active");
@@ -312,7 +338,7 @@ $(document).ready(function () {
     $.ajax({
       url: "homeaction.php",
       method: "POST",
-      data: data,
+      data: postData,
       success: function (data) {
         $("#get_product").html(data);
         if ($("body").width() < 480) {
@@ -350,14 +376,6 @@ $(document).ready(function () {
 		given string and with the help of sql query we will match user given string to our database keywords column then matched product 
 		we will show 
 	*/
-  $("#search_btn").click(function (e) {
-    e.preventDefault();
-    // $("#get_product").html("<h3>Loading...</h3>");
-    var keyword = $("#search").val();
-    if (keyword != "") {
-      window.location.href = "store.php?keyword=" + keyword;
-    }
-  });
   //end
 
   /*

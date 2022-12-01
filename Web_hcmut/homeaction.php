@@ -296,3 +296,61 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 			";
 	}
 }
+
+
+if (isset($_POST["checkOutDetails"])) {
+	$sql = "SELECT * FROM cart, products WHERE user_id=8 AND p_id=product_id";
+	$run_query = mysqli_query($con, $sql);
+
+	if (mysqli_num_rows($run_query) > 0) {
+		//display user cart item with "Ready to checkout" button if user is not login
+		$n = 0;
+		while ($row = mysqli_fetch_array($run_query)) {
+			$n++;
+			$product_id = $row["product_id"];
+			$product_title = $row["product_title"];
+			$product_price = $row["product_price"];
+			$product_image = $row["product_image"];
+			$cart_item_id = $row["id"];
+			$qty = $row["qty"];
+
+			echo
+			'
+                             
+						<tr>
+							<td data-th="Product" >
+								<div class="row">
+								
+									<div class="col-sm-4 "><img src="product_images/' . $product_image . '" style="height: 70px;width:75px;"/>
+									<h4 class="nomargin product-name header-cart-item-name"><a href="product.php?p=' . $product_id . '">' . $product_title . '</a></h4>
+									</div>
+									<div class="col-sm-6">
+										<div style="max-width=50px;">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+										</div>
+									</div>
+									
+									
+								</div>
+							</td>
+                            <input type="hidden" name="product_id[]" value="' . $product_id . '"/>
+				            <input type="hidden" name="" value="' . $cart_item_id . '"/>
+							<td data-th="Price"><input type="text" class="form-control price" value="' . $product_price . '" readonly="readonly"></td>
+							<td data-th="Quantity">
+								<input type="text" class="form-control qty" value="' . $qty . '" >
+							</td>
+							<td data-th="Subtotal" class="text-center"><input type="text" class="form-control total" value="' . $product_price . '" readonly="readonly"></td>
+							<td class="actions" data-th="">
+							<div class="btn-group">
+								<a href="#" class="btn btn-info btn-sm update" update_id="' . $product_id . '"><i class="fa fa-refresh"></i></a>
+								
+								<a href="#" class="btn btn-danger btn-sm remove" remove_id="' . $product_id . '"><i class="fa fa-trash-o"></i></a>		
+							</div>							
+							</td>
+						</tr>
+					
+                            
+                            ';
+		}
+	}
+}

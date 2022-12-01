@@ -627,6 +627,10 @@ textarea.input {
   display: none;
 }
 
+.dropdown span {
+  cursor: pointer;
+}
+
 .cart-dropdown {
   position: absolute;
   width: 300px;

@@ -34,6 +34,10 @@ session_start();
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/accountbtn.css" />
 
+
+
+
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,93 +45,105 @@ session_start();
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
     <style>
-    #navigation {
-        background: #FF4E50;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #F9D423, #FF4E50);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #navigation {
+            background: #ffffff;
+            /* fallback for old browsers */
 
 
-    }
 
-    #header {
+        }
 
-        background: #780206;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061161, #780206);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061161, #780206);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #header {
+            background: #ffffff;
+            /* fallback for old browsers */
+            background-image: linear-gradient(-134deg, #f5e6cb 80%, #fcf5e8 50%);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+        }
 
-    }
+        .p3 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 35px;
+        }
 
-    #top-header {
-
-
-        background: #870000;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #190A05, #870000);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #190A05, #870000);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-    }
-
-    #footer {
-        background: #7474BF;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #348AC7, #7474BF);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        .badge {
+            background-color: #6394F8;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 1;
+            padding: 3px 7px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
 
 
-        color: #1E1F29;
-    }
-
-    #bottom-footer {
-        background: #7474BF;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #348AC7, #7474BF);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        #top-header {
 
 
-    }
+            background: #ffffff;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #190A05, #870000);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #190A05, #870000);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    .footer-links li a {
-        color: #1E1F29;
-    }
 
-    .mainn-raised {
+        }
 
-        margin: -7px 0px 0px;
-        border-radius: 6px;
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        #footer {
+            background: #7474BF;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #348AC7, #7474BF);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    }
 
-    .glyphicon {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+            color: #1E1F29;
+        }
 
-    .glyphicon-chevron-left:before {
-        content: "\f053"
-    }
+        #bottom-footer {
+            background: #7474BF;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #348AC7, #7474BF);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    .glyphicon-chevron-right:before {
-        content: "\f054"
-    }
+
+        }
+
+        .footer-links li a {
+            color: #1E1F29;
+        }
+
+        .mainn-raised {
+
+            margin: -7px 0px 0px;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .glyphicon {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .glyphicon-chevron-left:before {
+            content: "\f053"
+        }
+
+        .glyphicon-chevron-right:before {
+            content: "\f054"
+        }
     </style>
 
 </head>
@@ -135,56 +151,6 @@ session_start();
 <body>
     <!-- HEADER -->
     <header>
-        <!-- TOP HEADER -->
-        <div id="top-header">
-            <div class="container">
-                <ul class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +84-0123456789</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> duyha@hcmut.edu.vn</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i>Tp.Hồ Chí Minh</a></li>
-                </ul>
-                <ul class="header-links pull-right">
-                    <li><a href="#"><i class="fa fa-inr"></i>VND</a></li>
-                    <li><?php
-                        include "db.php";
-                        if (isset($_SESSION["uid"])) {
-                            $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
-                            $query = mysqli_query($con, $sql);
-                            $row = mysqli_fetch_array($query);
-
-                            echo '
-                               <div class="dropdownn">
-                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row["first_name"] . '</a>
-                                  <div class="dropdownn-content">
-                                    <a href="" data-toggle="modal" data-target="#profile"><i class="fa fa-user-circle" aria-hidden="true" ></i>My Profile</a>
-                                    <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Log out</a>
-                                    
-                                  </div>
-                                </div>';
-                        } else {
-                            echo '
-                                <div class="dropdownn">
-                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
-								  <div class="dropdownn-content">
-								  	<a href="admin/login.php" ><i class="fa fa-user" aria-hidden="true" ></i>Admin</a>
-                                    <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Login</a>
-                                    <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
-                                    
-                                  </div>
-                                </div>';
-                        }
-                        ?>
-
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-        <!-- /TOP HEADER -->
-
-
-
-        <!-- MAIN HEADER -->
         <div id="header">
             <!-- container -->
             <div class="container">
@@ -193,11 +159,8 @@ session_start();
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="index.php" class="logo">
-                                <font
-                                    style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif">
-                                    BK Bookstore
-                                </font>
+                            <a href="#" class="logo">
+                                <p class="p3"> <i class="fa fa-book" aria-hidden="true"></i> BK Bookstore</p>
 
                             </a>
                         </div>
@@ -221,38 +184,47 @@ session_start();
                     <!-- ACCOUNT -->
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
+
                             <!-- Wishlist -->
                             <div>
-                                <a href="https://github.com" target="blank">
-                                    <i class="fa fa-github"></i>
-                                    <span>Github</span>
+                                <ul class="header-links pull-right">
+                                    <li><a href="#"><i class="fa fa-inr"></i>VND</a></li>
+                                    <li><?php
+                                        include "db.php";
+                                        if (isset($_SESSION["uid"])) {
+                                            $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
+                                            $query = mysqli_query($con, $sql);
+                                            $row = mysqli_fetch_array($query);
 
-                                </a>
+                                            echo '
+                               <div class="dropdownn">
+                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row["first_name"] . '</a>
+                                  <div class="dropdownn-content">
+                                    <a href="" data-toggle="modal" data-target="#profile"><i class="fa fa-user-circle" aria-hidden="true" ></i>My Profile</a>
+                                    <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Log out</a>
+                                    
+                                  </div>
+                                </div>';
+                                        } else {
+                                            echo '
+                                <div class="dropdownn">
+                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
+								  <div class="dropdownn-content">
+								  	<a href="admin/login.php" ><i class="fa fa-user" aria-hidden="true" ></i>Admin</a>
+                                    <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Login</a>
+                                    <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+                                    
+                                  </div>
+                                </div>';
+                                        }
+                                        ?>
+
+                                    </li>
+                                </ul>
                             </div>
                             <!-- /Wishlist -->
 
-                            <!-- Cart -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Your Cart</span>
-                                    <div class="badge qty">0</div>
-                                </a>
-                                <div class="cart-dropdown">
-                                    <div class="cart-list" id="cart_product">
 
-
-                                    </div>
-
-                                    <div class="cart-btns">
-                                        <a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i> edit
-                                            cart</a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- /Cart -->
 
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">
@@ -262,6 +234,31 @@ session_start();
                                 </a>
                             </div>
                             <!-- /Menu Toogle -->
+                            <div>
+                                <!-- Cart -->
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Your Cart</span>
+                                        <div class="badge qty">0</div>
+                                    </a>
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list" id="cart_product">
+
+
+                                        </div>
+
+                                        <div class="cart-btns">
+                                            <a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i> Edit
+                                                Cart</a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /Cart -->
+                            </div>
+
                         </div>
                     </div>
                     <!-- /ACCOUNT -->
@@ -308,7 +305,7 @@ session_start();
         </div>
     </div>
     <div class="modal fade" id="Modal_register" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="">
 
             <!-- Modal content-->
             <div class="modal-content">

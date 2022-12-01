@@ -40,8 +40,21 @@ if (isset($_POST["categoryhome"])) {
 
 
 if (isset($_POST["page"])) {
-	$cat_id = $_POST['catId'];
-	$sql = "SELECT * FROM products WHERE product_cat=$cat_id";
+
+	$sql = "SELECT * FROM products WHERE 1=1";
+	if (isset($_POST['keyword'])) {
+		$key = $_POST['keyword'];
+		$sql .= " AND product_title LIKE '%$key%'";
+	}
+	if (isset($_POST['cat_id'])) {
+		$cat_id = $_POST['cat_id'];
+		$sql .= " AND product_cat=$cat_id";
+	}
+	if (isset($_POST['brandId'])) {
+		$brandId = $_POST['brandId'];
+		$sql .= " AND product_brand=$brandId";
+	}
+
 	$run_query = mysqli_query($con, $sql);
 	$count = mysqli_num_rows($run_query);
 	$pageno = ceil($count / 9);
@@ -191,19 +204,20 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 		$limit = 10000;
 	}
 
+	$sql = "SELECT * FROM products,categories 
+		WHERE cat_id=product_cat";
+
 	if (isset($_POST["get_seleted_Category"])) {
 		$catId = $_POST["cat_id"];
-		$sql = "SELECT * FROM products,categories 
-		WHERE product_cat =$catId AND cat_id=product_cat";
-	} else if (isset($_POST['get_seleted_brand'])) {
-		$catId = $_POST["cat_id"];
+		$sql .= " AND product_cat =$catId";
+	}
+	if (isset($_POST['get_seleted_brand'])) {
 		$brandId = $_POST['brandId'];
-		$sql = "SELECT * FROM products,categories 
-		WHERE product_brand=$brandId AND product_cat=$catId AND cat_id=product_cat";
-	} else {
+		$sql .= " AND product_brand=$brandId";
+	}
+	if (isset($_POST['keyword'])) {
 		$keyword = $_POST["keyword"];
-		$sql = "SELECT * FROM products,categories 
-		WHERE product_cat=cat_id AND product_keywords LIKE '%$keyword%'";
+		$sql .= " AND product_keywords LIKE '%$keyword%'";
 	}
 
 	if (isset($_POST['sort_opt'])) {
@@ -227,6 +241,11 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 	$sql .= " LIMIT $start,$limit";
 
 	$run_query = mysqli_query($con, $sql);
+	if (mysqli_num_rows($run_query) == 0) {
+		echo "<div>There is no product here</div>";
+		exit();
+	}
+
 	while ($row = mysqli_fetch_array($run_query)) {
 		$pro_id    = $row['product_id'];
 		$pro_cat   = $row['product_cat'];
@@ -275,5 +294,63 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 					</div>
 			</div>
 			";
+	}
+}
+
+
+if (isset($_POST["checkOutDetails"])) {
+	$sql = "SELECT * FROM cart, products WHERE user_id=8 AND p_id=product_id";
+	$run_query = mysqli_query($con, $sql);
+
+	if (mysqli_num_rows($run_query) > 0) {
+		//display user cart item with "Ready to checkout" button if user is not login
+		$n = 0;
+		while ($row = mysqli_fetch_array($run_query)) {
+			$n++;
+			$product_id = $row["product_id"];
+			$product_title = $row["product_title"];
+			$product_price = $row["product_price"];
+			$product_image = $row["product_image"];
+			$cart_item_id = $row["id"];
+			$qty = $row["qty"];
+
+			echo
+			'
+                             
+						<tr>
+							<td data-th="Product" >
+								<div class="row">
+								
+									<div class="col-sm-4 "><img src="product_images/' . $product_image . '" style="height: 70px;width:75px;"/>
+									<h4 class="nomargin product-name header-cart-item-name"><a href="product.php?p=' . $product_id . '">' . $product_title . '</a></h4>
+									</div>
+									<div class="col-sm-6">
+										<div style="max-width=50px;">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+										</div>
+									</div>
+									
+									
+								</div>
+							</td>
+                            <input type="hidden" name="product_id[]" value="' . $product_id . '"/>
+				            <input type="hidden" name="" value="' . $cart_item_id . '"/>
+							<td data-th="Price"><input type="text" class="form-control price" value="' . $product_price . '" readonly="readonly"></td>
+							<td data-th="Quantity">
+								<input type="text" class="form-control qty" value="' . $qty . '" >
+							</td>
+							<td data-th="Subtotal" class="text-center"><input type="text" class="form-control total" value="' . $product_price . '" readonly="readonly"></td>
+							<td class="actions" data-th="">
+							<div class="btn-group">
+								<a href="#" class="btn btn-info btn-sm update" update_id="' . $product_id . '"><i class="fa fa-refresh"></i></a>
+								
+								<a href="#" class="btn btn-danger btn-sm remove" remove_id="' . $product_id . '"><i class="fa fa-trash-o"></i></a>		
+							</div>							
+							</td>
+						</tr>
+					
+                            
+                            ';
+		}
 	}
 }

@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     loadSidebarBrands();
     loadOthersState();
+    loadCartDetail();
 
     //define functions
     function loadMainNavbar() {
@@ -85,14 +86,24 @@ $(document).ready(function () {
         }
     }
 
-    function loadPagePanigation() {
+    function loadPagePanigation(brandId) {
+        const path = location.pathname.slice(1);
         const query = new URLSearchParams(location.search);
         const catId = query.get("cat");
+        const keyword = query.get("keyword");
+        if (path !== "store.php") return;
+        const postData = {
+            page: 1,
+            brandId,
+        };
+
+        if (keyword) postData.keyword = keyword;
+        if (catId) postData.cat_id = catId;
 
         $.ajax({
             url: "homeaction.php",
             method: "POST",
-            data: { page: 1, catId: catId },
+            data: postData,
             success: function (data) {
                 $("#pageno").html(data);
                 document
@@ -102,39 +113,63 @@ $(document).ready(function () {
         });
     }
 
-    // //product() is a funtion fetching product record from database whenever page is load
-    // function product() {
-    //   $.ajax({
-    //     url: "action.php",
-    //     method: "POST",
-    //     data: { getProduct: 1 },
-    //     success: function (data) {
-    //       $("#get_product").html(data);
-    //     },
-    //   });
-    // }
+    function loadCartDetail() {
+        const cart = localStorage.getItem("cart")
+            ? JSON.parse(localStorage.getItem("cart"))
+            : [];
 
-    // gethomeproduts();
-    // function gethomeproduts() {
-    //   $.ajax({
-    //     url: "homeaction.php",
-    //     method: "POST",
-    //     data: { gethomeProduct: 1 },
-    //     success: function (data) {
-    //       $("#get_home_product").html(data);
-    //     },
-    //   });
-    // }
-    // function producthome() {
-    //   $.ajax({
-    //     url: "homeaction.php",
-    //     method: "POST",
-    //     data: { getProducthome: 1 },
-    //     success: function (data) {
-    //       $("#get_product_home").html(data);
-    //     },
-    //   });
-    // }
+        let html = cart
+            .map(
+                (item, index) => `
+      <tr id="cart-item-${index}">
+        <td data-th="Product">
+            <div class="row">
+                <div class="col-sm-4 ">
+                    <img src="${item.image}" style="height: 70px;width:75px;" />
+                   
+                </div>
+                <div class="col-sm-6">
+                     <h4 class="nomargin product-name header-cart-item-name">
+                        <a href="product.php?p=${item.id}">${item.title}</a>
+                    </h4>
+                </div>
+
+
+            </div>
+        </td>
+  
+        <td data-th="Price">
+            <input type="text" class="form-control price" value="${item.price}" readonly="readonly">
+        </td>
+        <td data-th="Quantity">
+            <input type="text" data-index="${index}" class="form-control qty" value="${item.quantity}">
+        </td>
+        <td data-th="Subtotal" class="text-center">
+            <input type="text" class="form-control total" value="${item.price}" readonly="readonly">
+        </td>
+        <td class="actions" data-th="">
+            <button type="button" class="btn btn-danger btn-sm remove" data-index="${index}">
+                    <i class="fa fa-trash-o"></i>
+            </button>
+        </td>
+    </tr>
+    `
+            )
+            .join("\r\n");
+
+        if (html === "")
+            html =
+                "<div style='padding:10px'>There is no product here. Shop now</div>";
+        $("#cart_checkout tbody").html(html);
+    }
+
+    function updateCartItemQuantity(index, quantity) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const newCart = cart.map((item, _index) =>
+            _index == index ? { ...item, quantity } : item
+        );
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
 
     /* Handle envent */
     // $("body").delegate(".category", "click", function (event) {
@@ -154,6 +189,14 @@ $(document).ready(function () {
     //     },
     //   });
     // });
+
+    $("#search_btn").click(function (e) {
+        e.preventDefault();
+        const keyword = $("#search").val();
+        if (keyword != "") {
+            window.location.href = "store.php?keyword=" + keyword;
+        }
+    });
 
     $("body").delegate(".add-to-cart", "click", (e) => {
         const id = e.target.getAttribute("data-id");
@@ -220,25 +263,28 @@ $(document).ready(function () {
         e.preventDefault();
         const pn = $(this).attr("data-page");
         const query = new URLSearchParams(location.search);
-        const catId = query.get("cat");
+        const cat_id = query.get("cat");
+        const keyword = query.get("keyword");
         const sort_opt = document
             .getElementById("sort-select")
-            .getAttribute("value");
+            ?.getAttribute("value");
+        const brandId = document
+            .querySelector(".selectBrand.active")
+            ?.getAttribute("bid");
 
         document.querySelectorAll("#page").forEach((item) => {
             item.classList.remove("active");
         });
         e.target.classList.add("active");
 
+        const postData = { pageNo: pn, sort_opt, cat_id, keyword, brandId };
+        if (cat_id) postData.get_seleted_Category = 1;
+        else if (keyword) postData.search = 1;
+
         $.ajax({
             url: "homeaction.php",
             method: "POST",
-            data: {
-                get_seleted_Category: 1,
-                cat_id: catId,
-                pageNo: pn,
-                sort_opt,
-            },
+            data: postData,
             success: function (data) {
                 $("#get_product").html(data);
             },
@@ -249,25 +295,35 @@ $(document).ready(function () {
         event.preventDefault();
         const query = new URLSearchParams(location.search);
         const catId = query.get("cat");
-        var bid = $(this).attr("bid");
+        const keyword = query.get("keyword");
+        var brandId = $(this).attr("bid");
+        loadPagePanigation(brandId);
+
         document.querySelectorAll(".selectBrand").forEach((item) => {
             item.classList.remove("active");
         });
         event.target.classList.add("active");
+
         const sort_opt = document
             .getElementById("sort-select")
-            .getAttribute("value");
-        $("#pageno").html(null);
+            ?.getAttribute("value");
+
+        const postData = {
+            get_seleted_brand: 1,
+            brandId,
+            keyword,
+            cat_id: catId,
+            pageNo: 1,
+            sort_opt,
+        };
+
+        if (catId) postData.get_seleted_Category = 1;
+        if (keyword) postData.search = 1;
 
         $.ajax({
             url: "homeaction.php",
             method: "POST",
-            data: {
-                get_seleted_brand: 1,
-                brandId: bid,
-                cat_id: catId,
-                sort_opt,
-            },
+            data: postData,
             success: function (data) {
                 $("#get_product").html(data);
                 if ($("body").width() < 480) {
@@ -285,6 +341,7 @@ $(document).ready(function () {
     $("body").delegate("#sort-select", "change", function (e) {
         const query = new URLSearchParams(location.search);
         const catId = query.get("cat");
+        const keyword = query.get("keyword");
         const sortOption = e.target.value;
         document
             .querySelector("#sort-select")
@@ -293,20 +350,16 @@ $(document).ready(function () {
             .querySelector(".selectBrand.active")
             ?.getAttribute("bid");
 
-        const data = brandId
-            ? {
-                  get_seleted_brand: 1,
-                  brandId: brandId,
-                  cat_id: catId,
-                  sort_opt: sortOption,
-                  pageNo: 1,
-              }
-            : {
-                  get_seleted_Category: 1,
-                  cat_id: catId,
-                  sort_opt: sortOption,
-                  pageNo: 1,
-              };
+        const postData = {
+            cat_id: catId,
+            sort_opt: sortOption,
+            pageNo: 1,
+            brandId: brandId,
+            keyword,
+        };
+        if (catId) postData.get_seleted_Category = 1;
+        if (keyword) postData.search = 1;
+        if (brandId) postData.get_seleted_brand = 1;
 
         $("#page.active").removeClass("active");
         document.querySelectorAll("#page")[0].classList.add("active");
@@ -314,7 +367,7 @@ $(document).ready(function () {
         $.ajax({
             url: "homeaction.php",
             method: "POST",
-            data: data,
+            data: postData,
             success: function (data) {
                 $("#get_product").html(data);
                 if ($("body").width() < 480) {
@@ -323,6 +376,72 @@ $(document).ready(function () {
             },
         });
     });
+
+    $("body").delegate(".qty", "keyup", function (event) {
+        event.preventDefault();
+        const row = $(this).parent().parent();
+        const price = row.find(".price").val();
+        let qty = row.find(".qty").val();
+        if (isNaN(qty)) {
+            qty = 1;
+        }
+        if (qty < 1) {
+            qty = 1;
+        }
+
+        const index = event.target.getAttribute("data-index");
+        updateCartItemQuantity(index, qty);
+        let total = price * qty;
+        row.find(".total").val(total);
+        let net_total = 0;
+        $(".total").each(function () {
+            net_total += $(this).val() - 0;
+        });
+        $(".net_total").html("Total : $ " + net_total);
+    });
+
+    $("body").delegate(".remove", "click", function (event) {
+        const index = event.target.getAttribute("data-index");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const newCart = cart.filter((item, _index) => _index != index);
+        console.log(cart, newCart, index);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        $(`#cart-item-${index}`).remove();
+    });
+
+    // //product() is a funtion fetching product record from database whenever page is load
+    // function product() {
+    //   $.ajax({
+    //     url: "action.php",
+    //     method: "POST",
+    //     data: { getProduct: 1 },
+    //     success: function (data) {
+    //       $("#get_product").html(data);
+    //     },
+    //   });
+    // }
+
+    // gethomeproduts();
+    // function gethomeproduts() {
+    //   $.ajax({
+    //     url: "homeaction.php",
+    //     method: "POST",
+    //     data: { gethomeProduct: 1 },
+    //     success: function (data) {
+    //       $("#get_home_product").html(data);
+    //     },
+    //   });
+    // }
+    // function producthome() {
+    //   $.ajax({
+    //     url: "homeaction.php",
+    //     method: "POST",
+    //     data: { getProducthome: 1 },
+    //     success: function (data) {
+    //       $("#get_product_home").html(data);
+    //     },
+    //   });
+    // }
 
     // $("body").delegate(".categoryhome","click",function(event){
     // 	$("#get_product").html("<h3>Loading...</h3>");
@@ -352,14 +471,6 @@ $(document).ready(function () {
 		given string and with the help of sql query we will match user given string to our database keywords column then matched product 
 		we will show 
 	*/
-    $("#search_btn").click(function (e) {
-        e.preventDefault();
-        // $("#get_product").html("<h3>Loading...</h3>");
-        var keyword = $("#search").val();
-        if (keyword != "") {
-            window.location.href = "store.php?keyword=" + keyword;
-        }
-    });
     //end
 
     /*
@@ -480,25 +591,7 @@ $(document).ready(function () {
 		('.total').each() this is loop funtion repeat for class .total and in every repetation we will perform sum operation of class .total value 
 		and then show the result into class .net_total
 	*/
-    $("body").delegate(".qty", "keyup", function (event) {
-        event.preventDefault();
-        var row = $(this).parent().parent();
-        var price = row.find(".price").val();
-        var qty = row.find(".qty").val();
-        if (isNaN(qty)) {
-            qty = 1;
-        }
-        if (qty < 1) {
-            qty = 1;
-        }
-        var total = price * qty;
-        row.find(".total").val(total);
-        var net_total = 0;
-        $(".total").each(function () {
-            net_total += $(this).val() - 0;
-        });
-        $(".net_total").html("Total : $ " + net_total);
-    });
+
     //Change Quantity end here
 
     /*
@@ -506,40 +599,11 @@ $(document).ready(function () {
 		and send it to action.php to perform product removal operation
 	*/
 
-    $("body").delegate(".remove", "click", function (event) {
-        var remove = $(this).parent().parent().parent();
-        var remove_id = remove.find(".remove").attr("remove_id");
-        $.ajax({
-            url: "action.php",
-            method: "POST",
-            data: { removeItemFromCart: 1, rid: remove_id },
-            success: function (data) {
-                $("#cart_msg").html(data);
-                checkOutDetails();
-            },
-        });
-    });
-
     /*
 		whenever user click on .update class we will take product id of that row 
 		and send it to action.php to perform product qty updation operation
 	*/
-    $("body").delegate(".update", "click", function (event) {
-        var update = $(this).parent().parent().parent();
-        var update_id = update.find(".update").attr("update_id");
-        var qty = update.find(".qty").val();
-        $.ajax({
-            url: "action.php",
-            method: "POST",
-            data: { updateCartItem: 1, update_id: update_id, qty: qty },
-            success: function (data) {
-                $("#cart_msg").html(data);
-                checkOutDetails();
-            },
-        });
-    });
-    checkOutDetails();
-    net_total();
+
     /*
 		checkOutDetails() function work for two purposes
 		First it will enable php isset($_POST["Common"]) in action.php page and inside that
@@ -550,12 +614,12 @@ $(document).ready(function () {
     function checkOutDetails() {
         $(".overlay").show();
         $.ajax({
-            url: "action.php",
+            url: "homeaction.php",
             method: "POST",
             data: { Common: 1, checkOutDetails: 1 },
             success: function (data) {
                 $(".overlay").hide();
-                $("#cart_checkout").html(data);
+                $("#cart_checkout tbody").html(data);
                 net_total();
             },
         });

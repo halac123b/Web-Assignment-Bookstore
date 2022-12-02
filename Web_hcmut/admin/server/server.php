@@ -13,16 +13,16 @@ $errors = array();
 $reg_date = date("Y/m/d");
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'onlineshop');
+require '../db.php';
 
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['admin_name']);
-  $email = mysqli_real_escape_string($db, $_POST['admin_email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  $username = mysqli_real_escape_string($con, $_POST['admin_name']);
+  $email = mysqli_real_escape_string($con, $_POST['admin_email']);
+  $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
+  $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -42,7 +42,7 @@ if (isset($_POST['reg_user'])) {
   // first check the database to make sure
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM admin_info WHERE admin_name='$username' OR admin_email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
+  $result = mysqli_query($con, $user_check_query);
   $user = mysqli_fetch_assoc($result);
 
   if ($user) { // if user exists
@@ -61,7 +61,7 @@ if (isset($_POST['reg_user'])) {
 
     $query = "INSERT INTO admin_info (admin_name, admin_email, admin_password)
           VALUES('$username', '$email', '$password')";
-    mysqli_query($db, $query);
+    mysqli_query($con, $query);
     $_SESSION['admin_name'] = $username;
     $_SESSION['admin_email'] = $email;
 
@@ -76,8 +76,8 @@ if (isset($_POST['reg_user'])) {
 
 
 if (isset($_POST['login_admin'])) {
-  $admin_username = mysqli_real_escape_string($db, $_POST['admin_username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $admin_username = mysqli_real_escape_string($con, $_POST['admin_username']);
+  $password = mysqli_real_escape_string($con, $_POST['password']);
 
   if (empty($admin_username)) {
     array_push($errors, "Username is required");
@@ -89,7 +89,7 @@ if (isset($_POST['login_admin'])) {
   if (count($errors) == 0) {
     $password = md5($password);
     $query = "SELECT * FROM admin_info WHERE admin_email='$admin_username' AND admin_password='$password'";
-    $results = mysqli_query($db, $query);
+    $results = mysqli_query($con, $query);
     if (mysqli_num_rows($results) == 1) {
       $_SESSION['admin_email'] = $email;
       $_SESSION['admin_name'] = $admin_username;
@@ -100,7 +100,4 @@ if (isset($_POST['login_admin'])) {
     }
   }
 }
-
-
 ?>
-

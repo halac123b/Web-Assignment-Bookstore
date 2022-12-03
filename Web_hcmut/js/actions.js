@@ -205,6 +205,7 @@ $(document).ready(function () {
       quantity: item.quantity,
     }));
     document.getElementById("cart-submit").value = JSON.stringify(cartSubmit);
+    document.getElementById("total-submit").value = total;
   }
 
   function updateCartItemQuantity(index, quantity) {

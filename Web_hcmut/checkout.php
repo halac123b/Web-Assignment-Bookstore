@@ -184,6 +184,7 @@ include "header.php";
 						</div>
 
 						<input type="hidden" name="cart" id="cart-submit">
+						<input type="hidden" name="total" id="total-submit">
 
 						<input type="submit" id="submit" value="Continue to checkout" class="checkout-btn">
 					</form>

@@ -96,6 +96,10 @@ include 'header.php';
                                         ";
                                 }
 
+                                if (mysqli_num_rows($run_query) == 0) {
+                                    echo "<div>There is no product with your keyword</div>";
+                                }
+
                                 mysqli_close($con);
                             }
 

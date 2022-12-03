@@ -94,7 +94,9 @@ $(document).ready(function () {
         success: function (data) {
           $("#get_product").html(data);
           if ($("body").width() < 480) {
-            $("body").scrollTop(683);
+            $(document).scrollTop(683);
+          } else {
+            $(document).scrollTop(0);
           }
         },
       });
@@ -332,6 +334,11 @@ $(document).ready(function () {
       data: postData,
       success: function (data) {
         $("#get_product").html(data);
+        if ($("body").width() < 480) {
+          $(document).scrollTop(683);
+        } else {
+          $(document).scrollTop(0);
+        }
       },
     });
   });
@@ -372,7 +379,9 @@ $(document).ready(function () {
       success: function (data) {
         $("#get_product").html(data);
         if ($("body").width() < 480) {
-          $("body").scrollTop(683);
+          $(document).scrollTop(683);
+        } else {
+          $(document).scrollTop(0);
         }
       },
     });
@@ -414,7 +423,9 @@ $(document).ready(function () {
       success: function (data) {
         $("#get_product").html(data);
         if ($("body").width() < 480) {
-          $("body").scrollTop(683);
+          $(document).scrollTop(683);
+        } else {
+          $(document).scrollTop(0);
         }
       },
     });
@@ -492,6 +503,23 @@ $(document).ready(function () {
     } else {
       $("#pay-by-card").html(null);
     }
+  });
+
+  $(document).scroll(function () {
+    const y = window.scrollY;
+    if (y > 750) {
+      document.getElementById("go-to-top").style.visibility = "visible";
+    } else {
+      document.getElementById("go-to-top").style.visibility = "hidden";
+    }
+  });
+
+  $("body").delegate("#go-to-top", "click", function () {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   });
 
   // //product() is a funtion fetching product record from database whenever page is load

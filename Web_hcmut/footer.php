@@ -57,10 +57,10 @@
 	</div>
 	<!-- /top footer -->
 
+	<div id="go-to-top">
+		<i class='fa fa-caret-up'></i>
+	</div>
 
-	<!-- bottom footer -->
-
-	<!-- /bottom footer -->
 </footer>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -86,19 +86,4 @@
 			c++;
 		}
 	}
-</script>
-<script type="text/javascript">
-	$('.block2-btn-addcart').each(function() {
-		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-		$(this).on('click', function() {
-			swal(nameProduct, "is added to cart !", "success");
-		});
-	});
-
-	$('.block2-btn-addwishlist').each(function() {
-		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-		$(this).on('click', function() {
-			swal(nameProduct, "is added to wishlist !", "success");
-		});
-	});
 </script>

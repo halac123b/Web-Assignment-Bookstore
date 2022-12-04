@@ -58,7 +58,7 @@ include "header.php";
 			include 'db.php';
 			$product_id = $_GET['p'];
 
-			$sql = " SELECT * FROM products WHERE product_id = $product_id";
+			$sql = "SELECT * FROM products WHERE product_id = $product_id";
 			if (!$con) {
 				die("Connection failed: " . mysqli_connect_error());
 			}
@@ -113,22 +113,74 @@ include "header.php";
 					<!-- FlexSlider -->
 
 			<?php
-					echo '
-									
-                                    
-                                   
+					function console_log($output, $with_script_tags = true)
+					{
+						$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+							');';
+						if ($with_script_tags) {
+							$js_code = '<script>' . $js_code . '</script>';
+						}
+						echo $js_code;
+					}
+					include 'db.php';
+
+					$sql_review = "SELECT COUNT(*), AVG(star) FROM review WHERE product_id=$product_id";
+					$result_review = mysqli_query($con, $sql_review);
+					$review_num = mysqli_fetch_assoc($result_review)['COUNT(*)'];
+
+					$sql_review = "SELECT AVG(star) FROM review WHERE product_id=$product_id";
+					$result_review = mysqli_query($con, $sql_review);
+					$avg_star = mysqli_fetch_assoc($result_review)['AVG(star)'];
+
+					$sql_review = "SELECT * FROM review WHERE product_id=$product_id";
+					$result_review = mysqli_query($con, $sql_review);
+
+					$star_array = array(0, 0, 0, 0, 0);
+					if (mysqli_num_rows($result_review) > 0) {
+						while ($row_review = mysqli_fetch_assoc($result_review)) {
+							switch ($row_review['star']) {
+								case 1:
+									$star_array[0]++;
+									break;
+								case 2:
+									$star_array[1]++;
+									break;
+								case 3:
+									$star_array[2]++;
+									break;
+								case 4:
+									$star_array[3]++;
+									break;
+								case 5:
+									$star_array[4]++;
+									break;
+							}
+						}
+					}
+
+					function displayStar($avg)
+					{
+						for ($i = $avg; $i > $avg - 5; $i--) {
+							if ($i >= 1) {
+								echo '<i class="fa fa-star"></i>';
+							} elseif ($i >= 0.5) {
+								echo '<i class="fa fa-star-half-o"></i>';
+							} else {
+								echo '<i class="fa fa-star-o"></i>';
+							}
+						}
+					}
+
+					echo '       
                     <div class="col-md-5">
 						<div class="product-details">
 							<h2 class="product-name">' . $row['product_title'] . '</h2>
 							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+								<div class="product-rating">';
+					displayStar($avg_star);
+					echo ' ' . number_format($avg_star, 2, '.', '') . '
 								</div>
-								<a class="review-link" href="#review-form">10 Review(s) | Add your review</a>
+								<a class="review-link" href="#product-tab">' . $review_num . ' Review(s) | Add your review</a>
 							</div>
 							<div>
 								<h3 class="product-price">' . $row['product_price'] . '&#x20AB;</h3>
@@ -174,7 +226,7 @@ include "header.php";
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li><a data-toggle="tab" href="#tab3">Reviews (' . $review_num . ')</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -207,81 +259,35 @@ include "header.php";
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
-													<span>4.5</span>
-													<div class="rating-stars">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
+													<span>' . number_format($avg_star, 2, '.', '') . '</span>
+													<div class="rating-stars">';
+					displayStar($avg_star);
+					echo '
 													</div>
 												</div>
-												<ul class="rating">
+												<ul class="rating">';
+
+					for ($i = 4; $i >= 0; $i--) {
+						if ($review_num == 0) {
+							$progress = 0;
+						} else {
+							$progress = (int)($star_array[$i] / $review_num * 100);
+						}
+
+						echo '
 													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
+														<div class="rating-stars">';
+						displayStar($i + 1);
+						echo '
 														</div>
-														<div class="rating-progress">
-															<div style="width: 80%;"></div>
-														</div>
-														<span class="sum">3</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div style="width: 60%;"></div>
-														</div>
-														<span class="sum">2</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
+													<div class="rating-progress">
+													<div style="width: ' . $progress .  '%;"></div>
+												</div>
+												<span class="sum">' . $star_array[$i] . '</span>
+											</li>';
+					}
+
+					echo '
 												</ul>
 											</div>
 										</div>
@@ -290,55 +296,42 @@ include "header.php";
 										<!-- Reviews -->
 										<div class="col-md-6">
 											<div id="reviews">
-												<ul class="reviews">
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
+												<ul class="reviews">';
+
+
+					foreach ($result_review as $row_review) {
+						echo '
+							<li>
+							<div class="review-heading">
+								<h5 class="name">' . $row_review['name'] . '</h5>
+								<div class="review-rating">';
+						displayStar($row_review['star']);
+						echo '
+								</div>
+							</div>
+							<div class="review-body">
+								<p>' . $row_review['comment'] . '</p>
+							</div>
+						</li>';
+					}
+
+					function postReview()
+					{
+						global $con, $product_id;
+						$user = $_SESSION['uid'];
+						$star = $_POST['star'];
+						$comment = $_POST['comment'];
+						$sql = "SELECT first_name, last_name FROM user_info WHERE user_id=$user";
+						$result = mysqli_query($con, $sql);
+						$array = mysqli_fetch_assoc($result);
+						$name = $array['first_name'] . ' ' . $array['last_name'];
+
+						$sql = "INSERT INTO `review` (`product_id`, `user_id`, `name`, `star`, `comment`)
+							VALUES ('$product_id', '$user', '$name', '$star', '$comment');";
+						$result = mysqli_query($con, $sql);
+						echo ("<meta http-equiv='refresh' content='0'>");
+					}
+					echo '
 												</ul>
 												<ul class="reviews-pagination">
 													<li class="active">1</li>
@@ -354,22 +347,26 @@ include "header.php";
 										<!-- Review Form -->
 										<div class="col-md-3 mainn">
 											<div id="review-form">
-												<form class="review-form">
+												<form class="review-form" action="" method="post">
 													<input class="input" type="text" placeholder="Your Name">
 													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
+													<textarea class="input" placeholder="Your Review" name="comment"></textarea>
 													<div class="input-rating">
 														<span>Your Rating: </span>
 														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+															<input id="star5" name="star" value="5" type="radio"><label for="star5"></label>
+															<input id="star4" name="star" value="4" type="radio"><label for="star4"></label>
+															<input id="star3" name="star" value="3" type="radio"><label for="star3"></label>
+															<input id="star2" name="star" value="2" type="radio"><label for="star2"></label>
+															<input id="star1" name="star" value="1" type="radio"><label for="star1"></label>
 														</div>
 													</div>
-													<button class="primary-btn">Submit</button>
-												</form>
+													<input type="submit" name="test" id="test" value="Submit">
+												</form>';
+					if (array_key_exists('test', $_POST)) {
+						postReview();
+					}
+					echo '
 											</div>
 										</div>
 										<!-- /Review Form -->
@@ -413,7 +410,6 @@ include "header.php";
 			$product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_id BETWEEN $product_id AND $product_id+3";
 			$run_query = mysqli_query($con, $product_query);
 			if (mysqli_num_rows($run_query) > 0) {
-
 				while ($row = mysqli_fetch_array($run_query)) {
 					$pro_id    = $row['product_id'];
 					$pro_cat   = $row['product_cat'];

@@ -54,9 +54,9 @@ echo "
     <table class="table table-hover table-condensed">
       <thead>
         <tr>
-          <th>Ngày mua hàng</th>
-          <th>Sản phẩm</th>
-          <th>Số tiền</th>
+          <th style="width:10% ;">Ngày mua hàng</th>
+          <th style="width:80% ;">Sản phẩm</th>
+          <th style="width:10% ;">Số tiền</th>
         </tr>
       </thead>
       <tbody>
@@ -85,17 +85,19 @@ echo "
 
             echo "
                  <div class='row'>
-                    <div class='col-lg-2'>
+                    <div class='col-lg-2 col-sm-2 col-xs-12'>
                       <img src='./product_images/$image' width='40' alt='$title'>
                     </div>
-                    <div class='col-lg-8'>
+                    <div class='col-lg-9 col-sm-8 col-xs-12'>
                       $title
                     </div>
-                    <div class='col-lg-1'>
-                      $price &#x20AB;
-                    </div>
-                    <div class='col-lg-1'>
-                      x$quantity
+                    <div class='col-lg-1 col-sm-2 col-xs-12'>
+                      <span>
+                        $price &#x20AB;
+                      </span>
+                      <span>
+                        x$quantity
+                      </span>
                     </div>
                   </div>
             ";

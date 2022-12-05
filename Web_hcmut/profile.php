@@ -1,53 +1,121 @@
 <?php
 include "header.php";
+include 'db.php';
+$uid = $_SESSION['uid'];
+if (!isset($uid)) {
+  echo "
+    <script>window.location.href = 'index.php'</script>
+  ";
+  exit();
+}
+
+$sql = "SELECT * FROM user_info WHERE user_id=$uid";
+$run_query = mysqli_query($con, $sql);
+$result = mysqli_fetch_assoc($run_query);
+$first_name = $result['first_name'];
+$last_name = $result['last_name'];
+$email = $result['email'];
+$phone = $result['mobile'];
+$address1 = $result['address1'];
+$address2 = $result['address2'];
+
+echo "
+    <section class='section'>
+      <div class='container-fluid'>
+        <div class='user-info'>
+          <h4>Thông tin cá nhân
+            <a href='editprofile.php'><i class='fa fa-pencil'></i></a>
+          </h4>
+          <div class='row'>
+            <div class='col-lg-3 col-md-6 col-sm-12'>
+              <label>Họ và tên: </label>
+              <span>$first_name $last_name</span>
+            </div>
+            <div class='col-lg-3 col-md-6 col-sm-12'>
+              <label>Di động: </label>
+              <span>$phone</span>
+            </div>
+            <div class='col-lg-3 col-md-6 col-sm-12'>
+              <label>Email: </label>
+              <span>$email</span>
+            </div>
+            <div class='col-lg-3 col-md-6 col-sm-12'>
+              <label>Địa chỉ: </label>
+              <span>$address1, $address2</span>
+            </div>
+          </div>
+        </div>
+";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="user-orders">
+  <h4>Đơn hàng gần đây</h4>
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Ngày mua hàng</th>
+          <th>Sản phẩm</th>
+          <th>Số tiền</th>
+        </tr>
+      </thead>
+      <tbody>
 
-<head>
-  <title>User Profile</title>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    TechShop|Admin
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/demo/demo.css" rel="stylesheet" />
-  <script src="./assets/js/scrip.js" defer></script>
-</head>
+        <?php
+        $sql = "SELECT * FROM orders_info WHERE phone='$phone' ORDER BY order_id DESC";
+        $result = mysqli_query($con, $sql);
+        foreach ($result as $row) {
+          $order_id = $row['order_id'];
+          $total = $row['total'];
+          $date = $row['date'];
+          echo "
+              <tr>
+                <td>$date</td>
+              <td>
+          ";
+          $sql = "SELECT * FROM order_products o, products p
+          WHERE order_id=$order_id AND o.product_id=p.product_id";
+          $result = mysqli_query($con, $sql);
 
-<body>
-  <div class="logo"><a href="index.php" class="simple-text logo-normal">
-      <img src="./img/avatar/avatar.jpg" style="width: 150px;">
-    </a></div>
-  <div class="sidebar-wrapper">
-    <ul class="nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="addsuppliers.php">
-          <i class="material-icons">person</i>
-          <p>Account Information</p>
-        </a>
+          foreach ($result as $prod) {
+            $image = $prod['product_image'];
+            $title = $prod['product_title'];
+            $price = $prod['product_price'];
+            $quantity = $prod['qty'];
 
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="products_list.php">
-          <i class="material-icons">list</i>
-          <p>My Order</p>
-        </a>
+            echo "
+                 <div class='row'>
+                    <div class='col-lg-2'>
+                      <img src='./product_images/$image' width='40' alt='$title'>
+                    </div>
+                    <div class='col-lg-8'>
+                      $title
+                    </div>
+                    <div class='col-lg-1'>
+                      $price &#x20AB;
+                    </div>
+                    <div class='col-lg-1'>
+                      x$quantity
+                    </div>
+                  </div>
+            ";
+          }
 
-      </li>
+          echo "
+                <td>$total &#x20AB;</td>
+              </tr>
+          ";
+        }
+        ?>
 
-    </ul>
+        </td>
+      </tbody>
+    </table>
   </div>
-  </div>
-</body>
-<html>
+</div>
+</div>
+</section>
+
+<?php
+include 'footer.php';
+?>

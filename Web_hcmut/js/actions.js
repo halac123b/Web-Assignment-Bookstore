@@ -174,9 +174,14 @@ $(document).ready(function () {
       )
       .join("\r\n");
 
-    if (html === "")
+    if (html === "") {
+      const checkoutBtn = document.getElementById("ready-checkout-btn");
+      checkoutBtn.setAttribute("disabled", true);
+      checkoutBtn.onclick = () => false;
+
       html =
         "<div style='padding:10px'>There is no product here. Shop now</div>";
+    }
     $("#cart_checkout tbody").html(html);
     net_total();
   }
@@ -208,6 +213,9 @@ $(document).ready(function () {
     }));
     document.getElementById("cart-submit").value = JSON.stringify(cartSubmit);
     document.getElementById("total-submit").value = total;
+    if (cartSubmit.length === 0) {
+      document.getElementById("submit").setAttribute("disabled", true);
+    }
   }
 
   function updateCartItemQuantity(index, quantity) {
@@ -455,12 +463,20 @@ $(document).ready(function () {
   });
 
   $("body").delegate(".remove", "click", function (event) {
-    const index = event.target.getAttribute("data-index");
+    const index =
+      event.target.getAttribute("data-index") ??
+      event.target.parentElement.getAttribute("data-index");
+
     const cart = JSON.parse(localStorage.getItem("cart"));
     const newCart = cart.filter((item, _index) => _index != index);
     localStorage.setItem("cart", JSON.stringify(newCart));
     $(`#cart-item-${index}`).remove();
     net_total();
+    if (newCart.length === 0) {
+      const checkoutBtn = document.getElementById("ready-checkout-btn");
+      checkoutBtn.setAttribute("disabled", true);
+      checkoutBtn.onclick = () => false;
+    }
   });
 
   $("body").delegate("#pay-type", "change", function (e) {

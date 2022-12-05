@@ -30,7 +30,7 @@ include "header.php";
                                     <td class="hidden-xs text-center"><b class="net_total"></b></td>
                                     <div id="issessionset"></div>
                                     <td>
-                                        <a href="checkout.php" class="btn btn-success">Ready to Checkout</a>
+                                        <a href="checkout.php" class="btn btn-success" id="ready-checkout-btn">Ready to Checkout</a>
                                     </td>
                                 </tr>
                             </tfoot>

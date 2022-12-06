@@ -135,9 +135,21 @@
                                     <?php
                                     include 'db.php';
 
-
+                                    function displayStar($avg)
+                                    {
+                                        for ($i = $avg; $i > $avg - 5; $i--) {
+                                            if ($i >= 1) {
+                                                echo '<i class="fa fa-star"></i>';
+                                            } elseif ($i >= 0.5) {
+                                                echo '<i class="fa fa-star-half-o"></i>';
+                                            } else {
+                                                echo '<i class="fa fa-star-o"></i>';
+                                            }
+                                        }
+                                    }
                                     $product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id ORDER BY product_id DESC LIMIT 10";
                                     $run_query = mysqli_query($con, $product_query);
+
                                     if (mysqli_num_rows($run_query) > 0) {
 
                                         while ($row = mysqli_fetch_array($run_query)) {
@@ -147,6 +159,7 @@
                                             $pro_title = $row['product_title'];
                                             $pro_price = $row['product_price'];
                                             $pro_image = $row['product_image'];
+                                            $pro_rating = $row['product_rating'];
                                             $cat_name = $row["cat_title"];
                                             $rating = 4.2;
 
@@ -163,13 +176,7 @@
 														<div class='product-rating' data-rating='$rating'>
 														";
 
-                                            for ($i = 1; $i <= 5; $i++) {
-                                                if ($i < $rating) {
-                                                    echo "<i class='fa fa-star active'></i>";
-                                                } else {
-                                                    echo "<i class='fa fa-star'></i>";
-                                                }
-                                            }
+                                            displayStar($pro_rating);
 
                                             echo "
 												</div>
@@ -236,7 +243,7 @@
 
                 <div class="col-md-12 col-xs-12">
                     <div class="section-title">
-                        <h4 class="title">Best choises</h4>
+                        <h4 class="title">Best choices</h4>
                         <div class="section-nav">
                             <div id="slick-nav-4" class="products-slick-nav"></div>
                         </div>
@@ -244,7 +251,7 @@
                     <div class="books">
                         <?php
                         include 'db.php';
-                        $sql = "SELECT * FROM products ORDER BY rating DESC LIMIT 0,12";
+                        $sql = "SELECT * FROM products ORDER BY product_rating DESC LIMIT 0,12";
                         $run_query = mysqli_query($con, $sql);
                         echo mysqli_error($con);
                         if ($run_query) {
@@ -258,7 +265,7 @@
                                  <div class='book'>
                                     <img src='product_images/$img' height='120' alt='$title'>
                                     <h4>$title</h4>
-                                    <span>$desc</span>
+                                    <span>$des</span>
                                     <div class='price'>
                                         PRICE: $price &#x20AB;
                                     </div>

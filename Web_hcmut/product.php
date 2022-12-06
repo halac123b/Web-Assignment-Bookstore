@@ -105,8 +105,6 @@ include "header.php";
                                     </div>
                                 </div>
                             </div>
-
-                                 
 									';
 
 			?>
@@ -124,13 +122,17 @@ include "header.php";
 					}
 					include 'db.php';
 
-					$sql_review = "SELECT COUNT(*), AVG(star) FROM review WHERE product_id=$product_id";
+					$sql_review = "SELECT COUNT(*) FROM review WHERE product_id=$product_id";
 					$result_review = mysqli_query($con, $sql_review);
 					$review_num = mysqli_fetch_assoc($result_review)['COUNT(*)'];
 
 					$sql_review = "SELECT AVG(star) FROM review WHERE product_id=$product_id";
 					$result_review = mysqli_query($con, $sql_review);
 					$avg_star = mysqli_fetch_assoc($result_review)['AVG(star)'];
+
+					$sql = "UPDATE products SET product_rating=$avg_star WHERE product_id=$product_id";
+
+					$result_update = mysqli_query($con, $sql);
 
 					$sql_review = "SELECT * FROM review WHERE product_id=$product_id";
 					$result_review = mysqli_query($con, $sql_review);
@@ -417,6 +419,7 @@ include "header.php";
 					$pro_title = $row['product_title'];
 					$pro_price = $row['product_price'];
 					$pro_image = $row['product_image'];
+					$pro_rating = $row['product_rating'];
 
 					$cat_name = $row["cat_title"];
 
@@ -436,12 +439,9 @@ include "header.php";
 										<p class='product-category'>$cat_name</p>
 										<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
 										<h4 class='product-price header-cart-item-info'>$pro_price<del class='product-old-price'>$990.00</del></h4>
-										<div class='product-rating'>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
-											<i class='fa fa-star'></i>
+										<div class='product-rating'>";
+					displayStar($pro_rating);
+					echo "
 										</div>
 										<div class='product-btns'>
 											<button class='add-to-wishlist'><i class='fa fa-heart-o'></i><span class='tooltipp'>add to wishlist</span></button>

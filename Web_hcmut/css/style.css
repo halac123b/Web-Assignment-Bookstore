@@ -1637,6 +1637,14 @@ textarea.input {
   color: #d10024;
 }
 
+.product .product-body .product-rating > i.fa-star {
+  color: #d10024;
+}
+
+.product .product-body .product-rating > i.fa-star-half-o {
+  color: #d10024;
+}
+
 .product-details .product-rating > i.fa-star-half-o {
   color: #d10024;
 }

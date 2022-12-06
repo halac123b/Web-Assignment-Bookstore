@@ -1,6 +1,5 @@
 <?php
-include "header.php";
-include 'db.php';
+session_start();
 $uid = $_SESSION['uid'];
 if (!isset($uid)) {
   echo "
@@ -8,6 +7,9 @@ if (!isset($uid)) {
   ";
   exit();
 }
+include "header.php";
+include 'db.php';
+
 
 $sql = "SELECT * FROM user_info WHERE user_id=$uid";
 $run_query = mysqli_query($con, $sql);

@@ -1,6 +1,5 @@
 <?php
-include "header.php";
-include 'db.php';
+session_start();
 $uid = $_SESSION['uid'];
 if (!isset($uid)) {
     echo "
@@ -8,6 +7,9 @@ if (!isset($uid)) {
   ";
     exit();
 }
+include "header.php";
+include 'db.php';
+
 
 $fname = $_POST['first-name'];
 $lname = $_POST['last-name'];

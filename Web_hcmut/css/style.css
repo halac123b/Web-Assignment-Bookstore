@@ -2759,3 +2759,13 @@ textarea.input {
   color: mediumblue;
   font-size: 16px;
 }
+
+/* Contact */
+.social {
+  display: flex;
+  position: relative;
+  gap: 20px;
+}
+.social img {
+  width: 40px;
+}

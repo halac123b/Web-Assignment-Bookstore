@@ -48,13 +48,13 @@ include "header.php";
 
 <!-- SECTION -->
 <div class="section main main-raised">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-			<!-- Product main img -->
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
 
-			<?php
+            <?php
 			include 'db.php';
 			$product_id = $_GET['p'];
 
@@ -92,17 +92,7 @@ include "header.php";
                                         <img src="product_images/' . $row['product_image'] . '" alt="">
                                     </div>
 
-                                    <div class="product-preview">
-                                        <img src="product_images/' . $row['product_image'] . '" alt="">
-                                    </div>
-
-                                    <div class="product-preview">
-                                        <img src="product_images/' . $row['product_image'] . 'g" alt="">
-                                    </div>
-
-                                    <div class="product-preview">
-                                        <img src="product_images/' . $row['product_image'] . '" alt="">
-                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -110,9 +100,9 @@ include "header.php";
 									';
 
 			?>
-					<!-- FlexSlider -->
+            <!-- FlexSlider -->
 
-			<?php
+            <?php
 					function console_log($output, $with_script_tags = true)
 					{
 						$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
@@ -403,7 +393,7 @@ include "header.php";
 				}
 			}
 			?>
-			<?php
+            <?php
 			include 'db.php';
 			$product_id = $_GET['p'];
 
@@ -467,15 +457,15 @@ include "header.php";
 				};
 			}
 			?>
-			<!-- product -->
+            <!-- product -->
 
-			<!-- /product -->
+            <!-- /product -->
 
-		</div>
-		<!-- /row -->
+        </div>
+        <!-- /row -->
 
-	</div>
-	<!-- /container -->
+    </div>
+    <!-- /container -->
 </div>
 <!-- /Section -->
 

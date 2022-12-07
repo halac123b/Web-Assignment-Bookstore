@@ -30,9 +30,9 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <script src="./assets/js/scrip.js" defer></script>
+    <script src="../assets/js/script.js" defer></script>
     <style>
     select option {
         color: black;
@@ -62,13 +62,6 @@ if (isset($_GET['logout'])) {
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="addsuppliers.php">
-                            <i class="material-icons">person_add</i>
-                            <p>Add users</p>
-                        </a>
-
-                    </li>
-                    <li class="nav-item ">
                         <a class="nav-link" href="add_products.php">
                             <i class="material-icons">add</i>
                             <p>Add Products</p>
@@ -93,7 +86,12 @@ if (isset($_GET['logout'])) {
                             <p>Activities</p>
                         </a>
                     </li>
-
+                    <li class="nav-item ">
+                        <a class="nav-link" href="orders.php">
+                            <i class="material-icons">shopping_cart</i>
+                            <p>Orders</p>
+                        </a>
+                    </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="profile.php">
                             <icons-image _ngcontent-aye-c22="" _nghost-aye-c19=""><i _ngcontent-aye-c19=""

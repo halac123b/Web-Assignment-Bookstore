@@ -9,14 +9,14 @@ if (!empty($order_id) &&  !empty($action)) {
         $query = "UPDATE orders_info SET status = 'Complete' WHERE order_id = '$order_id'";
         $result = mysqli_query($con, $query);
         if ($result) {
-            echo "<script>alert('Order Completed Successfully')</script>";
+            echo "<script>alert('Đặt hàng đã hoàn tất thành công')</script>";
         }
         header("Location: ./orders.php");
     } else if ($action == 'cancel') {
         $query = "UPDATE orders_info SET status = 'Cancelled' WHERE order_id = '$order_id'";
         $result = mysqli_query($con, $query);
         if ($result) {
-            echo "<script>alert('Order Confirmed Successfully')</script>";
+            echo "<script>alert('Xác nhận đơn hàng thành công')</script>";
         }
         header("Location: ./orders.php");
     }

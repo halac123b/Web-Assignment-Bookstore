@@ -42,7 +42,7 @@ include "topheader.php";
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h5 class="title">Add Product</h5>
+                            <h5 class="title">Thêm sản phẩm</h5>
                         </div>
                         <div class="card-body">
 
@@ -50,21 +50,21 @@ include "topheader.php";
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Product Title</label>
+                                        <label>Tiêu đề sản phẩm</label>
                                         <input type="text" id="product_name" required name="product_name"
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="">
-                                        <label for="">Add Image</label>
-                                        <input type="file" name="picture" required
-                                            class="btn btn-fill btn-success" id="picture">
+                                        <label for="">Thêm ảnh</label>
+                                        <input type="file" name="picture" required class="btn btn-fill btn-success"
+                                            id="picture">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Mô tả</label>
                                         <textarea rows="4" cols="80" id="details" required name="details"
                                             class="form-control"></textarea>
                                     </div>
@@ -72,9 +72,8 @@ include "topheader.php";
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Pricing</label>
-                                        <input type="text" id="price" name="price" required
-                                            class="form-control">
+                                        <label>Giá</label>
+                                        <input type="text" id="price" name="price" required class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +87,7 @@ include "topheader.php";
                 <div class="col-md-5">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h5 class="title">Categories</h5>
+                            <h5 class="title">Thể loại</h5>
                         </div>
                         <div class="card-body">
 
@@ -96,7 +95,7 @@ include "topheader.php";
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Product Category</label>
+                                        <label>Thể loại sản phẩm</label>
                                         <select name="product_type" id="product_type" class="form-control">
                                             <?php
                                             $categoryList = mysqli_query($con, "SELECT * FROM categories");
@@ -111,7 +110,7 @@ include "topheader.php";
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Product Brand</label>
+                                        <label for="">Thương hiệu sản phẩm</label>
                                         <select name="brand" id="brand" class="form-control">
                                             <?php
                                             $brandList = mysqli_query($con, "SELECT * FROM brands");
@@ -128,9 +127,8 @@ include "topheader.php";
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Product Keywords</label>
-                                        <input type="text" id="tags" name="tags" required
-                                            class="form-control">
+                                        <label>Từ khóa sản phẩm</label>
+                                        <input type="text" id="tags" name="tags" required class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +136,7 @@ include "topheader.php";
                         </div>
                         <div class="card-footer">
                             <button type="submit" id="btn_save" name="btn_save" required
-                                class="btn btn-fill btn-primary">Add Product</button>
+                                class="btn btn-fill btn-primary">Thêm sản phẩm</button>
                         </div>
                     </div>
                 </div>

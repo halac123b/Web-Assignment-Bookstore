@@ -36,7 +36,7 @@ if (isset($full_name) && isset($email) && isset($phone) && isset($address)  && i
         }
     }
     mysqli_query($con, $sql);
-    echo '<div style="height: 500px; padding: 20px; font-size: 20px">Checked out successfully, <a href="index.php"> return home page</a></div>';
+    echo '<div style="height: 500px; padding: 20px; font-size: 20px">Checked out successfully, <a href="index.php"> Trở về trang chủ</a></div>';
     $_SESSION['checkedout'] = true;
     echo "
         <script>
@@ -44,7 +44,7 @@ if (isset($full_name) && isset($email) && isset($phone) && isset($address)  && i
         </script>
     ";
 } else {
-    echo '<div>There is a error when checking out, <a href="checkout.php">please check out again</a></div>';
+    echo '<div>There is a error when checking out, <a href="checkout.php">Vui lòng kiểm tra lại</a></div>';
 }
 
 mysqli_close($con);

@@ -51,21 +51,21 @@ echo "
 ?>
 
 <div class="user-orders">
-  <h4>Đơn hàng gần đây</h4>
-  <div class="table-responsive">
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th style="width:10% ;">Ngày mua hàng</th>
-          <th style="width:60% ;">Sản phẩm</th>
-          <th style="width:10% ;">Đơn giá</th>
-          <th style="width:10% ;">Số lượng</th>
-          <th style="width:20% ;">Tổng cộng</th>
-        </tr>
-      </thead>
-      <tbody>
+    <h4>Đơn hàng gần đây</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:10% ;">Ngày mua hàng</th>
+                    <th style="width:60% ;">Sản phẩm</th>
+                    <th style="width:10% ;">Giá</th>
+                    <th style="width:10% ;">Số lượng</th>
+                    <th style="width:20% ;">Tổng cộng</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        <?php
+                <?php
         $sql = "SELECT * FROM orders_info WHERE phone='$phone' ORDER BY order_id DESC";
         $result = mysqli_query($con, $sql);
         $prev_order_id = -1;
@@ -121,10 +121,10 @@ echo "
           }
         }
         ?>
-        </td>
-      </tbody>
-    </table>
-  </div>
+                </td>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 </section>

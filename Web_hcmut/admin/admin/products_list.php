@@ -44,11 +44,11 @@ include "topheader.php";
                         <table class="table tablesorter " id="page1">
                             <thead class=" text-primary">
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Giá</th>
                                     <th>
-                                        <a class="btn btn-info" href="add_products.php">Add New</a>
+                                        <a class="btn btn-info" href="add_products.php">Thêm mới</a>
                                     </th>
                                 </tr>
                             </thead>
@@ -61,8 +61,8 @@ include "topheader.php";
                                     echo "<tr><td><img src='../../product_images/$image' style='width:50px; height:50px; border:groove #000'></td><td>$product_name</td>
                         <td>$price</td>
                         <td>
-                        <a class='btn btn-info' href='edit_products.php?product_id=$product_id'>Edit</a>
-                        <a class='btn btn-danger' href='products_list.php?product_id=$product_id&action=delete'>Delete</a>
+                        <a class='btn btn-info' href='edit_products.php?product_id=$product_id'>Chỉnh sửa</a>
+                        <a class='btn btn-danger' href='products_list.php?product_id=$product_id&action=delete'>Xóa</a>
                         </td>
                         </tr>";
                                 }
@@ -106,7 +106,8 @@ include "topheader.php";
 
                     for ($b = 1; $b <= $a; $b++) {
                     ?>
-                        <li class="page-item"><a class="page-link" href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
                     <?php
                     }
                     ?>

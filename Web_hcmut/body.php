@@ -62,7 +62,8 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Laptop<br>Collection</h3>
-                                <a href="product.php?p=78" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="product.php?p=78" class="cta-btn">Shop now <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -78,7 +79,8 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Accessories<br>Collection</h3>
-                                <a href="product.php?p=72" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="product.php?p=72" class="cta-btn">Shop now <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -94,7 +96,8 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Cameras<br>Collection</h3>
-                                <a href="product.php?p=79" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="product.php?p=79" class="cta-btn">Shop now <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -611,7 +614,8 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://assets.architecturaldigest.in/photos/624c2654cf7483eb90e638d6/16:9/w_2560%2Cc_limit/Books-1.jpg">
+                                <img
+                                    src="https://assets.architecturaldigest.in/photos/624c2654cf7483eb90e638d6/16:9/w_2560%2Cc_limit/Books-1.jpg">
                                 <div class="descriptions">
                                     <h1>Đa dạng thể loại nội dung</h1>
                                     <p>
@@ -630,7 +634,8 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://www.west-dunbarton.gov.uk/media/4320559/pickawood-gf8e6xvg_3e-unsplash.jpg">
+                                <img
+                                    src="https://www.west-dunbarton.gov.uk/media/4320559/pickawood-gf8e6xvg_3e-unsplash.jpg">
                                 <div class="descriptions">
                                     <h1>Đọc sách VIP siêu rẻ</h1>
                                     <p>

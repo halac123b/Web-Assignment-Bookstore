@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -58,7 +57,7 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('$username', '$email', '$password')";
   	mysqli_query($db, $query);
   	$_SESSION['Name'] = $username;
-  	$_SESSION['success'] = "You are now logged in";
+  	$_SESSION['success'] = "Bạn đã đăng nhập";
   	header('location: index.php');
   }
 }
@@ -67,10 +66,10 @@ if (isset($_POST['login_user'])) {
   $password = mysqli_real_escape_string($db, $_POST['password']);
 
   if (empty($username)) {
-  	array_push($errors, "email is required");
+  	array_push($errors, "Email bắt buộc không được trống");
   }
   if (empty($password)) {
-  	array_push($errors, "Password is required");
+  	array_push($errors, "Mật khẩu bắt buộc không được trống");
   }
 
   if (count($errors) == 0) {
@@ -79,10 +78,10 @@ if (isset($_POST['login_user'])) {
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['email'] = $username;
-  	  $_SESSION['success'] = "You are now logged in";
+  	  $_SESSION['success'] = "Bạn đã đăng nhập";
   	  header('location: index.php');
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+  		array_push($errors, "Sai xác thực tên người dùng / mật khẩu");
   	}
   }
 }

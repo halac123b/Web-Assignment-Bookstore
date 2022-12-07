@@ -27,7 +27,7 @@ include "activitity.php";
         <div class="col-md-14">
             <div class="card ">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title"> Users List</h4>
+                    <h4 class="card-title"> Danh sách người dùng</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive ps">
@@ -35,13 +35,13 @@ include "activitity.php";
                             <thead class=" text-primary">
                                 <tr>
                                     <th>ID</th>
-                                    <th>FirstName</th>
-                                    <th>LastName</th>
+                                    <th>Họ</th>
+                                    <th>Tên</th>
                                     <th>Email</th>
 
-                                    <th>Contact</th>
-                                    <th>Address</th>
-                                    <th>City</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Thành phố</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,7 +70,7 @@ include "activitity.php";
             <div class="col-md-6">
                 <div class="card ">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title"> Categories List</h4>
+                        <h4 class="card-title"> Danh sách các thể loại</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive ps">
@@ -78,8 +78,8 @@ include "activitity.php";
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Categories</th>
-                                        <th>Count</th>
+                                        <th>Thể loại</th>
+                                        <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,7 +112,7 @@ include "activitity.php";
             <div class="col-md-6">
                 <div class="card ">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Brands List</h4>
+                        <h4 class="card-title">Danh sách các thương hiệu</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive ps">
@@ -120,8 +120,8 @@ include "activitity.php";
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Brands</th>
-                                        <th>Count</th>
+                                        <th>Thương hiệu</th>
+                                        <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,7 +156,7 @@ include "activitity.php";
         <div class="col-md-5">
             <div class="card ">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Subscribers</h4>
+                    <h4 class="card-title">Danh sách người đăng ký</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive ps">

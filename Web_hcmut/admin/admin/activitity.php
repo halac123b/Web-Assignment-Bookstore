@@ -54,8 +54,8 @@
                   <div class="card-icon">
                       <i class="material-icons">local_shipping</i>
                   </div>
-                  <p class="card-category">Total sellers</p>
-                  <h3 class="card-title"><?php $query = "SELECT user_id FROM user_info";
+                  <p class="card-category">Total Delivering</p>
+                  <h3 class="card-title"><?php $query = "SELECT order_id FROM orders_info WHERE status='Delivering'";
                                             $result = mysqli_query($con, $query);
                                             if ($result) {
                                                 // it return number of rows in the table. 
@@ -75,17 +75,18 @@
                   <div class="card-icon">
                       <i class="material-icons">shopping_cart</i>
                   </div>
-                  <p class="card-category">Total Orders</p>
-                  <h3 class="card-title"><?php $query = "SELECT order_id FROM orders_info";
-                                            $result = mysqli_query($con, $query);
-                                            if ($result) {
-                                                // it return number of rows in the table. 
-                                                $row = mysqli_num_rows($result);
+                  <p class="card-category">Completed Orders</p>
+                  <h3 class="card-title">
+                      <?php $query = "SELECT order_id FROM orders_info WHERE status='Complete'";
+                        $result = mysqli_query($con, $query);
+                        if ($result) {
+                            // it return number of rows in the table. 
+                            $row = mysqli_num_rows($result);
 
-                                                printf(" " . $row);
+                            printf(" " . $row);
 
-                                                // close the result. 
-                                            }  ?></h3>
+                            // close the result. 
+                        }  ?></h3>
               </div>
 
           </div>

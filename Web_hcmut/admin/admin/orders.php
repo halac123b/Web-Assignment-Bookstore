@@ -40,6 +40,7 @@ include "topheader.php";
                                     <th>Customer Name</th>
                                     <th>Products</th>
                                     <th>Quantity</th>
+                                    <th>Date</th>
                                     <th>Contact | Email</th>
                                     <th>Address</th>
                                     <th>Price</th>
@@ -49,25 +50,26 @@ include "topheader.php";
                             </thead>
                             <tbody>
                                 <?php
-                $result = mysqli_query($con, "SELECT o.order_id,qty,f_name,product_title,email,address,total_amt,p_status FROM orders AS o INNER JOIN orders_info AS oi ON o.order_id=oi.order_id INNER JOIN products AS p ON p.product_id = o.product_id LIMIT $page1,10") or die("query 1 incorrect.....");
+                $result = mysqli_query($con, "SELECT op.order_id,qty,f_name,product_title,email,address,total,status,date FROM order_products AS op LEFT JOIN orders_info AS oi ON op.order_id=oi.order_id INNER JOIN products AS p ON p.product_id = op.product_id LIMIT $page1,10") or die("query 1 incorrect.....");
 
                 while ($row = mysqli_fetch_assoc($result)) {
                   echo "<tr>
                   <td>$row[f_name]</td>
                   <td>$row[product_title]</td>
                   <td>$row[qty]</td>
+                  <td>$row[date]</td>
                   <td>$row[email]</td>
                   <td>$row[address]</td>
-                  <td>$row[total_amt]</td>";
-                  if ($row["p_status"] == 'Delivering') {
-                    echo "<td class='text-secondary'>$row[p_status]</td>";
-                  } else if ($row["p_status"] == 'Cancelled') {
-                    echo "<td class='text-danger'>$row[p_status]</td>";
+                  <td>$row[total]</td>";
+                  if ($row["status"] == 'Delivering') {
+                    echo "<td class='text-secondary'>$row[status]</td>";
+                  } else if ($row["status"] == 'Cancelled') {
+                    echo "<td class='text-danger'>$row[status]</td>";
                   } else {
-                    echo "<td class='text-success'>$row[p_status]</td>";
+                    echo "<td class='text-success'>$row[status]</td>";
                   }
 
-                  if ($row["p_status"] == 'Delivering') {
+                  if ($row["status"] == 'Delivering') {
                     echo "
                   <td>
                         <a class='btn btn-sm btn-danger' href='edit_orders.php?order_id=$row[order_id]&action=cancel'>Cancel</a>

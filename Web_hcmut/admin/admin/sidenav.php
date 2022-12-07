@@ -81,12 +81,6 @@ if (isset($_GET['logout'])) {
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="activity.php">
-                            <i class="material-icons">timeline</i>
-                            <p>Activities</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
                         <a class="nav-link" href="orders.php">
                             <i class="material-icons">shopping_cart</i>
                             <p>Orders</p>

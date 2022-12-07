@@ -81,12 +81,20 @@ include "topheader.php";
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
+                    <?php
+                    $current_page = (int) $_GET['page'];
+                    $previous_page = $current_page - 1;
+                    if ($previous_page < 1) {
+                        $previous_page = 1;
+                    }
+                    echo "
+                    <li class='page-item'>
+                        <a class='page-link' href='products_list.php?page=$previous_page' aria-label='Previous'>
+                            <span aria-hidden='true'>&laquo;</span>
+                            <span class='sr-only'>Previous</span>
                         </a>
-                    </li>
+                    </li>"
+                    ?>
                     <?php
                     //counting paging
 
@@ -98,27 +106,26 @@ include "topheader.php";
 
                     for ($b = 1; $b <= $a; $b++) {
                     ?>
-                    <li class="page-item"><a class="page-link"
-                            href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
+                        <li class="page-item"><a class="page-link" href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
                     <?php
                     }
                     ?>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
+                    <?php
+                    $current_page = (int) $_GET['page'];
+                    $next_page = $current_page + 1;
+                    if ($next_page > $a) {
+                        $next_page = $a;
+                    }
+                    echo "
+                    <li class='page-item'>
+                        <a class='page-link' href='products_list.php?page=$next_page' aria-label='Next'>
+                            <span aria-hidden='true'>&raquo;</span>
+                            <span class='sr-only'>Next</span>
                         </a>
-                    </li>
+                    </li>"
+                    ?>
                 </ul>
             </nav>
-
-
-
         </div>
-
-
     </div>
 </div>
-<?php
-include "footer.php";
-?>

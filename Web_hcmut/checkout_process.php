@@ -16,11 +16,11 @@ $cart = $_POST['cart'];
 $total = (int)$_POST['total'];
 $pay_type = $_POST['pay-type'];
 $cart = json_decode($cart);
-$date = date('d/m/Y, h:i');
+$date = date('d/m/Y, H:i');
 
 if (isset($full_name) && isset($email) && isset($phone) && isset($address)  && isset($cart) && isset($total)) {
-    $sql = "INSERT INTO orders_info(f_name, email, address, phone, total, date) 
-            VALUES('$full_name', '$email', '$address', '$phone', $total, '$date')";
+    $sql = "INSERT INTO orders_info(f_name, email, address, phone, total, date, status) 
+            VALUES('$full_name', '$email', '$address', '$phone', $total, '$date', 'Delivering')";
     mysqli_query($con, $sql);
 
     $order_id = mysqli_insert_id($con);

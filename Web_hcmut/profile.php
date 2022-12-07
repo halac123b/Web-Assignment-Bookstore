@@ -57,8 +57,10 @@ echo "
       <thead>
         <tr>
           <th style="width:10% ;">Ngày mua hàng</th>
-          <th style="width:80% ;">Sản phẩm</th>
-          <th style="width:10% ;">Số tiền</th>
+          <th style="width:60% ;">Sản phẩm</th>
+          <th style="width:10% ;">Đơn giá</th>
+          <th style="width:10% ;">Số lượng</th>
+          <th style="width:20% ;">Tổng cộng</th>
         </tr>
       </thead>
       <tbody>
@@ -66,52 +68,59 @@ echo "
         <?php
         $sql = "SELECT * FROM orders_info WHERE phone='$phone' ORDER BY order_id DESC";
         $result = mysqli_query($con, $sql);
+        $prev_order_id = -1;
         foreach ($result as $row) {
           $order_id = $row['order_id'];
           $total = $row['total'];
           $date = $row['date'];
-          echo "
-              <tr>
-                <td>$date</td>
-              <td>
-          ";
           $sql = "SELECT * FROM order_products o, products p
           WHERE order_id=$order_id AND o.product_id=p.product_id";
           $result = mysqli_query($con, $sql);
+          $count = mysqli_num_rows($result);
 
           foreach ($result as $prod) {
             $image = $prod['product_image'];
             $title = $prod['product_title'];
             $price = $prod['product_price'];
             $quantity = $prod['qty'];
+            if ($order_id != $prev_order_id) {
+              echo "
+                  <tr>
+                    <td rowspan='$count'>$date</td>
+              ";
+            } else {
+              echo "
+                  <tr>
+                  ";
+            }
 
             echo "
-                 <div class='row'>
-                    <div class='col-lg-2 col-sm-2 col-xs-12'>
-                      <img src='./product_images/$image' width='40' alt='$title'>
-                    </div>
-                    <div class='col-lg-9 col-sm-8 col-xs-12'>
-                      $title
-                    </div>
-                    <div class='col-lg-1 col-sm-2 col-xs-12'>
-                      <span>
-                        $price &#x20AB;
-                      </span>
-                      <span>
-                        x$quantity
-                      </span>
-                    </div>
-                  </div>
+                <td >
+                  <img src='./product_images/$image' width='40' alt='$title'>
+                  $title
+                </td>
+                <td >
+                  $price &#x20AB;
+                </td>
+                <td>
+                    $quantity
+                </td>
             ";
-          }
 
-          echo "
-                <td>$total &#x20AB;</td>
-              </tr>
-          ";
+            if ($order_id != $prev_order_id) {
+              $prev_order_id = $order_id;
+              echo "
+                    <td rowspan='$count'>$total &#x20AB;</td>
+                  </tr>
+              ";
+            } else {
+              echo "
+                  </tr>
+                ";
+            }
+          }
         }
         ?>
-
         </td>
       </tbody>
     </table>

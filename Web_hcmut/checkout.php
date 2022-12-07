@@ -1,7 +1,7 @@
 <?php
+include "header.php";
 include "db.php";
 
-include "header.php";
 ?>
 
 <style>
@@ -132,7 +132,7 @@ include "header.php";
 											<h3>Billing Address</h3>
 											<label for='fname'><i class='fa fa-user'></i> Full Name</label>
 											<input type='text' id='fname' class='form-control' 
-											name='fullname' pattern='^[a-zA-Z ]+$' required
+											name='fullname' required
 											value='$full_name'>
 											<label for='email'><i class='fa fa-envelope'></i> Email</label>
 											<input type='text' id='email' name='email' class='form-control' 
@@ -158,7 +158,7 @@ include "header.php";
 										<div class="col-50">
 											<h3>Billing Address</h3>
 											<label for="fname"><i class="fa fa-user"></i> Full Name</label>
-											<input type="text" id="fname" class="form-control" name="fullname" pattern="^[a-zA-Z ]+$" required>
+											<input type="text" id="fname" class="form-control" name="fullname" required>
 											<label for="email"><i class="fa fa-envelope"></i> Email</label>
 											<input type="text" id="email" name="email" class="form-control" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9]+(\.[a-z]{2,4})$" required>
 											<label for="phone"><i class="fa fa-phone"></i> Phone</label>

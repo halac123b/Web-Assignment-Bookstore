@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+include 'ultils.php';
 ?>
 
 <!-- SECTION -->
@@ -46,7 +47,7 @@ include "header.php";
 
 					$result_update = mysqli_query($con, $sql);
 
-					$sql_review = "SELECT * FROM review WHERE product_id=$product_id";
+					$sql_review = "SELECT * FROM review r, user_info u WHERE product_id=$product_id AND r.user_id=u.user_id ";
 					$result_review = mysqli_query($con, $sql_review);
 
 					$star_array = array(0, 0, 0, 0, 0);
@@ -72,18 +73,6 @@ include "header.php";
 						}
 					}
 
-					function displayStar($avg)
-					{
-						for ($i = $avg; $i > $avg - 5; $i--) {
-							if ($i >= 1) {
-								echo '<i class="fa fa-star"></i>';
-							} elseif ($i >= 0.5) {
-								echo '<i class="fa fa-star-half-o"></i>';
-							} else {
-								echo '<i class="fa fa-star-o"></i>';
-							}
-						}
-					}
 
 					echo '       
                     <div class="col-lg-8 col-md-6 col-xs-12">
@@ -94,7 +83,7 @@ include "header.php";
 					displayStar($avg_star);
 					echo ' ' . number_format($avg_star, 2, '.', '') . '
 								</div>
-								<a class="review-link" href="#product-tab">' . $review_num . ' Đánh giá(s) | Thêm đánh giá</a>
+								<a class="review-link" href="#product-tab">' . $review_num . ' Đánh giá | Thêm đánh giá của bạn</a>
 							</div>
 							<div>
 								<h3 class="product-price">' . $row['product_price'] . '&#x20AB;</h3>
@@ -190,7 +179,7 @@ include "header.php";
 						echo '
 							<li>
 							<div class="review-heading">
-								<h5 class="name">' . $row_review['name'] . '</h5>
+								<h5 class="name">' . $row_review['last_name'] . '</h5>
 								<div class="review-rating">';
 						displayStar($row_review['star']);
 						echo '
@@ -208,6 +197,15 @@ include "header.php";
 						$user = $_SESSION['uid'];
 						$star = $_POST['star'];
 						$comment = $_POST['comment'];
+
+						if (!isset($user)) {
+							echo "
+								<script>
+									alert('Vui lòng đăng nhập để đánh giá sản phẩm')
+								</script>
+							";
+							return;
+						}
 
 						$sql = "INSERT INTO `review` (`product_id`, `user_id`, `star`, `comment`)
 							VALUES ('$product_id', '$user', '$star', '$comment');";
@@ -280,6 +278,7 @@ include "header.php";
 				}
 			}
 			?>
+
 			<?php
 			include 'db.php';
 			$product_id = $_GET['p'];

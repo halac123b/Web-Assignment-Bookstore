@@ -2,6 +2,7 @@
 session_start();
 $ip_add = getenv("REMOTE_ADDR");
 include "db.php";
+include 'ultils.php';
 
 if (isset($_POST["categoryhome"])) {
 	$category_query = "SELECT * FROM categories";
@@ -70,7 +71,7 @@ if (isset($_POST["brand"])) {
 	$run_query = mysqli_query($con, $brand_query);
 	echo "
 		<div class='aside'>
-			<h3 class='aside-title'>Publisher</h3>
+			<h3 class='aside-title'>Nhà xuất bản</h3>
 			<div class='btn-group-vertical'>
 	";
 	if (mysqli_num_rows($run_query) > 0) {
@@ -242,7 +243,7 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 
 	$run_query = mysqli_query($con, $sql);
 	if (mysqli_num_rows($run_query) == 0) {
-		echo "<div>Không có sản phẩm nào ở đây</div>";
+		echo "<div>Không có sản phẩm nào. Vui lòng thử với lựa chọn khác!</div>";
 		exit();
 	}
 
@@ -254,7 +255,7 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 		$pro_price = $row['product_price'];
 		$pro_image = $row['product_image'];
 		$cat_name = $row["cat_title"];
-		$rating = 4;
+		$rating = $row['product_rating'];
 
 		echo "
 			<div class='col-md-4 col-xs-6'>
@@ -268,15 +269,7 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 							<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
 							<div class='product-rating'>
 							";
-
-		for ($i = 1; $i <= 5; $i++) {
-			if ($i <= $rating) {
-				echo "<i class='fa fa-star active'></i>";
-			} else {
-				echo "<i class='fa fa-star'></i>";
-			}
-		}
-
+		displayStar($rating);
 		echo "
 							</div>
 						</div>

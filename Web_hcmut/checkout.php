@@ -5,104 +5,104 @@ include "db.php";
 ?>
 
 <style>
-.row-checkout {
-    display: -ms-flexbox;
-    /* IE10 */
-    display: flex;
-    -ms-flex-wrap: wrap;
-    /* IE10 */
-    flex-wrap: wrap;
-    margin: 0 -16px;
-}
-
-.col-25 {
-    -ms-flex: 25%;
-    /* IE10 */
-    flex: 25%;
-}
-
-.col-50 {
-    -ms-flex: 50%;
-    /* IE10 */
-    flex: 50%;
-}
-
-.col-75 {
-    -ms-flex: 75%;
-    /* IE10 */
-    flex: 75%;
-}
-
-.col-25,
-.col-50,
-.col-75 {
-    padding: 0 16px;
-}
-
-.container-checkout {
-    background-color: #f2f2f2;
-    padding: 5px 20px 15px 20px;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-}
-
-input[type=text],
-input[type=number] {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-label {
-    margin-bottom: 10px;
-    display: block;
-}
-
-.icon-container {
-    margin-bottom: 20px;
-    padding: 7px 0;
-    font-size: 24px;
-}
-
-.checkout-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    width: 100%;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 17px;
-}
-
-.checkout-btn:hover {
-    background-color: #45a049;
-}
-
-
-
-hr {
-    border: 1px solid lightgrey;
-}
-
-span.price {
-    float: right;
-    color: grey;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {
     .row-checkout {
-        flex-direction: column-reverse;
+        display: -ms-flexbox;
+        /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /* IE10 */
+        flex-wrap: wrap;
+        margin: 0 -16px;
     }
 
     .col-25 {
-        margin-bottom: 20px;
+        -ms-flex: 25%;
+        /* IE10 */
+        flex: 25%;
     }
-}
+
+    .col-50 {
+        -ms-flex: 50%;
+        /* IE10 */
+        flex: 50%;
+    }
+
+    .col-75 {
+        -ms-flex: 75%;
+        /* IE10 */
+        flex: 75%;
+    }
+
+    .col-25,
+    .col-50,
+    .col-75 {
+        padding: 0 16px;
+    }
+
+    .container-checkout {
+        background-color: #f2f2f2;
+        padding: 5px 20px 15px 20px;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+    }
+
+    input[type=text],
+    input[type=number] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .icon-container {
+        margin-bottom: 20px;
+        padding: 7px 0;
+        font-size: 24px;
+    }
+
+    .checkout-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+    .checkout-btn:hover {
+        background-color: #45a049;
+    }
+
+
+
+    hr {
+        border: 1px solid lightgrey;
+    }
+
+    span.price {
+        float: right;
+        color: grey;
+    }
+
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+        .row-checkout {
+            flex-direction: column-reverse;
+        }
+
+        .col-25 {
+            margin-bottom: 20px;
+        }
+    }
 </style>
 
 
@@ -117,17 +117,17 @@ span.price {
                         <div class="row-checkout">
 
                             <?php
-							if (isset($_SESSION['uid'])) {
-								$user_id = $_SESSION['uid'];
-								$sql = "SELECT * FROM user_info WHERE user_id=$user_id";
-								$result = mysqli_query($con, $sql);
-								$result = mysqli_fetch_assoc($result);
-								$full_name = $result['first_name'] . ' ' . $result['last_name'];
-								$email = $result['email'];
-								$phone = $result['mobile'];
-								$address = $result['address1'] . ", " . $result['address2'];
+                            if (isset($_SESSION['uid'])) {
+                                $user_id = $_SESSION['uid'];
+                                $sql = "SELECT * FROM user_info WHERE user_id=$user_id";
+                                $result = mysqli_query($con, $sql);
+                                $result = mysqli_fetch_assoc($result);
+                                $full_name = $result['first_name'] . ' ' . $result['last_name'];
+                                $email = $result['email'];
+                                $phone = $result['mobile'];
+                                $address = $result['address1'] . ", " . $result['address2'];
 
-								echo "
+                                echo "
 										<div class='col-50'>
 											<h3>Billing Address</h3>
 											<label for='fname'><i class='fa fa-user'></i> Full Name</label>
@@ -153,8 +153,8 @@ span.price {
 											</label>
 										</div>
 									";
-							} else {
-								echo '
+                            } else {
+                                echo '
 										<div class="col-50">
 											<h3>Địa chỉ nhận hàng</h3>
 											<label for="fname"><i class="fa fa-user"></i> Tên đầy đủ</label>
@@ -174,8 +174,8 @@ span.price {
 											</label>
 										</div>
 									';
-							}
-							?>
+                            }
+                            ?>
 
 
                             <div class="col-50" id="pay-by-card">
@@ -186,7 +186,7 @@ span.price {
                         <input type="hidden" name="cart" id="cart-submit">
                         <input type="hidden" name="total" id="total-submit">
 
-                        <input type="submit" id="submit" value="Tiếp tục thanh toán" class="btn checkout-btn">
+                        <input type="submit" id="submit" value="Xác nhận đặt hàng" class="btn checkout-btn">
                     </form>
                 </div>
             </div>

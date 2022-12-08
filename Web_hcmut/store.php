@@ -17,15 +17,18 @@ include 'header.php';
                     <div id="get_brand">
                     </div>
 
-                    <h3 for="sort">Sắp xếp theo</h3>
-                    <select id="sort-select" value="1">
-                        <option value="1">Mới nhất</option>
-                        <option value="2">Giá tăng dần</option>
-                        <option value="3">Giá giảm dần</option>
-                    </select>
+                    <div class="sort-container">
+                        <h3 for="sort" class="aside-title">Sắp xếp theo</h3>
+                        <select id="sort-select" value="1">
+                            <option value="1">Mới nhất</option>
+                            <option value="2">Giá tăng dần</option>
+                            <option value="3">Giá giảm dần</option>
+                        </select>
+                        <div id="clear-filter">Xóa tất cả bộ lọc</div>
+
+                    </div>
                     <!-- /aside Widget -->
 
-                    <div id="clear-filter">Xóa tất cả bộ lọc</div>
                 </div>
                 <!-- /ASIDE -->
 

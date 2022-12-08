@@ -146,22 +146,11 @@
                             <!-- tab -->
                             <div id="tab1" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
-
                                     <?php
                                     include 'db.php';
+                                    include 'ultils.php';
 
-                                    function displayStar($avg)
-                                    {
-                                        for ($i = $avg; $i > $avg - 5; $i--) {
-                                            if ($i >= 1) {
-                                                echo '<i class="fa fa-star"></i>';
-                                            } elseif ($i >= 0.5) {
-                                                echo '<i class="fa fa-star-half-o"></i>';
-                                            } else {
-                                                echo '<i class="fa fa-star-o"></i>';
-                                            }
-                                        }
-                                    }
+
                                     $product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id ORDER BY product_id DESC LIMIT 10";
                                     $run_query = mysqli_query($con, $product_query);
 
@@ -254,7 +243,7 @@
 
                 <div class="col-md-12 col-xs-12">
                     <div class="section-title">
-                        <h4 class="title">Lựa chọn tốt nhất</h4>
+                        <h4 class="title">Nên đọc</h4>
                         <div class="section-nav">
                             <div id="slick-nav-4" class="products-slick-nav"></div>
                         </div>

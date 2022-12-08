@@ -36,7 +36,7 @@ include "topheader.php";
         <div class="col-md-14">
             <div class="card ">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title"> Danh sách sản phẩm</h4>
+                    <h4 class="card-title"> Products List</h4>
 
                 </div>
                 <div class="card-body">
@@ -106,7 +106,8 @@ include "topheader.php";
 
                     for ($b = 1; $b <= $a; $b++) {
                     ?>
-                        <li class="page-item"><a class="page-link" href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
                     <?php
                     }
                     ?>

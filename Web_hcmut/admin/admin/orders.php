@@ -50,11 +50,7 @@ include "topheader.php";
               </thead>
               <tbody>
                 <?php
-                $result = mysqli_query($con, "SELECT 
-                op.order_id,qty,f_name,product_title,email,address,total,status,date 
-                FROM order_products AS op LEFT JOIN orders_info AS oi ON op.order_id=oi.order_id 
-                INNER JOIN products AS p ON p.product_id = op.product_id 
-                ORDER BY order_id DESC LIMIT $page1,10") or die("query 1 incorrect.....");
+                $result = mysqli_query($con, "SELECT op.order_id,qty,f_name,product_title,email,address,total,status,date FROM order_products AS op LEFT JOIN orders_info AS oi ON op.order_id=oi.order_id INNER JOIN products AS p ON p.product_id = op.product_id LIMIT $page1,10") or die("query 1 incorrect.....");
                 $prev_order_id = -1;
                 while ($row = mysqli_fetch_assoc($result)) {
                   $order_id = $row['order_id'];

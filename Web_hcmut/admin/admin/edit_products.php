@@ -64,12 +64,10 @@ include "topheader.php";
                         <div class="card-body">
 
                             <div class="row">
-
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tiêu đề sản phẩm</label>
-                                        <input type="text" id="product_name" required name="product_name"
-                                            class="form-control" value=<?= $product["product_title"] ?> />
+                                        <input type="text" id="product_name" required name="product_name" class="form-control" value=<?= '"' . $product['product_title'] . '"' ?> />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -81,16 +79,14 @@ include "topheader.php";
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Mô tả</label>
-                                        <textarea rows="4" cols="80" id="details" required name="details"
-                                            class="form-control"><?= $product["product_desc"] ?></textarea>
+                                        <textarea rows="4" cols="80" id="details" required name="details" class="form-control"><?= $product["product_desc"] ?></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Gía</label>
-                                        <input type="text" id="price" name="price" required class="form-control"
-                                            value=<?= $product["product_price"] ?>>
+                                        <input type="text" id="price" name="price" required class="form-control" value=<?= $product["product_price"] ?>>
                                     </div>
                                 </div>
                             </div>
@@ -152,16 +148,14 @@ include "topheader.php";
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Từ khóa sản phẩm</label>
-                                        <input type="text" id="tags" name="tags" required class="form-control"
-                                            value=<?= $product["product_keywords"] ?> />
+                                        <input type="text" id="tags" name="tags" required class="form-control" value=<?= '"' . $product["product_keywords"] . '"' ?> />
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" id="btn_save" name="btn_save" required
-                                class="btn btn-fill btn-primary">Chỉnh sửa sản phẩm</button>
+                            <button type="submit" id="btn_save" name="btn_save" required class="btn btn-fill btn-primary">Chỉnh sửa sản phẩm</button>
                         </div>
                     </div>
                 </div>

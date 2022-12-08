@@ -11,13 +11,14 @@ if (isset($_POST["f_name"])) {
 	$mobile = $_POST['mobile'];
 	$address1 = $_POST['address1'];
 	$address2 = $_POST['address2'];
-	$name = "/^[a-zA-Z ]+$/";
+	$name = "/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/";
 	$emailValidation = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9]+(\.[a-z]{2,4})$/";
 	$number = "/^[0-9]+$/";
 
 	//prevent sql injection
 	$email = mysqli_real_escape_string($con, $email);
 	$password = mysqli_real_escape_string($con, $password);
+
 
 	if (
 		empty($f_name) || empty($l_name) || empty($email) || empty($password) || empty($repassword) ||

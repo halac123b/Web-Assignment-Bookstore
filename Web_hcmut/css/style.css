@@ -1777,7 +1777,7 @@ textarea.input {
 \*----------------------------*/
 
 #product-tab {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 #product-tab .tab-nav {
@@ -1985,11 +1985,11 @@ textarea.input {
 /*-- Review Form --*/
 
 .review-form .input {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .review-form .input-rating {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .review-form .input-rating .stars {
@@ -2010,7 +2010,7 @@ textarea.input {
 
 .review-form .input-rating .stars > label:before {
   content: "\f006";
-  font-family: FontAwesome;
+  font-family: "FontAwesome";
   color: #e4e7ed;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
@@ -2515,21 +2515,16 @@ textarea.input {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
-.mainn {
-  background: #c9d6ff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #e2e2e2,
-    #c9d6ff
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #e2e2e2,
-    #c9d6ff
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+.review-container {
   position: relative;
   z-index: 3;
+  border: 1px solid #7366ff66;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.review-container textarea {
+  resize: none;
 }
 
 .styled-table {

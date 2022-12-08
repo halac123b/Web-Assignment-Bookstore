@@ -10,13 +10,14 @@ if (!isset($uid)) {
 include "header.php";
 include 'db.php';
 
-
-$fname = $_POST['first-name'];
-$lname = $_POST['last-name'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
-$addr = $_POST['addr'];
-$city = $_POST['city'];
+if (isset($_POST['first-name'])) {
+    $fname = $_POST['first-name'];
+    $lname = $_POST['last-name'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $addr = $_POST['addr'];
+    $city = $_POST['city'];
+}
 
 if (isset($fname) && isset($lname) && isset($phone) && isset($email) && isset($addr) && isset($city)) {
     $sql = "UPDATE user_info 

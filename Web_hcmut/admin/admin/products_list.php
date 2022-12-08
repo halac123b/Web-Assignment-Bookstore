@@ -33,6 +33,24 @@ include "topheader.php";
 <!-- End Navbar -->
 <div class="content">
     <div class="container-fluid">
+        <div class="panel-body">
+
+            <?php  //success message
+
+            if (isset($_POST['success'])) {
+                $success = $_POST["success"];
+                echo "<div class='col-md-12 col-xs-12' id='product_msg'>
+                        <div class='alert alert-success'>
+                            <b>Thêm sản phẩm thành công</b>
+                        </div>
+                        </div>
+                    ";
+            }
+            ?>
+            <script>
+                setTimeout(() => $('#product_msg').html(null), 5000)
+            </script>
+        </div>
         <div class="col-md-14">
             <div class="card ">
                 <div class="card-header card-header-primary">
@@ -106,8 +124,7 @@ include "topheader.php";
 
                     for ($b = 1; $b <= $a; $b++) {
                     ?>
-                    <li class="page-item"><a class="page-link"
-                            href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
+                        <li class="page-item"><a class="page-link" href="products_list.php?page=<?php echo $b; ?>"><?php echo $b . " "; ?></a></li>
                     <?php
                     }
                     ?>

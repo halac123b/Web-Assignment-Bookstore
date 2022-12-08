@@ -40,6 +40,10 @@ textarea {
   -ms-appearance: unset !important;
 }
 
+select option {
+  color: black;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   appearance: none !important;

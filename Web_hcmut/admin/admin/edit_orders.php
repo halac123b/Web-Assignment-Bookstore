@@ -1,5 +1,5 @@
 <?php
-require './includes/db.php';
+include("../../db.php");
 
 $order_id = $_GET['order_id'];
 $action = $_GET['action'];

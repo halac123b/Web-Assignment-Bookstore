@@ -24,7 +24,10 @@ if (isset($_POST['btn_save'])) {
             $pic_name = time() . "_" . $picture_name;
         move_uploaded_file($picture_tmp_name, "../../product_images/" . $pic_name);
 
-        mysqli_query($con, "insert into products (product_cat, product_brand,product_title,product_price, product_desc, product_image,product_keywords) values ('$product_type','$brand','$product_name','$price','$details','$pic_name','$tags')") or die("query incorrect");
+        mysqli_query($con, "INSERT INTO products 
+        (product_cat, product_brand,product_title,product_price, 
+        product_desc, product_image,product_keywords) VALUES
+         ('$product_type','$brand','$product_name','$price','$details','$pic_name','$tags')") or die("query incorrect" . mysqli_error($con));
         header("location: sumit_form.php?success=1");
     }
     mysqli_close($con);
@@ -51,22 +54,19 @@ include "topheader.php";
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tiêu đề sản phẩm</label>
-                                        <input type="text" id="product_name" required name="product_name"
-                                            class="form-control">
+                                        <input type="text" id="product_name" required name="product_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="">
                                         <label for="">Thêm ảnh</label>
-                                        <input type="file" name="picture" required class="btn btn-fill btn-success"
-                                            id="picture">
+                                        <input type="file" name="picture" required class="btn btn-fill btn-success" id="picture">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Mô tả</label>
-                                        <textarea rows="4" cols="80" id="details" required name="details"
-                                            class="form-control"></textarea>
+                                        <textarea rows="4" cols="80" id="details" required name="details" class="form-control"></textarea>
                                     </div>
                                 </div>
 
@@ -135,8 +135,7 @@ include "topheader.php";
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" id="btn_save" name="btn_save" required
-                                class="btn btn-fill btn-primary">Thêm sản phẩm</button>
+                            <button type="submit" id="btn_save" name="btn_save" required class="btn btn-fill btn-primary">Thêm sản phẩm</button>
                         </div>
                     </div>
                 </div>

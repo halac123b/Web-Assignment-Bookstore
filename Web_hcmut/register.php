@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['uid'])) {
+	var_dump($_SESSION['uid']);
+	exit();
+}
 include "db.php";
 if (isset($_POST["f_name"])) {
 
@@ -131,9 +135,9 @@ if (isset($_POST["f_name"])) {
 			$run_query = mysqli_query($con, $sql);
 			$_SESSION["uid"] = mysqli_insert_id($con);
 			$_SESSION["name"] = $f_name;
-			if (mysqli_query($con, $sql)) {
+			if ($run_query) {
 				echo "successful";
-				exit;
+				exit();
 			}
 		}
 	}

@@ -260,10 +260,11 @@
                                 $title = $row['product_title'];
                                 $price = $row['product_price'];
                                 $des = $row['product_desc'];
+                                $id = $row['product_id'];
 
                                 echo "
                                  <div class='book'>
-                                    <img src='product_images/$img' height='120' alt='$title'>
+                                    <a href='product.php?p=$id'><img src='product_images/$img' height='120' alt='$title'></a>
                                     <h4>$title</h4>
                                     <span>$des</span>
                                     <div class='price'>

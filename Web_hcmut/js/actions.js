@@ -535,7 +535,7 @@ $(document).ready(function () {
         $(".overlay").hide();
         if (data == "successful") {
           $("#e_msg").html("Đăng nhập thành công");
-          setTimeout(() => $(".fade.in").removeClass("in"), 200);
+          setTimeout(() => $(".fade.in").removeClass("in"), 500);
         } else {
           $("#e_msg").html(data);
         }
@@ -554,7 +554,7 @@ $(document).ready(function () {
         $(".overlay").hide();
         if (data == "successful") {
           $("#signup_msg").html("Đăng ký tài khoản thành công");
-          setTimeout(() => $(".fade.in").removeClass("in"), 200);
+          setTimeout(() => $(".fade.in").removeClass("in"), 500);
         } else {
           $("#signup_msg").html(data);
         }

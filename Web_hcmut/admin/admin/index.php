@@ -13,16 +13,16 @@ include "activitity.php";
         <div class="panel-body">
             <a>
                 <?php  //success message
-        if (isset($_POST['success'])) {
-          $success = $_POST["success"];
-          echo "<div class='col-md-12 col-xs-12' id='product_msg'>
+                if (isset($_POST['success'])) {
+                    $success = $_POST["success"];
+                    echo "<div class='col-md-12 col-xs-12' id='product_msg'>
           <div class='alert alert-success'>
             <a href='#'' class='close' data-dismiss='alert' aria-label='close'>×</a>
             <b>Success</b>
           </div>
         </div>";
-        }
-        ?></a>
+                }
+                ?></a>
         </div>
         <div class="col-md-14">
             <div class="card ">
@@ -46,14 +46,14 @@ include "activitity.php";
                             </thead>
                             <tbody>
                                 <?php
-                $result = mysqli_query($con, "select * from user_info") or die("query 1 incorrect.....");
+                                $result = mysqli_query($con, "select * from user_info") or die("query 1 incorrect.....");
 
-                while (list($user_id, $first_name, $last_name, $email, $password, $phone, $address1, $address2) = mysqli_fetch_array($result)) {
-                  echo "<tr><td>$user_id</td><td>$first_name</td><td>$last_name</td><td>$email</td><td>$phone</td><td>$address1</td><td>$address2</td>
+                                while (list($user_id, $first_name, $last_name, $email, $password, $phone, $address1, $address2) = mysqli_fetch_array($result)) {
+                                    echo "<tr><td>$user_id</td><td>$first_name</td><td>$last_name</td><td>$email</td><td>$phone</td><td>$address1</td><td>$address2</td>
 
                         </tr>";
-                }
-                ?>
+                                }
+                                ?>
                             </tbody>
                         </table>
                         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
@@ -70,7 +70,7 @@ include "activitity.php";
             <div class="col-md-6">
                 <div class="card ">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title"> Danh sách các thể loại</h4>
+                        <h4 class="card-title"> Sản phẩm theo danh mục</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive ps">
@@ -78,25 +78,25 @@ include "activitity.php";
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Thể loại</th>
+                                        <th>Danh mục</th>
                                         <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                  $result = mysqli_query($con, "select * from categories") or die("query 1 incorrect.....");
-                  $i = 1;
-                  while (list($cat_id, $cat_title) = mysqli_fetch_array($result)) {
-                    $sql = "SELECT COUNT(*) AS count_items FROM products WHERE product_cat=$i";
-                    $query = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_array($query);
-                    $count = $row["count_items"];
-                    $i++;
-                    echo "<tr><td>$cat_id</td><td>$cat_title</td><td>$count</td>
+                                    $result = mysqli_query($con, "select * from categories") or die("query 1 incorrect.....");
+                                    $i = 1;
+                                    while (list($cat_id, $cat_title) = mysqli_fetch_array($result)) {
+                                        $sql = "SELECT COUNT(*) AS count_items FROM products WHERE product_cat=$i";
+                                        $query = mysqli_query($con, $sql);
+                                        $row = mysqli_fetch_array($query);
+                                        $count = $row["count_items"];
+                                        $i++;
+                                        echo "<tr><td>$cat_id</td><td>$cat_title</td><td>$count</td>
 
                         </tr>";
-                  }
-                  ?>
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
@@ -112,7 +112,7 @@ include "activitity.php";
             <div class="col-md-6">
                 <div class="card ">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Danh sách các thương hiệu</h4>
+                        <h4 class="card-title">Sản phẩm theo nhà xuất bản</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive ps">
@@ -120,26 +120,26 @@ include "activitity.php";
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Thương hiệu</th>
+                                        <th>Nhà xuất bản</th>
                                         <th>Số lượng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                  $result = mysqli_query($con, "select * from brands") or die("query 1 incorrect.....");
-                  $i = 1;
-                  while (list($brand_id, $brand_title) = mysqli_fetch_array($result)) {
+                                    $result = mysqli_query($con, "select * from brands") or die("query 1 incorrect.....");
+                                    $i = 1;
+                                    while (list($brand_id, $brand_title) = mysqli_fetch_array($result)) {
 
-                    $sql = "SELECT COUNT(*) AS count_items FROM products WHERE product_brand=$i";
-                    $query = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_array($query);
-                    $count = $row["count_items"];
-                    $i++;
-                    echo "<tr><td>$brand_id</td><td>$brand_title</td><td>$count</td>
+                                        $sql = "SELECT COUNT(*) AS count_items FROM products WHERE product_brand=$i";
+                                        $query = mysqli_query($con, $sql);
+                                        $row = mysqli_fetch_array($query);
+                                        $count = $row["count_items"];
+                                        $i++;
+                                        echo "<tr><td>$brand_id</td><td>$brand_title</td><td>$count</td>
 
                         </tr>";
-                  }
-                  ?>
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
@@ -153,45 +153,6 @@ include "activitity.php";
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="card ">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title">Danh sách người đăng ký</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive ps">
-                        <table class="table table-hover tablesorter " id="">
-                            <thead class=" text-primary">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                $result = mysqli_query($con, "select * from email_info") or die("query 1 incorrect.....");
-
-                while (list($brand_id, $brand_title) = mysqli_fetch_array($result)) {
-                  echo "<tr><td>$brand_id</td><td>$brand_title</td>
-
-                        </tr>";
-                }
-                ?>
-                            </tbody>
-                        </table>
-                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                        </div>
-                        <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
     </div>
 </div>
 <?php

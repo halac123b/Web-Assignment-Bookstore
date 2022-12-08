@@ -54,7 +54,7 @@
                   <div class="card-icon">
                       <i class="material-icons">local_shipping</i>
                   </div>
-                  <p class="card-category">Tổng số nhà phân phối</p>
+                  <p class="card-category">Đơn hàng đang vận chuyển</p>
                   <h3 class="card-title"><?php $query = "SELECT order_id FROM orders_info WHERE status='Delivering'";
                                             $result = mysqli_query($con, $query);
                                             if ($result) {

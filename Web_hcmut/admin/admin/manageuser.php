@@ -2,9 +2,9 @@
 session_start();
 include("../../db.php");
 if (isset($_GET['action']) && $_GET['action'] != "" && $_GET['action'] == 'delete') {
-  $user_id = $_GET['user_id'];
+    $user_id = $_GET['user_id'];
 
-  mysqli_query($con, "DELETE FROM user_info WHERE user_id='$user_id'") or die("query is incorrect...");
+    mysqli_query($con, "DELETE FROM user_info WHERE user_id='$user_id'") or die("query is incorrect...");
 }
 
 include "sidenav.php";
@@ -16,14 +16,14 @@ include "topheader.php";
         <div class="col-md-14">
             <div class="card ">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Manage User</h4>
+                    <h4 class="card-title">Quản lý người dùng</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive ps">
                         <table class="table tablesorter table-hover" id="">
                             <thead class=" text-primary">
                                 <tr>
-                                    <th>ID người dùng</th>
+                                    <th>ID</th>
                                     <th>Họ</th>
                                     <th>Tên</th>
                                     <th>Email</th>
@@ -37,12 +37,12 @@ include "topheader.php";
                             </thead>
                             <tbody>
                                 <?php
-                $result = mysqli_query($con, "select user_id,first_name,last_name, email, password,mobile,address1,address2 from user_info") or die("query 2 incorrect.......");
+                                $result = mysqli_query($con, "select user_id,first_name,last_name, email, password,mobile,address1,address2 from user_info") or die("query 2 incorrect.......");
 
-                while (list($user_id, $user_name, $user_last, $email, $user_password, $mobile, $address1, $address2) =
-                  mysqli_fetch_array($result)
-                ) {
-                  echo "<tr>
+                                while (list($user_id, $user_name, $user_last, $email, $user_password, $mobile, $address1, $address2) =
+                                    mysqli_fetch_array($result)
+                                ) {
+                                    echo "<tr>
                         <td>$user_id</td>
                          <td>$user_name</td>
                           <td>$user_last</td>
@@ -52,13 +52,13 @@ include "topheader.php";
                          <td>$mobile</td>
                           <td>$address1</td>
                            <td>$address2</td>";
-                  echo "<td>
+                                    echo "<td>
                         <a class='btn btn-info' href='edit_users.php?user_id=$user_id'>Chỉnh sửa<div class='ripple-container'></div></a>
                         <a class='btn btn-danger' href='manageuser.php?user_id=$user_id&action=delete'>Xóa<div class='ripple-container'></div></a>
                         </td></tr>";
-                }
-                mysqli_close($con);
-                ?>
+                                }
+                                mysqli_close($con);
+                                ?>
                             </tbody>
                         </table>
                         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

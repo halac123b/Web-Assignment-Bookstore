@@ -38,7 +38,6 @@ include "topheader.php";
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">Chỉnh sửa thông tin cá nhân</h4>
-                        <p class="card-category">Hoàn thành thông tin cá nhân của bạn</p>
                     </div>
                     <div class="card-body">
                         <form method="post" action="profile.php">
@@ -47,7 +46,7 @@ include "topheader.php";
                                     <div class="form-group bmd-form-group">
                                         <label class="bmd-label-floating">
                                             <?php if (isset($_SESSION['admin_name'])) : ?><?php echo $_SESSION['admin_name']; ?>
-                                            <?php endif ?>
+                                        <?php endif ?>
 
                                         </label>
                                         <input type="text" class="form-control" disabled="">
@@ -55,23 +54,20 @@ include "topheader.php";
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" name="old_pass" id="npwd"
-                                            placeholder="Nhập mật khẩu cũ">
+                                        <input type="text" class="form-control" name="old_pass" id="npwd" placeholder="Nhập mật khẩu cũ">
                                     </div>
                                 </div>
 
 
                                 <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" name="new_pass" id="npwd"
-                                            placeholder="Thay đổi mật khẩu">
+                                        <input type="text" class="form-control" name="new_pass" id="npwd" placeholder="Thay đổi mật khẩu">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" name="re_pass" id="npwd"
-                                            placeholder="Xác nhận lại mật khẩu">
+                                        <input type="text" class="form-control" name="re_pass" id="npwd" placeholder="Xác nhận lại mật khẩu">
                                     </div>
                                 </div>
 

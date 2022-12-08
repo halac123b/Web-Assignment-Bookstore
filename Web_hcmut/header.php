@@ -158,7 +158,7 @@ session_start();
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="#" class="logo">
+                            <a href="/" class="logo">
                                 <p class="p3"> <i class="fa fa-book" aria-hidden="true"></i> BK Bookstore
                                 </p>
                             </a>
@@ -170,8 +170,8 @@ session_start();
                     <div class="col-md-6">
                         <div class="header-search">
                             <form>
-                                <input class="input" id="search" type="text" placeholder="Search here">
-                                <button type="submit" id="search_btn" class="search-btn">Search</button>
+                                <input class="input" id="search" type="text" placeholder="Nhập từ khóa để tìm kiếm...">
+                                <button type="submit" id="search_btn" class="search-btn">Tìm kiếm</button>
                             </form>
                         </div>
                     </div>
@@ -197,17 +197,17 @@ session_start();
                                 <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row["first_name"] . ' ' . $row['last_name'] . '</a>
                                   <div class="dropdownn-content">
-                                    <a href="profile.php"><i class="fa fa-user-circle" aria-hidden="true" ></i>My Profile</a>
-                                    <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Log out</a>
+                                    <a href="profile.php"><i class="fa fa-user-circle" aria-hidden="true" ></i>Thông tin cá nhân</a>
+                                    <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng xuất</a>
                                     
                                   </div>
                                   </div>';
                                             } else {
                                                 echo '<div class="dropdownn">
-                                                <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
+                                                <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> Tài khoản</a>
                                                 <div class="dropdownn-content">
-                                                  <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Login</a>
-                                                  <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+                                                  <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Đăng nhập</a>
+                                                  <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng ký</a>
                                                   
                                                 </div>
                                               </div>';
@@ -215,11 +215,11 @@ session_start();
                                         } else {
                                             echo '
                                 <div class="dropdownn">
-                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
+                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> Tài khoản</a>
 								  <div class="dropdownn-content">
 								  	<a href="admin/login.php" ><i class="fa fa-user" aria-hidden="true" ></i>Admin</a>
-                                    <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Login</a>
-                                    <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+                                    <a href="" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Đăng nhập</a>
+                                    <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng ký</a>
                                     
                                   </div>
                                 </div>';
@@ -246,7 +246,7 @@ session_start();
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span>Your Cart</span>
+                                        <span>Giỏ hàng</span>
                                         <div class="badge qty">0</div>
                                     </a>
                                     <div class="cart-dropdown">
@@ -257,8 +257,8 @@ session_start();
 
                                         <div class="cart-btns">
                                             <a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i>
-                                                Edit
-                                                Cart</a>
+                                                Chỉnh sửa giỏ hàng
+                                            </a>
 
                                         </div>
                                     </div>

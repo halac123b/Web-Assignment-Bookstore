@@ -33,11 +33,11 @@
             <!-- Left and right controls -->
             <a class="left carousel-control _26sdfg" href="#myCarousel" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only">Trước</span>
             </a>
             <a class="right carousel-control _26sdfg" href="#myCarousel" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
+                <span class="sr-only">Sau</span>
             </a>
         </div>
     </div>
@@ -58,11 +58,16 @@
                     <a href="product.php?p=78">
                         <div class="shop">
                             <div class="shop-img">
-                                <img src="./img/shop01.png" alt="">
+                                <img height="240" src=<?php
+                                                        include 'db.php';
+                                                        $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
+                                FROM products WHERE product_cat=5"));
+                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        ?> alt="lập trình">
                             </div>
                             <div class="shop-body">
-                                <h3>Laptop<br>Collection</h3>
-                                <a href="product.php?p=78" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Lập trình</h3>
+                                <a href="store.php?cat=5" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -74,11 +79,16 @@
                     <a href="product.php?p=72">
                         <div class="shop">
                             <div class="shop-img">
-                                <img src="./img/shop03.png" alt="">
+                                <img height="240" src=<?php
+                                                        include 'db.php';
+                                                        $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
+                                FROM products WHERE product_cat=6"));
+                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        ?> alt="khoa học">
                             </div>
                             <div class="shop-body">
-                                <h3>Accessories<br>Collection</h3>
-                                <a href="product.php?p=72" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Khoa học</h3>
+                                <a href="store.php?cat=6" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -90,11 +100,16 @@
                     <a href="product.php?p=79">
                         <div class="shop">
                             <div class="shop-img">
-                                <img src="./img/shop02.png" alt="">
+                                <img height="240" src=<?php
+                                                        include 'db.php';
+                                                        $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
+                                FROM products WHERE product_cat=7"));
+                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        ?> alt="kinh điển">
                             </div>
                             <div class="shop-body">
-                                <h3>Cameras<br>Collection</h3>
-                                <a href="product.php?p=79" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Kinh điển</h3>
+                                <a href="store.php?cat=7" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -119,7 +134,7 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h3 class="title">Newest</h3>
+                        <h3 class="title">Mới nhất</h3>
                     </div>
                 </div>
                 <!-- /section title -->
@@ -189,7 +204,7 @@
 												data-title='$pro_title' 
 												data-price='$pro_price' 
 												data-image='$pro_image' 
-												><i class='fa fa-shopping-cart'></i> add to cart</button>
+												><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
 											</div>
 										</div>
 									";
@@ -222,11 +237,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="hot-deal">
-                        <ul class="hot-deal-countdown">
-
-                        </ul>
-
-                        <a class="primary-btn cta-btn" href="store.php?cat=1">Shop now</a>
+                        <a class="primary-btn cta-btn" href="store.php?cat=1">Bắt đầu mua sắm</a>
                     </div>
                 </div>
             </div>
@@ -243,7 +254,7 @@
 
                 <div class="col-md-12 col-xs-12">
                     <div class="section-title">
-                        <h4 class="title">Best choices</h4>
+                        <h4 class="title">Lựa chọn tốt nhất</h4>
                         <div class="section-nav">
                             <div id="slick-nav-4" class="products-slick-nav"></div>
                         </div>
@@ -267,7 +278,7 @@
                                     <h4>$title</h4>
                                     <span>$des</span>
                                     <div class='price'>
-                                        PRICE: $price &#x20AB;
+                                        GIÁ: $price &#x20AB;
                                     </div>
                                 </div>
                                 ";
@@ -356,7 +367,7 @@
 														</div>
 													</div>
 													<div class='add-to-cart'>
-														<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> add to cart</button>
+														<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
 													</div>
 												</div>
 												";

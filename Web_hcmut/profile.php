@@ -51,23 +51,21 @@ echo "
 ?>
 
 <div class="user-orders">
-  <h4>Đơn hàng gần đây</h4>
-  <div class="table-responsive">
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th style="width:10% ;">Ngày mua hàng</th>
-          <th style="width:40% ;">Sản phẩm</th>
-          <th style="width:10% ;">Giá</th>
-          <th style="width:10% ;">Số lượng</th>
-          <th style="width:20% ;">Tổng cộng</th>
-          <th style="width:10% ;">Trạng thái</th>
+    <h4>Đơn hàng gần đây</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:10% ;">Ngày mua hàng</th>
+                    <th style="width:60% ;">Sản phẩm</th>
+                    <th style="width:10% ;">Giá</th>
+                    <th style="width:10% ;">Số lượng</th>
+                    <th style="width:20% ;">Tổng cộng</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tr>
-      </thead>
-      <tbody>
-
-        <?php
+                <?php
         $sql = "SELECT * FROM orders_info WHERE phone='$phone' ORDER BY order_id DESC";
         $result = mysqli_query($con, $sql);
         $prev_order_id = -1;
@@ -75,19 +73,10 @@ echo "
           $order_id = $row['order_id'];
           $total = $row['total'];
           $date = $row['date'];
-          $status = $row['status'];
           $sql = "SELECT * FROM order_products o, products p
           WHERE order_id=$order_id AND o.product_id=p.product_id";
           $result = mysqli_query($con, $sql);
           $count = mysqli_num_rows($result);
-
-          if ($status == 'Delivering') {
-            $status = "Đang vận chuyển";
-          } else if ($status == 'Complete') {
-            $status = "Thành công";
-          } else {
-            $status = 'Không thành công';
-          }
 
           foreach ($result as $prod) {
             $image = $prod['product_image'];
@@ -122,7 +111,6 @@ echo "
               $prev_order_id = $order_id;
               echo "
                     <td rowspan='$count'>$total &#x20AB;</td>
-                    <td rowspan='$count'>$status</td>
                   </tr>
               ";
             } else {
@@ -133,10 +121,10 @@ echo "
           }
         }
         ?>
-        </td>
-      </tbody>
-    </table>
-  </div>
+                </td>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 </section>

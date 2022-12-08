@@ -323,7 +323,7 @@ include "header.php";
 											data-title='$pro_title' 
 											data-price='$pro_price' 
 											data-image='$pro_image' 
-										><i class='fa fa-shopping-cart'></i> add to cart</button>
+										><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
 									</div>
 								</div>
                                 </div>

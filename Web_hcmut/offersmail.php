@@ -8,7 +8,7 @@ if (isset($_POST["email"])) {
     if(empty($email)){
         echo "
 			<div class='alert alert-warning'>
-				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>PLease Fill this field..!</b>
+				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Vui lòng điền vào ô này ..!</b>
 			</div>
 		";
 		exit();
@@ -17,7 +17,7 @@ if (isset($_POST["email"])) {
 		echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $email is not valid..!</b>
+				<b>$email không hợp lệ..!</b>
 			</div>
 		";
 		exit();
@@ -29,7 +29,7 @@ if (isset($_POST["email"])) {
             echo "
                 <div class='alert alert-danger'>
                     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                    <b>Email Address is already available</b>
+                    <b>Địa chỉ email đã có sẵn</b>
                 </div>
             ";
             exit();
@@ -41,7 +41,7 @@ if (isset($_POST["email"])) {
             $run_query = mysqli_query($con,$sql);
                 echo "<div class='alert alert-success'>
                     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                    <b>Thanks for subscribing</b>
+                    <b>Cảm ơn đã đăng ký</b>
                 </div>";
                 
                 

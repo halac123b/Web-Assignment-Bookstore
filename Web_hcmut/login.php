@@ -89,11 +89,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 			//if user is login from page we will send login_success
 			echo "login_success";
-
-			echo "<script> location.href='admin/add_products.php'; </script>";
-			exit;
 		} else {
-			echo "<span style='color:red;'>Please register before login..!</span>";
+			echo "<span style='color:red;'>Vui lòng đăng ký trước khi đăng nhập..!</span>";
 			exit();
 		}
 	}

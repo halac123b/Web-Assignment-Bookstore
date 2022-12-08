@@ -12,7 +12,7 @@ if (isset($_POST["categoryhome"])) {
 				<div id='responsive-nav'>
 					<!-- NAV -->
 					<ul class='main-nav nav navbar-nav'>
-                    <li id='home'><a href='index.php'>Home</a></li>
+                    <li id='home'><a href='index.php'>Trang chủ</a></li>
 	";
 	if (mysqli_num_rows($run_query) > 0) {
 		while ($row = mysqli_fetch_array($run_query)) {
@@ -242,7 +242,7 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 
 	$run_query = mysqli_query($con, $sql);
 	if (mysqli_num_rows($run_query) == 0) {
-		echo "<div>There is no product here</div>";
+		echo "<div>Không có sản phẩm nào ở đây</div>";
 		exit();
 	}
 
@@ -288,7 +288,7 @@ if (isset($_POST["get_seleted_Category"]) ||  isset($_POST["search"]) || isset($
 								data-title='$pro_title' 
 								data-price='$pro_price' 
 								data-image='$pro_image' 
-								><i class='fa fa-shopping-cart'></i> add to cart
+								><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng
 							</button>
 						</div>
 					</div>

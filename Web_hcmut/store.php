@@ -17,15 +17,15 @@ include 'header.php';
                     <div id="get_brand">
                     </div>
 
-                    <h3 for="sort">Short by</h3>
+                    <h3 for="sort">Sắp xếp theo</h3>
                     <select id="sort-select" value="1">
-                        <option value="1">Newest</option>
-                        <option value="2">Price acs</option>
-                        <option value="3">Price desc</option>
+                        <option value="1">Mới nhất</option>
+                        <option value="2">Giá tăng dần</option>
+                        <option value="3">Giá giảm dần</option>
                     </select>
                     <!-- /aside Widget -->
 
-                    <div id="clear-filter">Delete All Filters</div>
+                    <div id="clear-filter">Xóa tất cả bộ lọc</div>
                 </div>
                 <!-- /ASIDE -->
 
@@ -88,7 +88,7 @@ include 'header.php';
                                                             data-title='$pro_title' 
                                                             data-price='$pro_price' 
                                                             data-image='$pro_image' 
-                                                            ><i class='fa fa-shopping-cart'></i> add to cart
+                                                            ><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng
                                                         </button>
                                                     </div>
                                                 </div>
@@ -97,7 +97,7 @@ include 'header.php';
                                 }
 
                                 if (mysqli_num_rows($run_query) == 0) {
-                                    echo "<div>There is no product with your keyword</div>";
+                                    echo "<div>Không có sản phẩm phù hợp với từ khóa của bạn</div>";
                                 }
 
                                 mysqli_close($con);

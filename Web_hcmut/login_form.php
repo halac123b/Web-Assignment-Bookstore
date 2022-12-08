@@ -13,70 +13,70 @@ if (isset($_POST["login_user_with_product"])) {
 ?>
 
 <div class="wait overlay">
-	<div class="loader"></div>
+    <div class="loader"></div>
 </div>
 <div class="container-fluid">
-	<!-- row -->
+    <!-- row -->
 
 
-	<div class="login-marg">
-		<!-- Billing Details -->
+    <div class="login-marg">
+        <!-- Billing Details -->
 
 
-		<!-- /Billing Details -->
+        <!-- /Billing Details -->
 
 
-		<form onsubmit="return false" id="login" class="login100-form ">
-			<div class="billing-details jumbotron">
-				<div class="section-title">
-					<h2 class="login100-form-title p-b-49">Login Here</h2>
-				</div>
+        <form onsubmit="return false" id="login" class="login100-form ">
+            <div class="billing-details jumbotron">
+                <div class="section-title">
+                    <h2 class="login100-form-title p-b-49">Đăng nhập ở đây</h2>
+                </div>
 
 
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input class="input input-borders" type="email" name="email" placeholder="Email" required>
-				</div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="input input-borders" type="email" name="email" placeholder="Email" required>
+                </div>
 
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input class="input input-borders" type="password" name="password" placeholder="password" required>
-				</div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input class="input input-borders" type="password" name="password" placeholder="password" required>
+                </div>
 
-				<div class="text-pad">
-					<a href="#">
-						forget password ?
-					</a>
-				</div>
+                <div class="text-pad">
+                    <a href="#">
+                        Quên mật khẩu ?
+                    </a>
+                </div>
 
-				<input class="primary-btn btn-block" type="submit" Value="Login">
+                <input class="primary-btn btn-block" type="submit" Value="Login">
 
-				<div class="panel-footer">
-					<div class="alert alert-danger">
-						<h4 id="e_msg"></h4>
-					</div>
-				</div>
-
-
+                <div class="panel-footer">
+                    <div class="alert alert-danger">
+                        <h4 id="e_msg"></h4>
+                    </div>
+                </div>
 
 
 
-			</div>
 
-		</form>
 
-		<!-- Shiping Details -->
+            </div>
 
-		<!-- /Shiping Details -->
+        </form>
 
-		<!-- Order notes -->
+        <!-- Shiping Details -->
 
-		<!-- /Order notes -->
-	</div>
+        <!-- /Shiping Details -->
 
-	<!-- Order Details -->
+        <!-- Order notes -->
 
-	<!-- /Order Details -->
+        <!-- /Order notes -->
+    </div>
 
-	<!-- /row -->
+    <!-- Order Details -->
+
+    <!-- /Order Details -->
+
+    <!-- /row -->
 </div>

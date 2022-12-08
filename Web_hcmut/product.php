@@ -172,7 +172,7 @@ include "header.php";
 					displayStar($avg_star);
 					echo ' ' . number_format($avg_star, 2, '.', '') . '
 								</div>
-								<a class="review-link" href="#product-tab">' . $review_num . ' Review(s) | Add your review</a>
+								<a class="review-link" href="#product-tab">' . $review_num . ' Đánh giá(s) | Thêm đánh giá</a>
 							</div>
 							<div>
 								<h3 class="product-price">' . $row['product_price'] . '&#x20AB;</h3>
@@ -203,7 +203,7 @@ include "header.php";
 									data-title="' . $row['product_title'] . '"
 									data-image="' . $row['product_image'] . '"
 									data-price="' . $row['product_price'] . '"
-									><i class="fa fa-shopping-cart"></i> add to cart</button>
+									><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                                 </div>
 							</div>
 
@@ -216,9 +216,9 @@ include "header.php";
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (' . $review_num . ')</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+								<li><a data-toggle="tab" href="#tab2">Chi tiết</a></li>
+								<li><a data-toggle="tab" href="#tab3">Đánh giá (' . $review_num . ')</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -340,9 +340,9 @@ include "header.php";
 										<div class="col-md-3 mainn">
 											<div id="review-form">
 												<form class="review-form" action="" method="post">
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review" name="comment"></textarea>
+													<input class="input" type="text" placeholder="Tên của bạn">
+													<input class="input" type="email" placeholder="Email của bạn">
+													<textarea class="input" placeholder="Đánh giá của bạn" name="comment"></textarea>
 													<div class="input-rating">
 														<span>Your Rating: </span>
 														<div class="stars">
@@ -353,7 +353,7 @@ include "header.php";
 															<input id="star1" name="star" value="1" type="radio"><label for="star1"></label>
 														</div>
 													</div>
-													<input type="submit" name="test" id="test" value="Submit">
+													<input type="submit" name="test" id="test" value="Xác nhận">
 												</form>';
 					if (array_key_exists('test', $_POST)) {
 						postReview();
@@ -386,7 +386,7 @@ include "header.php";
                     
 					<div class="col-md-12">
 						<div class="section-title text-center">
-							<h3 class="title">Related Products</h3>
+							<h3 class="title">Sản phẩm liên quan</h3>
 							
 						</div>
 					</div>
@@ -434,9 +434,9 @@ include "header.php";
 					echo "
 										</div>
 										<div class='product-btns'>
-											<button class='add-to-wishlist'><i class='fa fa-heart-o'></i><span class='tooltipp'>add to wishlist</span></button>
-											<button class='add-to-compare'><i class='fa fa-exchange'></i><span class='tooltipp'>add to compare</span></button>
-											<button class='quick-view'><i class='fa fa-eye'></i><span class='tooltipp'>quick view</span></button>
+											<button class='add-to-wishlist'><i class='fa fa-heart-o'></i><span class='tooltipp'>Thêm vào yêu thích</span></button>
+											<button class='add-to-compare'><i class='fa fa-exchange'></i><span class='tooltipp'>So sánh</span></button>
+											<button class='quick-view'><i class='fa fa-eye'></i><span class='tooltipp'>Xem nhanh</span></span></button>
 										</div>
 									</div>
 									<div class='add-to-cart'>
@@ -447,7 +447,7 @@ include "header.php";
 											data-title='$pro_title' 
 											data-price='$pro_price' 
 											data-image='$pro_image' 
-										><i class='fa fa-shopping-cart'></i> add to cart</button>
+										><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
 									</div>
 								</div>
                                 </div>

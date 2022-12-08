@@ -26,7 +26,7 @@ if (isset($_POST["f_name"])) {
 
 		echo "
 			<div class='alert alert-warning'>
-				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>PLease Fill all fields..!</b>
+				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Vui lòng điền vào tất cả các ô ..!</b>
 			</div>
 		";
 		exit();
@@ -35,7 +35,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $f_name is not valid..!</b>
+				<b>$f_name không hợp lệ..!</b>
 			</div>
 		";
 			exit();
@@ -44,7 +44,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $l_name is not valid..!</b>
+				<b>$l_name không hợp lệ..!</b>
 			</div>
 		";
 			exit();
@@ -53,7 +53,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $email is not valid..!</b>
+				<b>$email không hợp lệ..!</b>
 			</div>
 		";
 			exit();
@@ -62,7 +62,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>Password is weak</b>
+				<b>Mật khẩu yếu!</b>
 			</div>
 		";
 			exit();
@@ -71,7 +71,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>Password is weak</b>
+				<b>Mật khẩu yếu!</b>
 			</div>
 		";
 			exit();
@@ -80,7 +80,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>password is not same</b>
+				<b>Mật khẩu không giống nhau</b>
 			</div>
 		";
 		}
@@ -88,7 +88,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>Mobile number $mobile is not valid</b>
+				<b>Số điện thoại $mobile không hợp lệ</b>
 			</div>
 		";
 			exit();
@@ -97,7 +97,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>Mobile number must be 10 digit</b>
+				<b>Số điện thoại phải có 10 chữ số</b>
 			</div>
 		";
 			exit();
@@ -110,7 +110,7 @@ if (isset($_POST["f_name"])) {
 			echo "
 			<div class='alert alert-danger'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>Email Address is already available Try Another email address</b>
+				<b>Địa chỉ email đã sử dụng, hãy thử địa chỉ email khác</b>
 			</div>
 		";
 			exit();

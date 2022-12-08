@@ -26,11 +26,11 @@ if (isset($_POST['reg_user'])) {
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
+  if (empty($username)) { array_push($errors, "Username bắt buộc không được trống"); }
+  if (empty($email)) { array_push($errors, "Email bắt buộc không được trống"); }
+  if (empty($password_1)) { array_push($errors, "Password bắt buộc không được trống"); }
   if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
+	array_push($errors, "Hai mật khẩu không khớp");
   }
 
   // first check the database to make sure 
@@ -41,11 +41,11 @@ if (isset($_POST['reg_user'])) {
   
   if ($user) { // if user exists
     if ($user['Name'] === $username) {
-      array_push($errors, "Username already exists");
+      array_push($errors, "Username đã tồn tại");
     }
 
     if ($user['email'] === $email) {
-      array_push($errors, "email already exists");
+      array_push($errors, "Email đã tồn tại");
     }
   }
 

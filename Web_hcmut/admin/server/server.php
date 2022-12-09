@@ -89,10 +89,13 @@ if (isset($_POST['login_admin'])) {
   }
 
   if (count($errors) == 0) {
-    $query = "SELECT * FROM admin_info WHERE admin_email='$admin_email'";
-    $results = mysqli_query($con, $query);
-    $admin = mysqli_fetch_assoc($results);
-    if (mysqli_num_rows($results) == 1 && password_verify($password, $admin['admin_password'])) {
+    $query = "SELECT * FROM admin_info WHERE admin_email=?";
+    $stm = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stm, 's', $admin_email);
+    mysqli_stmt_execute($stm);
+    $result = mysqli_stmt_get_result($stm);
+    $admin = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result) == 1 && password_verify($password, $admin['admin_password'])) {
       $_SESSION['admin_email'] = $admin["admin_email"];
       $_SESSION['admin_name'] = $admin["admin_name"];
       $_SESSION['success'] = "You are now logged in";

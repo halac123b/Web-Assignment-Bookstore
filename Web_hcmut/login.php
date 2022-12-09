@@ -12,19 +12,12 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 	$password = $_POST["password"];
 
 	//encrypt password
-	$hashFormat = "$2y$10$";
-	$salt = "iusesomecrazystrings22";
-	$hashF_and_salt = $hashFormat . $salt;
-	$password = crypt($password, $hashF_and_salt);
 
-	$sql = "SELECT * FROM user_info WHERE email=? AND password=?";
-	$stm = mysqli_prepare($con, $sql);
-	mysqli_stmt_bind_param($stm, 'ss', $email, $password);
-	mysqli_stmt_execute($stm);
-	$result = mysqli_stmt_get_result($stm);
-	$count = mysqli_num_rows($result);
-	$row = mysqli_fetch_array($result);
-	if ($count == 1) {
+	$sql = "SELECT * FROM user_info WHERE email = '$email'";
+	$run_query = mysqli_query($con, $sql);
+	$count = mysqli_num_rows($run_query);
+	$row = mysqli_fetch_array($run_query);
+	if ($count == 1 && password_verify($password, $row["password"])) {
 		$_SESSION["uid"] = $row["user_id"];
 		$_SESSION["name"] = $row["first_name"] . $row['last_name'];
 

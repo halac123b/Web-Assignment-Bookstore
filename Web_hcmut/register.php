@@ -122,16 +122,13 @@ if (isset($_POST["f_name"])) {
 		} else {
 
 			//encrypt password
-			$hashFormat = "$2y$10$";
-			$salt = "iusesomecrazystrings22";
-			$hashF_and_salt = $hashFormat . $salt;
-			$password = crypt($password, $hashF_and_salt);
+			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 			$sql = "INSERT INTO `user_info` 
 		(`user_id`, `first_name`, `last_name`, `email`, 
 		`password`, `mobile`, `address1`, `address2`) 
 		VALUES (NULL, '$f_name', '$l_name', '$email', 
-		'$password', '$mobile', '$address1', '$address2')";
+		'$hashed_password', '$mobile', '$address1', '$address2')";
 			$run_query = mysqli_query($con, $sql);
 			$_SESSION["uid"] = mysqli_insert_id($con);
 			$_SESSION["name"] = $f_name;

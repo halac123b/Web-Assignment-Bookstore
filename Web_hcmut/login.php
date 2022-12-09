@@ -14,7 +14,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 	//encrypt password
 
 	$sql = "SELECT * FROM user_info WHERE email = '$email'";
-	$run_query = mysqli_query($con, $sql);
+	$stm = mysqli_query($con, $sql);
 	$count = mysqli_num_rows($run_query);
 	$row = mysqli_fetch_array($run_query);
 	if ($count == 1 && password_verify($password, $row["password"])) {

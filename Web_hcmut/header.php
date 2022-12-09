@@ -55,7 +55,7 @@ include "db.php";
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="/" class="logo">
+                            <a href="/index.php" class="logo">
                                 <p class="p3"> <i class="fa fa-book" aria-hidden="true"></i> BK Bookstore
                                 </p>
                             </a>

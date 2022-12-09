@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'ultils.php';
+include "db.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +11,12 @@ session_start();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Online Shopping</title>
+    <title><?php getDocumentTitle($con) ?></title>
+    <meta name="keywords" content=<?php echo "'" . getDocumentKeyword($con) . "'"; ?>>
+    <meta name="description" content="BK bookstore cung cấp các loại sách thuộc nhiều thể loại như khoa học, lập trình, kỹ năng sống, ...">
+
+    <link rel="icon" type="image/x-icon" href="public/logo.png">
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -78,7 +83,6 @@ session_start();
                                 <ul class="header-links pull-right">
 
                                     <li><?php
-                                        include "db.php";
                                         if (isset($_SESSION["uid"])) {
                                             $sql = "SELECT first_name, last_name FROM user_info WHERE user_id='$_SESSION[uid]'";
                                             $query = mysqli_query($con, $sql);

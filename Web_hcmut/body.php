@@ -148,8 +148,6 @@
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <?php
                                     include 'db.php';
-                                    include 'ultils.php';
-
 
                                     $product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id ORDER BY product_id DESC LIMIT 10";
                                     $run_query = mysqli_query($con, $product_query);

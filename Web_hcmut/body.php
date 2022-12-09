@@ -62,7 +62,7 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=5"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="lập trình">
                             </div>
                             <div class="shop-body">
@@ -83,7 +83,7 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=6"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="khoa học">
                             </div>
                             <div class="shop-body">
@@ -104,7 +104,7 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=7"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="kinh điển">
                             </div>
                             <div class="shop-body">
@@ -628,7 +628,8 @@
                                 <div class="descriptions">
                                     <h1>Đọc sách VIP siêu rẻ</h1>
                                     <p>
-                                        Chỉ 1,000 vnđ/ngày là bạn có thể đọc Trọn bộ sách yêu thích trên BK Bookstore
+                                        Chỉ 1,000 vnđ/ngày là bạn có thể đọc Trọn bộ sách yêu thích trên BK
+                                        Bookstore
                                     </p>
                                     <button>
                                         <i class="fab fa-youtube"></i>

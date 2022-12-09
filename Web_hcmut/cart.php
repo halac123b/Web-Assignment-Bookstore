@@ -25,12 +25,12 @@ include "header.php";
                             <tfoot>
 
                                 <tr>
-                                    <td><a href="index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i>
+                                    <td><a href="./index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i>
                                             Tiếp tục mua sắm</a></td>
                                     <td colspan="2" class="hidden-xs"></td>
                                     <div id="issessionset"></div>
                                     <td>
-                                        <a href="checkout.php" class="btn btn-success" id="ready-checkout-btn">Sẵn sàng
+                                        <a href="./checkout.php" class="btn btn-success" id="ready-checkout-btn">Sẵn sàng
                                             thanh toán</a>
                                     </td>
                                     <td class="text-center"><b class="net_total"></b></td>

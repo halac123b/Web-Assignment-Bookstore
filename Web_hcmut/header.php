@@ -55,7 +55,7 @@ include "db.php";
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="/index.php" class="logo">
+                            <a href="./index.php" class="logo">
                                 <p class="p3"> <i class="fa fa-book" aria-hidden="true"></i> BK Bookstore
                                 </p>
                             </a>
@@ -93,8 +93,8 @@ include "db.php";
                                 <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row["first_name"] . ' ' . $row['last_name'] . '</a>
                                   <div class="dropdownn-content">
-                                    <a href="profile.php"><i class="fa fa-user-circle" aria-hidden="true" ></i>Thông tin cá nhân</a>
-                                    <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng xuất</a>
+                                    <a href="./profile.php"><i class="fa fa-user-circle" aria-hidden="true" ></i>Thông tin cá nhân</a>
+                                    <a href="./logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng xuất</a>
                                     
                                   </div>
                                   </div>';
@@ -152,7 +152,7 @@ include "db.php";
                                         </div>
 
                                         <div class="cart-btns">
-                                            <a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i>
+                                            <a href="./cart.php" style="width:100%;"><i class="fa fa-edit"></i>
                                                 Chỉnh sửa giỏ hàng
                                             </a>
 

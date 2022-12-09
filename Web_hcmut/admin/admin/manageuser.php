@@ -32,7 +32,7 @@ include "topheader.php";
                                     <th>Số điện thoại</th>
                                     <th>Thành phố</th>
                                     <th>Địa chỉ</th>
-                                    <th><a href="addsuppliers.php" class="btn btn-success">Thêm mới</a></th>
+                                    <th><a href="./addsuppliers.php" class="btn btn-success">Thêm mới</a></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,8 +53,8 @@ include "topheader.php";
                           <td>$address1</td>
                            <td>$address2</td>";
                                     echo "<td>
-                        <a class='btn btn-info' href='edit_users.php?user_id=$user_id'>Chỉnh sửa<div class='ripple-container'></div></a>
-                        <a class='btn btn-danger' href='manageuser.php?user_id=$user_id&action=delete'>Xóa<div class='ripple-container'></div></a>
+                        <a class='btn btn-info' href='./edit_users.php?user_id=$user_id'>Chỉnh sửa<div class='ripple-container'></div></a>
+                        <a class='btn btn-danger' href='./manageuser.php?user_id=$user_id&action=delete'>Xóa<div class='ripple-container'></div></a>
                         </td></tr>";
                                 }
                                 mysqli_close($con);

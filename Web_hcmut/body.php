@@ -55,7 +55,7 @@
             <div class="row">
                 <!-- shop -->
                 <div class="col-md-4 col-xs-6">
-                    <a href="product.php?p=78">
+                    <a href="./product.php?p=78">
                         <div class="shop">
                             <div class="shop-img">
                                 <img height="240" src=<?php
@@ -67,7 +67,7 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Lập trình</h3>
-                                <a href="store.php?cat=5" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="./store.php?cat=5" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -76,7 +76,7 @@
 
                 <!-- shop -->
                 <div class="col-md-4 col-xs-6">
-                    <a href="product.php?p=72">
+                    <a href="./product.php?p=72">
                         <div class="shop">
                             <div class="shop-img">
                                 <img height="240" src=<?php
@@ -88,7 +88,7 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Khoa học</h3>
-                                <a href="store.php?cat=6" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="./store.php?cat=6" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -97,7 +97,7 @@
 
                 <!-- shop -->
                 <div class="col-md-4 col-xs-6">
-                    <a href="product.php?p=79">
+                    <a href="./product.php?p=79">
                         <div class="shop">
                             <div class="shop-img">
                                 <img height="240" src=<?php
@@ -109,7 +109,7 @@
                             </div>
                             <div class="shop-body">
                                 <h3>Kinh điển</h3>
-                                <a href="store.php?cat=7" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="./store.php?cat=7" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -168,7 +168,7 @@
 
                                             echo "
 												<div class='product'>
-													<a href='product.php?p=$pro_id'><div class='product-img'>
+													<a href='./product.php?p=$pro_id'><div class='product-img'>
 														<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
 													</div></a>
 													<div class='product-body'>
@@ -224,7 +224,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="hot-deal">
-                        <a class="primary-btn cta-btn" href="store.php?cat=1">Bắt đầu mua sắm</a>
+                        <a class="primary-btn cta-btn" href="./store.php?cat=1">Bắt đầu mua sắm</a>
                     </div>
                 </div>
             </div>
@@ -262,7 +262,7 @@
 
                                 echo "
                                  <div class='book'>
-                                    <a href='product.php?p=$id'><img src='product_images/$img' height='120' alt='$title'></a>
+                                    <a href='./product.php?p=$id'><img src='product_images/$img' height='120' alt='$title'></a>
                                     <h4>$title</h4>
                                     <span>$des</span>
                                     <div class='price'>
@@ -338,13 +338,13 @@
 
                                             echo "
 												<div class='product'>
-													<a href='product.php?p=$pro_id'>
+													<a href='./product.php?p=$pro_id'>
 														<div class='product-img'>
 															<img src='product_images/$pro_image' style='max-height: 170px;' alt=''>
 														</div>
 													</a>
 													<div class='product-body'>
-														<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+														<h3 class='product-name header-cart-item-name'><a href='./product.php?p=$pro_id'>$pro_title</a></h3>
 														<h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
 														<div class='product-rating' data-rating='$rating'>
 														";
@@ -355,7 +355,7 @@
 														</div>
 													</div>
 													<div class='add-to-cart'>
-														<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
+														<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist'><i class='fa fa-shopping-cart'></i> Thêm vào giỏ hàng</button>
 													</div>
 												</div>
 												";
@@ -488,7 +488,7 @@
 														<img src='./product_images/$pro_image' alt=''>
 													</div>
 													<div class='product-body'>
-														<h3 class='product-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+														<h3 class='product-name'><a href='./product.php?p=$pro_id'>$pro_title</a></h3>
 														<h4 class='product-price'>$pro_price&#x20AB;</h4>
 													</div>
 												</div>
@@ -550,7 +550,7 @@
 														<img src='./product_images/$pro_image' alt=''>
 													</div>
 													<div class='product-body'>
-														<h3 class='product-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+														<h3 class='product-name'><a href='./product.php?p=$pro_id'>$pro_title</a></h3>
 														<h4 class='product-price'>$pro_price&#x20AB;</h4>
 													</div>
 												</div>

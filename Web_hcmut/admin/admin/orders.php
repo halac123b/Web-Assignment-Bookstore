@@ -95,8 +95,8 @@ include "topheader.php";
                     if ($row["status"] == 'Delivering') {
                       echo "
                           <td rowspan='$count'>
-                                <a class='btn btn-sm btn-danger' href='edit_orders.php?order_id=$row[order_id]&action=cancel'>Hủy</a>
-                                <a class='btn btn-sm btn-success' href='edit_orders.php?order_id=$row[order_id]&action=complete'>Hoàn thành</a>
+                                <a class='btn btn-sm btn-danger' href='./edit_orders.php?order_id=$row[order_id]&action=cancel'>Hủy</a>
+                                <a class='btn btn-sm btn-success' href='./edit_orders.php?order_id=$row[order_id]&action=complete'>Hoàn thành</a>
                           </td>
                               ";
                     }

@@ -41,45 +41,45 @@ if (isset($_GET['logout'])) {
 
         Tip 2: you can also add an image using data-image tag
     -->
-            <div class="logo"><a href="index.php" class="simple-text logo-normal">
+            <div class="logo"><a href="./index.php" class="simple-text logo-normal">
                     <p style="font-family: 'Brush Script MT', cursive;
     font-size: 25px;"> <i class="fa fa-book" aria-hidden="true"></i> BK Bookstore</p>
                 </a></div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="./index.php">
                             <i class="material-icons">dashboard</i>
                             <p>Trang chủ</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="add_products.php">
+                        <a class="nav-link" href="./add_products.php">
                             <i class="material-icons">add</i>
                             <p>Thêm sản phẩm</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products_list.php">
+                        <a class="nav-link" href="./products_list.php">
                             <i class="material-icons">list</i>
                             <p>Danh sách sản phẩm</p>
                         </a>
 
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="manageuser.php">
+                        <a class="nav-link" href="./manageuser.php">
                             <i class="material-icons">person</i>
                             <p>Quản lý người dùng</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="orders.php">
+                        <a class="nav-link" href="./orders.php">
                             <i class="material-icons">shopping_cart</i>
                             <p>Đơn hàng</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="profile.php">
+                        <a class="nav-link" href="./profile.php">
                             <icons-image _ngcontent-aye-c22="" _nghost-aye-c19=""><i _ngcontent-aye-c19="" class="material-icons icon-image-preview">settings</i></icons-image>
                             <p>Cài đặt</p>
                         </a>

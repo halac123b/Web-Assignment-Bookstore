@@ -44,7 +44,7 @@ if (isset($full_name) && isset($email) && isset($phone) && isset($address)  && i
         </script>
     ";
 } else {
-    echo '<div>Có sự cố xảy ra trong quá trình đặt hàng, <a href="checkout.php">Vui lòng kiểm tra lại</a></div>';
+    echo '<div>Có sự cố xảy ra trong quá trình đặt hàng, <a href="./checkout.php">Vui lòng kiểm tra lại</a></div>';
 }
 
 mysqli_close($con);

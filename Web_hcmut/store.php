@@ -61,13 +61,13 @@ include 'header.php';
 
                                     echo "
                                         <div class='col-md-4 col-xs-6'>
-                                                <a href='product.php?p=$pro_id'><div class='product'>
+                                                <a href='./product.php?p=$pro_id'><div class='product'>
                                                     <div class='product-img'>
                                                         <img  src='product_images/$pro_image' style='max-height: 170px;' alt=''>
                                                     </div></a>
                                                     <div class='product-body'>
                                                         <p class='product-category'>$cat_name</p>
-                                                        <h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
+                                                        <h3 class='product-name header-cart-item-name'><a href='./product.php?p=$pro_id'>$pro_title</a></h3>
                                                         <h4 class='product-price header-cart-item-info'>$pro_price&#x20AB;</h4>
                                                         <div class='product-rating'>
                                                         ";

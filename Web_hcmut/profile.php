@@ -26,7 +26,7 @@ echo "
       <div class='container-fluid'>
         <div class='user-info'>
           <h4>Thông tin cá nhân
-            <a href='editprofile.php'><i class='fa fa-pencil'></i></a>
+            <a href='./editprofile.php'><i class='fa fa-pencil'></i></a>
           </h4>
           <div class='row'>
             <div class='col-lg-3 col-md-6 col-sm-12'>

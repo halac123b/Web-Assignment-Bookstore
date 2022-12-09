@@ -2420,7 +2420,7 @@ textarea.input {
   }
 
   .review-container {
-    border: none;
+    border: none !important;
   }
 
   #aside .sort-container {

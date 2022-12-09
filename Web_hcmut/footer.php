@@ -5,7 +5,7 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <div class="col-md-3 col-xs-6">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="footer">
                         <h3 class="footer-title">Về chúng tôi</h3>
                         <p> Công Ty Cổ Phần Phát Hành Sách TP HCM - BK BOOKSTORE -
@@ -22,19 +22,17 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 text-center" style="margin-top:80px;">
+                <div class="col-lg-4 col-md-8 col-xs-12 text-center" style="margin-top:80px;">
                     <ul class="footer-payments">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4815584805283!2d106.70413911477142!3d10.774381392322878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4427cc6a63%3A0xb685b00c0b210443!2zMTUgxJAuIFTDtG4gxJDhu6ljIFRo4bqvbmcsIELhur9uIE5naMOpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1670330626941!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4815584805283!2d106.70413911477142!3d10.774381392322878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4427cc6a63%3A0xb685b00c0b210443!2zMTUgxJAuIFTDtG4gxJDhu6ljIFRo4bqvbmcsIELhur9uIE5naMOpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1670330626941!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </ul>
 
                     <span class="copyright">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;2022 All rights reserved
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </span>
                 </div>
 
-                <div class="col-md-3 col-xs-6">
+                <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
                     <div class="footer">
                         <h3 class="footer-title">Thể loại</h3>
                         <ul class="footer-links">

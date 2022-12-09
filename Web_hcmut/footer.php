@@ -54,11 +54,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Liên hệ </h3>
                         <div class="social">
-                            <img src="https://i.postimg.cc/44pPB9wk/facebook.png" alt="" />
-                            <img src="https://i.postimg.cc/L8Q3nB4f/twitter.png" alt="" />
-                            <img src="https://i.postimg.cc/TYG9S3Hy/instagram.png" alt="" />
-                            <img src="https://i.postimg.cc/kGCxkTwr/youtube.png" alt="" />
-                            <img src="https://i.postimg.cc/CKZHDBd2/telegram.png" alt="" />
+                            <img src="assets/images/facebook.png" alt="facebook" />
+                            <img src="assets/images/twitter.png" alt="twitter" />
+                            <img src="assets/images/instagram.png" alt="instagram" />
+                            <img src="assets/images/youtube.png" alt="youtube" />
+                            <img src="assets/images/telegram.png" alt="telegram" />
                         </div>
                     </div>
                 </div>
@@ -78,27 +78,12 @@
     </div>
 
 </footer>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/actions.js"></script>
+<script src="vendor/js/jquery.min.js"></script>
+<script src="vendor/js/bootstrap.min.js"></script>
+<script src="vendor/js/slick.min.js"></script>
+<script src="assets/js/actions.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script>
-    var c = 0;
 
-    function menu() {
-        if (c % 2 == 0) {
-            document.querySelector('.cont_drobpdown_menu').className = "cont_drobpdown_menu active";
-            document.querySelector('.cont_icon_trg').className = "cont_icon_trg active";
-            c++;
-        } else {
-            document.querySelector('.cont_drobpdown_menu').className = "cont_drobpdown_menu disable";
-            document.querySelector('.cont_icon_trg').className = "cont_icon_trg disable";
-            c++;
-        }
-    }
-</script>
 
 </body>
 

@@ -9,21 +9,21 @@
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="img/banner3.jpg" alt="Los Angeles" style="width:100%;">
+                    <img src="assets/images/banner3.jpg" alt="Los Angeles" style="width:100%;">
 
                 </div>
 
                 <div class="item">
-                    <img src="img/banner2.jpg" style="width:100%;">
+                    <img src="assets/images/banner2.jpg" style="width:100%;">
 
                 </div>
 
                 <div class="item">
-                    <img src="img/banner4.jpg" alt="New York" style="width:100%;">
+                    <img src="assets/images/banner4.jpg" alt="New York" style="width:100%;">
 
                 </div>
                 <div class="item">
-                    <img src="img/banner1.jpg" alt="New York" style="width:100%;">
+                    <img src="assets/images/banner1.jpg" alt="New York" style="width:100%;">
 
                 </div>
 
@@ -588,7 +588,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://ychef.files.bbci.co.uk/976x549/p03gg1lc.jpg">
+                                <img src="assets/images/body_footer_1.jpg">
                                 <div class="descriptions">
                                     <h1>Đọc ở mọi lúc mọi nơi</h1>
                                     <p>
@@ -607,7 +607,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://assets.architecturaldigest.in/photos/624c2654cf7483eb90e638d6/16:9/w_2560%2Cc_limit/Books-1.jpg">
+                                <img src="assets/images/body_footer_2.webp">
                                 <div class="descriptions">
                                     <h1>Đa dạng thể loại nội dung</h1>
                                     <p>
@@ -626,7 +626,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://www.west-dunbarton.gov.uk/media/4320559/pickawood-gf8e6xvg_3e-unsplash.jpg">
+                                <img src="assets/images/body_footer_3.jpg">
                                 <div class="descriptions">
                                     <h1>Đọc sách VIP siêu rẻ</h1>
                                     <p>

@@ -62,12 +62,13 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=5"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="lập trình">
                             </div>
                             <div class="shop-body">
                                 <h3>Lập trình</h3>
-                                <a href="store.php?cat=5" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="store.php?cat=5" class="cta-btn">Mua ngay <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -83,12 +84,13 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=6"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="khoa học">
                             </div>
                             <div class="shop-body">
                                 <h3>Khoa học</h3>
-                                <a href="store.php?cat=6" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="store.php?cat=6" class="cta-btn">Mua ngay <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -104,12 +106,13 @@
                                                         include 'db.php';
                                                         $result = mysqli_fetch_assoc(mysqli_query($con, "SELECT product_image 
                                 FROM products WHERE product_cat=7"));
-                                                        echo '"/product_images/' . $result['product_image'] . '"';
+                                                        echo '"./product_images/' . $result['product_image'] . '"';
                                                         ?> alt="kinh điển">
                             </div>
                             <div class="shop-body">
                                 <h3>Kinh điển</h3>
-                                <a href="store.php?cat=7" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="store.php?cat=7" class="cta-btn">Mua ngay <i
+                                        class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </a>
@@ -607,7 +610,8 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://assets.architecturaldigest.in/photos/624c2654cf7483eb90e638d6/16:9/w_2560%2Cc_limit/Books-1.jpg">
+                                <img
+                                    src="https://assets.architecturaldigest.in/photos/624c2654cf7483eb90e638d6/16:9/w_2560%2Cc_limit/Books-1.jpg">
                                 <div class="descriptions">
                                     <h1>Đa dạng thể loại nội dung</h1>
                                     <p>
@@ -626,11 +630,13 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="wrapper">
                             <div class="card">
-                                <img src="https://www.west-dunbarton.gov.uk/media/4320559/pickawood-gf8e6xvg_3e-unsplash.jpg">
+                                <img
+                                    src="https://www.west-dunbarton.gov.uk/media/4320559/pickawood-gf8e6xvg_3e-unsplash.jpg">
                                 <div class="descriptions">
                                     <h1>Đọc sách VIP siêu rẻ</h1>
                                     <p>
-                                        Chỉ 1,000 vnđ/ngày là bạn có thể đọc Trọn bộ sách yêu thích trên BK Bookstore
+                                        Chỉ 1,000 vnđ/ngày là bạn có thể đọc Trọn bộ sách yêu thích trên BK
+                                        Bookstore
                                     </p>
                                     <button>
                                         <i class="fab fa-youtube"></i>

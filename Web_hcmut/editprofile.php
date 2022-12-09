@@ -20,6 +20,25 @@ if (isset($_POST['first-name'])) {
 }
 
 if (isset($fname) && isset($lname) && isset($phone) && isset($email) && isset($addr) && isset($city)) {
+    if (isset($_POST['old-password']) && isset($_POST['new-password']) && isset($_POST['conf-password']) && $_POST['new-password'] == $_POST['conf-password']) {
+        $old_password = $_POST['old-password'];
+        $new_password = $_POST['new-password'];
+        $conf_password = $_POST['conf-password'];
+        $sql = "SELECT * FROM user_info WHERE user_id=$uid";
+        $run_query = mysqli_query($con, $sql);
+        $result = mysqli_fetch_assoc($run_query);
+        if (password_verify($old_password, $result['password'])) {
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $sql = "UPDATE user_info 
+            SET password='$hashed_password' 
+            WHERE user_id=$uid";
+            mysqli_query($con, $sql);
+        } else {
+            echo "<script>alert('Mật khẩu cũ không đúng hoặc xác nhận mật khẩu sai')</script>";
+        }
+    }
+
+
     $sql = "UPDATE user_info 
     SET first_name='$fname', last_name='$lname', 
     email='$email', mobile='$phone', address1='$addr', address2='$city' 
@@ -53,6 +72,10 @@ echo "
                         <input type='text' id='last-name' name='last-name' class='form-control' required
                         value='$last_name'>
                     </div>
+                    <div class='form-group col-lg-4 col-md-6 col-sm-12'>
+                        <label for='last-name'>Mật khẩu cũ</label>
+                        <input type='password' id='old-password' name='old-password' class='form-control'>
+                    </div>
                 </div>
                 <div class='row'>
                     <div class='form-group col-lg-4 col-md-6 col-sm-12'>
@@ -65,6 +88,10 @@ echo "
                         <input type='email' id='email' name='email' class='form-control' required
                         value='$email'>
                     </div>
+                    <div class='form-group col-lg-4 col-md-6 col-sm-12'>
+                        <label for='last-name'>Mật khẩu mới</label>
+                        <input type='password' id='new-password' name='new-password' class='form-control'>
+                    </div>
                 </div>
                 <div class='row'>
                     <div class='form-group col-lg-4 col-md-6 col-sm-12'>
@@ -76,6 +103,10 @@ echo "
                         <label for='city'>Thành phố</label>
                         <input type='text' id='city' name='city' class='form-control' required
                         value='$address2'>
+                    </div>
+                    <div class='form-group col-lg-4 col-md-6 col-sm-12'>
+                        <label for='last-name'>Xác nhận mật khẩu mới</label>
+                        <input type='password' id='conf-password' name='conf-password' class='form-control'>
                     </div>
                 </div>
                 <div class='row'>
